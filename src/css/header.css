@@ -1,0 +1,43 @@
+.App {
+  text-align: center;
+}
+
+.header-part {
+    -moz-transition: 0.4s ease-in-out all;
+    -webkit-transition: 0.4s ease-in-out all;
+    transition: 0.4s ease-in-out all;
+    -moz-box-shadow: 0 1px 1px 0 rgba(0, 0, 0, 0.05);
+    -webkit-box-shadow: 0 1px 1px 0 rgba(0, 0, 0, 0.05);
+    box-shadow: 0 1px 1px 0 rgba(0, 0, 0, 0.05);
+    background-color: #fff;
+    display: table;
+    width: 100%;
+    height: 60px;
+    -webkit-box-shadow: 0px 3px 10px 0px rgba(0, 0, 0, 0.3);
+    -moz-box-shadow: 0px 3px 10px 0px rgba(0, 0, 0, 0.3);
+    box-shadow: 0px 3px 10px 0px rgba(0, 0, 0, 0.3);
+}
+
+.page-logo {
+    width: 200px;
+    float: left;
+}
+
+.page-logo .logo {
+    width: 200px;
+    margin: 13px 25px;
+}
+
+.page-logo .logo img {
+    width: 100%;
+}
+
+.header-title {
+    width: 400px;
+    font-size: 25px;
+    color: #93c84a;
+    text-transform: uppercase;
+    font-weight: bold;
+    float: left;
+    margin: 13px 0px 13px 70px;
+}

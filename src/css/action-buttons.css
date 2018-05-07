@@ -1,0 +1,22 @@
+.action-button-container button {
+    background: rgb(0, 188, 212);
+    outline: none;
+    border: 1px solid #fff;
+    padding: 6px;
+    color: #fff;
+}
+
+.action-button-container button .fa {
+    margin: 0 5px;
+}
+
+.action-button-container {
+    float: right;
+    margin: 10px;
+}
+
+.priority-checkbox{
+    margin-top: 15px;
+    float: right;
+    word-wrap: break-word;
+}
