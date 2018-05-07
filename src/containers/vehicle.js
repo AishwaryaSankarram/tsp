@@ -25,7 +25,7 @@ export class VehicleContainer extends Component{
     }
 
     updateData(obj){
-    	console.log("Calling updateData in VehicleContainer      ", obj);
+    	// console.log("Calling updateData in VehicleContainer", obj);
     	// {carId: car.carId, overview_poly: car.poly, isEv: car.useAsEv, color: car.color,
                                     // carLabel: car.carLabel, lat: car.poly[0].lat, lng: car.poly[0].lng};
 		if(obj.carId){
@@ -33,6 +33,7 @@ export class VehicleContainer extends Component{
 	    		carId: obj.carId,
 	    		latitude: obj.lat,
 	    		longitude: obj.lng,
+	    		speed: obj.speed
     		});	
 		}                                    
     }
