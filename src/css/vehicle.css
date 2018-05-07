@@ -1,0 +1,14 @@
+.bus-container{
+	text-align: left;
+    float: right;
+    border: 1px solid black;
+    margin-right: 15px;
+    margin-top: 10px;
+    padding-left: 10px;
+}
+.bus-header{
+	margin-bottom: 0px; 
+}
+.bus-container hr{
+	margin: 0;
+}
