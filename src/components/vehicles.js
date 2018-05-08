@@ -1,6 +1,8 @@
 import React from 'react';
 import { Marker } from 'react-google-maps';
-import carIcon from '../images/bus';
+import carIcon from '../images/car';
+import busIcon from '../images/bus-icon';
+
 
 let google = window.google;
 let latLngBounds = new google.maps.LatLngBounds();
@@ -99,15 +101,22 @@ export class Vehicles extends React.Component {
 
     render() {
         let m=[], markers = this.state.markers;
+        console.log("Image url is---------", "http://localhost:3000/fav.png");
         for(var car in markers){
           let marker = markers[car];
+          //ToDo: Use Car icon for non-EV vehicles
           let cIcon = Object.assign({}, carIcon);
           cIcon.rotation=45;
           cIcon['fillColor'] = marker.color;
-          m.push(<Marker key={marker.carId} position={{lat: marker.lat, lng: marker.lng}}
-                          icon={cIcon} title={marker.carLabel} />
+
+          let bus = busIcon.replace(/rotateDeg/g, '-45');
+          let icon = { url: 'data:image/svg+xml;charset=UTF-8,' + encodeURIComponent(bus),
+                       scaledSize: new google.maps.Size(50, 50)
+                      };
+          m.push(<Marker  key={marker.carId} position={{lat: marker.lat, lng: marker.lng}}
+                          icon={icon} title={marker.carLabel} />
                 );
         }
-        return <div> { m } </div> ;
+        return <div className="my-marker-test"> { m } </div> ;
     }
 }
