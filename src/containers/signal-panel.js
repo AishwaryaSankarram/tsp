@@ -1,8 +1,6 @@
 import React, {Component} from 'react';
 import { Signal } from '../components/signal';
 import '../css/signal-panel.css';
-import FloatingActionButton from 'material-ui';
-
 
 export class SignalPanel extends Component {
 
@@ -47,7 +45,7 @@ export class SignalPanel extends Component {
 
         return (
           <li title={self.state.intToSignalMap[Object.keys(self.state.socketData)[index]]} className="signal" key={"signal-li_" + index}>
-            <button variant="raised" color="primary">+</button>
+            <button><i class="fa fa-plus"></i></button>
             <Signal key={index} data={data} />
           </li>
         );
