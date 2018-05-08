@@ -28,8 +28,8 @@ export class Signal extends Component {
     console.log("NEW SIGNAL PROPS RECEIVED ", props);
     let self = this;
     if(this.intervalTimer) {
-      clearInterval(this.timer);
-      this.timer = null;
+      clearInterval(this.intervalTimer);
+      this.intervalTimer = null;
     }
     this.setState ({
       straight: props.data.straight,
