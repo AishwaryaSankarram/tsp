@@ -3,9 +3,10 @@ import {MapContainer} from './map';
 import {VehicleContainer} from './vehicle';
 import {LogsContainer} from './logs';
 import { SignalPanel } from './signal-panel';
+import {MessageContainer} from './message'
 import openSocket from 'socket.io-client';
 
-window.socket = openSocket("http://192.168.1.3:8808", { transports: ['websocket'] });
+window.socket = openSocket("http://localhost:8808", { transports: ['websocket'] });
 
 export class MainPage extends Component{
 	constructor(props){
@@ -36,6 +37,7 @@ export class MainPage extends Component{
 				Main Page
 				<div className="top-panel">
 					<SignalPanel onSignalPanelMount={this.handleSignalPanelMount.bind(this)}/>
+					<MessageContainer />
 					<VehicleContainer onVehicleMount={this.handleVehicleMount.bind(this)}/>
 				</div>
 				<div className="bottom-panel">

@@ -1,0 +1,13 @@
+.message-container{
+	  text-align: left;
+    border: 1px solid black;
+    margin: 0 auto 0 auto;
+    padding-left: 10px;
+    width: 25%;
+}
+.message-header{
+	margin-bottom: 0px;
+}
+.message-container hr{
+	margin: 0;
+}
