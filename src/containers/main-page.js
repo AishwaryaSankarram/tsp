@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import {MapContainer} from './map';
 import {VehicleContainer} from './vehicle';
+import {Signal} from '../components/signal'
 
 export class MainPage extends Component{
 	constructor(props){
@@ -20,7 +21,9 @@ export class MainPage extends Component{
 				Main Page
 				<VehicleContainer onVehicleMount={this.handleVehicleMount.bind(this)}/>
 				<MapContainer vehicle={this.state.vehicle}/>
+				<Signal />
   			</div>
+
 		);
 	}
 }

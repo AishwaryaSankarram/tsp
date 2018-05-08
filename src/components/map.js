@@ -1,7 +1,9 @@
 import React from 'react';
 import { withGoogleMap, GoogleMap} from "react-google-maps";
+
 import { compose, lifecycle} from "recompose";
 import {Vehicles} from './vehicles';
+import {InterMarkers} from './inter-markers.js'
 
 export const MapComponent = compose(
   lifecycle({
@@ -32,6 +34,7 @@ export const MapComponent = compose(
       // defaultCenter={{ lat: 13.178227, lng: 79.611750 }}
      >
      {console.log("props in maps------------", props)}
-     <Vehicles mapObj={props.mapObj} vehicle={props.vehicle} /> 
+     <Vehicles mapObj={props.mapObj} vehicle={props.vehicle} />
+     <InterMarkers />
     </GoogleMap>
 ));
