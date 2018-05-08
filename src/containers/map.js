@@ -11,6 +11,8 @@ export class MapContainer extends Component{
   			   containerElement={<div style={{ height: `700px`}} />}
   			   mapElement={<div style={{ height: `100%` }} />}
   			   vehicle={this.props.vehicle}
+					 signalpanel={this.props.signalpanel}
+
   			/>
   			</div>
 		);

@@ -35,6 +35,6 @@ export const MapComponent = compose(
      >
      {console.log("props in maps------------", props)}
      <Vehicles mapObj={props.mapObj} vehicle={props.vehicle} />
-     <InterMarkers />
+     <InterMarkers mapObj={props.mapObj} signalpanel={props.signalpanel} />
     </GoogleMap>
 ));
