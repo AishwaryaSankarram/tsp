@@ -24,10 +24,8 @@ export class InterMarkers extends Component {
   updateIntersections(data) {
 
     let posObj = {lat: data.pos.x, lng: data.pos.y};
-    console.log("posObj ->", posObj);
     let oldMarkerPos = this.state.markerPos;
     oldMarkerPos.push(posObj);
-    console.log(oldMarkerPos);
     this.setState({markerPos: oldMarkerPos});
 
   }
@@ -36,7 +34,7 @@ export class InterMarkers extends Component {
     let markerPositions = this.state.markerPos;
     let markers = markerPositions.map( (pos, index) => {
         return (
-          <Marker key={index} position={pos}  />
+          <Marker key={index} position={pos} />
         );
     });
 

@@ -1,7 +1,6 @@
 import React from 'react';
 import { Marker } from 'react-google-maps';
 import carIcon from '../images/bus';
-import openSocket from 'socket.io-client';
 
 let google = window.google;
 let latLngBounds = new google.maps.LatLngBounds();
@@ -23,7 +22,6 @@ export class Vehicles extends React.Component {
         var self = this;
         //Mouli's socket Starts--------------------------
         // setTimeout(function(){
-        window.socket = openSocket("http://192.168.1.3:8808", { transports: ['websocket'] });
         let socket = window.socket;
         console.log("openSocket------", socket);
         socket.emit("carDetails", "hello---"); //Trigger Car Details Event
@@ -54,7 +52,7 @@ export class Vehicles extends React.Component {
                                     carLabel: car.carLabel, lat: car.poly[0].lat, lng: car.poly[0].lng, speed: car.poly[0].speed};
             if(car.useAsEv)
                 mainCar = markers[car.carId];
-        } 
+        }
         if(!mainCar.carId){
             mainCar = data[0];
             mainCar.lat = data[0].poly[0].lat;
@@ -77,7 +75,7 @@ export class Vehicles extends React.Component {
         if(currentCar.isEv){
           let pos = { lat: jsonData.lat, lng: jsonData.lng };
           self.props.vehicle.updateData(currentCar);
-          self.checkForExistingBounds(pos);  
+          self.checkForExistingBounds(pos);
         }
         }else{
             markers[jsonData.carId] = { lat: jsonData.lat, lng: jsonData.lng, carId: jsonData.carId };
@@ -87,7 +85,7 @@ export class Vehicles extends React.Component {
 
 
     checkForExistingBounds(pos){
-        let latLng = new window.google.maps.LatLng(pos.lat, pos.lng);    
+        let latLng = new window.google.maps.LatLng(pos.lat, pos.lng);
         let self = this;
         let map = self.props.mapObj;
         // window.myMap = map;
@@ -104,7 +102,7 @@ export class Vehicles extends React.Component {
         for(var car in markers){
           let marker = markers[car];
           let cIcon = Object.assign({}, carIcon);
-          cIcon.rotation=45;  
+          cIcon.rotation=45;
           cIcon['fillColor'] = marker.color;
           m.push(<Marker key={marker.carId} position={{lat: marker.lat, lng: marker.lng}}
                           icon={cIcon} title={marker.carLabel} />
