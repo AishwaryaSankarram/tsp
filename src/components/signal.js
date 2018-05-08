@@ -23,7 +23,7 @@ export class Signal extends Component {
   }
 
   componentWillReceiveProps(props) {
-    console.log("NEW SIGNAL PROPS RECEIVED ", props);
+    // console.log("NEW SIGNAL PROPS RECEIVED ", props);
     this.setState ({
       straight: props.data.straight,
       left: props.data.left,
@@ -38,13 +38,8 @@ export class Signal extends Component {
     svg = svg.replace(/leftTurnSignal/g, this.state.left.color);
     svg = svg.replace(/straightSignal/g, this.state.straight.color);
     svg = svg.replace(/rightTurnSignal/g, this.state.right.color);
-    svg = svg.replace(/leftTimer/g,
-    this.state.left.timer);
-    svg = svg.replace(/straightTimer/g,
-    this.state.straight.timer);
-    console.log(svg);
-    return <span dangerouslySetInnerHTML={{__html: svg}} />;
-
-
-  }
+    svg = svg.replace(/leftTimer/g, this.state.left.timer);
+    svg = svg.replace(/straightTimer/g, this.state.straight.timer);
+    return <div dangerouslySetInnerHTML={{__html: svg}} />;
+   }
 }

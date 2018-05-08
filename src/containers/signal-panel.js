@@ -45,7 +45,7 @@ export class SignalPanel extends Component {
     });
 
     return (
-      <ul className="signalPanel">{signals}</ul>
+      <div className="signal-panel"><ul key="signal-list" className="signalPanel">{signals}</ul></div>
     );
 
   }

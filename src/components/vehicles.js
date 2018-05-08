@@ -47,7 +47,7 @@ export class Vehicles extends React.Component {
         let self = this;
         let markers = self.state.markers;
         let mainCar = {};
-        console.log("CarData=======>", data, typeof(data));
+        // console.log("CarData=======>", data, typeof(data));
         for(let i=0; i<data.length; i++){
             let car = data[i];
             markers[car.carId] = {carId: car.carId, overview_poly: car.poly, isEv: car.useAsEv, color: car.color,
@@ -92,7 +92,7 @@ export class Vehicles extends React.Component {
         let map = self.props.mapObj;
         // window.myMap = map;
         if (!map.getBounds().contains(latLng)) {
-            console.log("new lat lng not in bounds----");
+            // console.log("new lat lng not in bounds----");
             latLngBounds.extend(latLng);
             // map.fitBounds(latLngBounds);
             map.panTo(latLng);
@@ -101,7 +101,6 @@ export class Vehicles extends React.Component {
 
     render() {
         let m=[], markers = this.state.markers;
-        console.log("Image url is---------", "http://localhost:3000/fav.png");
         for(var car in markers){
           let marker = markers[car];
           //ToDo: Use Car icon for non-EV vehicles

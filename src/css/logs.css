@@ -1,0 +1,16 @@
+.log-container {
+	float: right;
+    width: 25%;
+    border: 1px solid black;
+    height: 700px;
+    margin-top: 40px;
+    text-align: left;
+    padding-left: 10px;
+    margin-right: 15px;
+}
+.logs-header{
+	margin-bottom: 0px; 
+}
+.log-container hr{
+	margin: 0;
+}
