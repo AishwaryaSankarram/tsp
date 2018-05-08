@@ -6,6 +6,8 @@ export class Signal extends Component {
   constructor(props) {
     super(props);
 
+    this.intervalTimer = null;
+
     this.state = {
       straight: {
         color: "#000000",
@@ -24,11 +26,24 @@ export class Signal extends Component {
 
   componentWillReceiveProps(props) {
     console.log("NEW SIGNAL PROPS RECEIVED ", props);
+    let self = this;
+    if(this.intervalTimer) {
+      clearInterval(this.timer);
+      this.timer = null;
+    }
     this.setState ({
       straight: props.data.straight,
       left: props.data.left,
       right: props.data.right
-    })
+    });
+
+    this.intervalTimer = setInterval(function() {
+      let currentState = self.state
+      currentState.straight.timer = currentState.straight.timer - 1;
+      currentState.left.timer = currentState.left.timer - 1;
+      currentState.right.timer = currentState.right.timer - 1;
+      self.setState({currentState});
+    }, 1000);
   }
 
 

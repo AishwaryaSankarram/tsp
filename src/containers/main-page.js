@@ -1,8 +1,7 @@
 import React, {Component} from 'react';
 import {MapContainer} from './map';
 import {VehicleContainer} from './vehicle';
-import {Signal} from '../components/signal'
-import { SignalPanel } from './signal-panel';
+import {SignalPanel} from './signal-panel';
 import openSocket from 'socket.io-client';
 
 window.socket = openSocket("http://192.168.1.3:8808", { transports: ['websocket'] });
