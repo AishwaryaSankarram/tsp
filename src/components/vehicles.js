@@ -103,15 +103,15 @@ export class Vehicles extends React.Component {
         let m=[], markers = this.state.markers;
         for(var car in markers){
           let marker = markers[car];
-          //ToDo: Use Car icon for non-EV vehicles
           let cIcon = Object.assign({}, carIcon);
-          cIcon.rotation=45;
-          cIcon['fillColor'] = marker.color;
+          // cIcon.rotation=45;
+          // cIcon['fillColor'] = marker.color;
 
           let bus = busIcon.replace(/rotateDeg/g, '-45');
-          let icon = { url: 'data:image/svg+xml;charset=UTF-8,' + encodeURIComponent(bus),
+          let bIcon = { url: 'data:image/svg+xml;charset=UTF-8,' + encodeURIComponent(bus),
                        scaledSize: new google.maps.Size(50, 50)
                       };
+          let icon = marker.isEv ? bIcon : cIcon;                      
           m.push(<Marker  key={marker.carId} position={{lat: marker.lat, lng: marker.lng}}
                           icon={icon} title={marker.carLabel} />
                 );
