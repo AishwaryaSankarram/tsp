@@ -25,7 +25,7 @@ export class Signal extends Component {
   }
 
   componentWillReceiveProps(props) {
-    console.log("NEW SIGNAL PROPS RECEIVED ", props);
+    // console.log("NEW SIGNAL PROPS RECEIVED ", props);
     let self = this;
     if(this.intervalTimer) {
       clearInterval(this.intervalTimer);

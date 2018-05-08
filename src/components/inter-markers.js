@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Marker } from 'react-google-maps';
+import InterIcon from '../images/intersection-icon';
 
 export class InterMarkers extends Component {
 
@@ -22,7 +23,6 @@ export class InterMarkers extends Component {
   }
 
   updateIntersections(data) {
-
     let posObj = {lat: data.pos.x, lng: data.pos.y};
     let oldMarkerPos = this.state.markerPos;
     oldMarkerPos.push(posObj);
@@ -33,8 +33,14 @@ export class InterMarkers extends Component {
   render() {
     let markerPositions = this.state.markerPos;
     let markers = markerPositions.map( (pos, index) => {
+        let iconImg = InterIcon;
+        let title =  String.fromCharCode(index + 65);
+        iconImg = iconImg.replace(/label/g, title);
+        let icon = { url: 'data:image/svg+xml;charset=UTF-8,' + encodeURIComponent(iconImg),
+                       scaledSize: new window.google.maps.Size(50, 50)
+                      };
         return (
-          <Marker key={index} position={pos} />
+          <Marker key={"i-marker_" + index} position={pos} title={title} icon={icon} />
         );
     });
 

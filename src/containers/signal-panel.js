@@ -36,11 +36,11 @@ export class SignalPanel extends Component {
     let currentSocketValues = Object.values(this.state.socketData);
 
     let signals = currentSocketValues.map((data, index) => {
+        
         return (
-          <li className="signal">
+          <li className="signal" key={"signal-li_" + index}>
             <button variant="raised" color="primary">+</button>
             <Signal key={index} data={data} />
-
           </li>
         );
     });

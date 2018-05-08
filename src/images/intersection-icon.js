@@ -1,0 +1,10 @@
+let interIcon = ['<svg xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:cc="http://creativecommons.org/ns#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:svg="http://www.w3.org/2000/svg" xmlns="http://www.w3.org/2000/svg" xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd" xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape" width="89.999687" height="90.00032" viewBox="0 0 253.99915 254.00089" version="1.1" id="svg2">',
+  '<path inkscape:connector-curvature="0" d="M 3.6221475,118.21849 118.2185,3.6221014 c 4.82952,-4.8295 12.73175,-4.8295 17.56128,0 L 250.37965,118.21849 c 4.826,4.82953 4.826,12.73176 0,17.56128 L 135.77978,250.37612 c -4.82953,4.83306 -12.73176,4.83306 -17.56128,0 L 3.6221475,135.77977 c -4.82953,-4.82952 -4.82953,-12.73175 0,-17.56128" style="fill:#fecf33;fill-opacity:1;fill-rule:nonzero;stroke:none" id="path3274"/>',
+  '<path inkscape:connector-curvature="0" d="M 6.9523675,119.29342 119.29094,6.9513014 c 4.24392,-4.2368 11.176,-4.2368 15.41639,0 L 247.04591,119.29342 c 4.24038,4.24039 4.24038,11.176 0,15.41286 l -112.33858,112.3421 c -4.24039,4.23686 -11.17247,4.23686 -15.41639,0 L 6.9523675,134.70628 c -4.23686,-4.23686 -4.23686,-11.17247 0,-15.41286" style="fill:#000000;fill-opacity:1;fill-rule:evenodd;stroke:none" id="path3282"/>',
+  '<path xmlns="http://www.w3.org/2000/svg" xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape" inkscape:connector-curvature="0" d="M 11.340917,122.24758 122.24722,11.341302 c 2.61408,-2.6141006 6.88975,-2.6141006 9.50736,0 L 242.65735,122.24758 c 2.61408,2.61409 2.61408,6.89328 0,9.50737 L 131.75458,242.66124 c -2.61761,2.61056 -6.89328,2.61056 -9.50736,0 L 11.340918,131.75495 c -2.6140805,-2.61409 -2.6140805,-6.89328 0,-9.50737" style="fill:#fecf33;fill-opacity:1;fill-rule:evenodd;stroke:none" id="path3286"/>',
+  '<text xmlns="http://www.w3.org/2000/svg" id="40" font-family="Arial-BoldMT, Arial" font-size="70" font-weight="bold" letter-spacing="2.43478274" fill="#03272E">',
+  '<tspan xmlns="http://www.w3.org/2000/svg" x="90" y="150">label</tspan>',
+  '</text>',
+'</svg>'].join('\n');
+
+export default interIcon;
