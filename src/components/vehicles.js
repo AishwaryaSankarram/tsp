@@ -51,18 +51,19 @@ export class Vehicles extends React.Component {
         for(let i=0; i<data.length; i++){
             let car = data[i];
             markers[car.carId] = {carId: car.carId, overview_poly: car.poly, isEv: car.useAsEv, color: car.color,
-                                    carLabel: car.carLabel, lat: car.poly[0].lat, lng: car.poly[0].lng};
+                                    carLabel: car.carLabel, lat: car.poly[0].lat, lng: car.poly[0].lng, speed: car.poly[0].speed};
             if(car.useAsEv)
-                mainCar = car;
+                mainCar = markers[car.carId];
         } 
-        // let socket = window.socket;
-        if(!mainCar.carId)
-            mainCar=data[0];
-        console.log("vehicleComp in bus---------", self.props.vehicle);
-        self.props.vehicle.updateData(mainCar);
-        self.checkForExistingBounds(mainCar);
+        if(!mainCar.carId){
+            mainCar = data[0];
+            mainCar.lat = data[0].poly[0].lat;
+            mainCar.lng = data[0].poly[0].lng;
+            mainCar.speed = data[0].poly[0].speed
+        }
+        // self.checkForExistingBounds(mainCar);
         // self.setState({ markers: markers});
-        // socket.on("mockBsm", function(e) { self.updateMeth(e, markers); } );
+        window.socket.on("mockBsm", function(e) { self.updateMeth(e, markers); } );
     }
 
     updateMeth(data, markers) {
@@ -75,6 +76,7 @@ export class Vehicles extends React.Component {
             currentCar.lng = jsonData.lng;
         if(currentCar.isEv){
           let pos = { lat: jsonData.lat, lng: jsonData.lng };
+          self.props.vehicle.updateData(currentCar);
           self.checkForExistingBounds(pos);  
         }
         }else{
@@ -104,10 +106,9 @@ export class Vehicles extends React.Component {
           let cIcon = Object.assign({}, carIcon);
           cIcon.rotation=45;  
           cIcon['fillColor'] = marker.color;
-          m.push(<div>
-                <Marker key={marker.carId} position={{lat: marker.lat, lng: marker.lng}}
+          m.push(<Marker key={marker.carId} position={{lat: marker.lat, lng: marker.lng}}
                           icon={cIcon} title={marker.carLabel} />
-                </div>);
+                );
         }
         return <div> { m } </div> ;
     }
