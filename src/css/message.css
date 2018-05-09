@@ -1,10 +1,11 @@
 .message-container{
-	  text-align: left;
+    text-align: left;
+    margin-top: 10px;
     border: 1px solid black;
-    margin: 15px auto 10px  auto;
-    padding-left: 10px;
-    width: 25%;
-    overflow: scroll;
+    width: 35%;
+    float: left;
+    height: 135px;
+    margin-right: 40px;
 }
 .message-header{
 	margin-bottom: 0px;
