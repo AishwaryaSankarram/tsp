@@ -14,15 +14,28 @@ export class MessageContainer extends Component {
     }
   }
 
+  componentDidMount() {
+    this.props.onMessageMount(this);
+  }
+
+  updateMessage(obj) {
+    this.setState({id: obj.id, type: obj.type, message: obj.message});
+  }
+
+  componentWillUnmount() {
+    this.props.onMessageMount(null);
+  }
+
   render() {
 
     return (
       <div className="message-container">
-        <label className="message-header"> Message Details </label>
+        <label className="message-header">Message Details</label>
         <hr/>
         ID: {this.state.id}<br/>
         Type: {this.state.type} <br/>
         Message: {this.state.message} <br/>
+
 
       </div>
     );

@@ -6,11 +6,11 @@ export class LogsContainer extends Component{
 		super(props);
 		this.state = {
 			carId: 123,
-			latitude: 12345.96, 
+			latitude: 12345.96,
 			longitude: 987456.389,
 			speed: "110" ,
-			distance: "30", 
-			laneId: "A1"	 
+			distance: "30",
+			laneId: "A1"
 		};
 		this.updateData = this.updateData.bind(this);
 	}
@@ -20,9 +20,20 @@ export class LogsContainer extends Component{
         this.props.onLogsMount(this);
     }
 
-    componentWillUnmount(){
-    	this.props.onLogsMount(null);	
-    }
+  componentWillUnmount(){
+    	this.props.onLogsMount(null);
+  }
+
+	clearLogs() {
+			this.setState({
+					carId: "",
+					latitude: "",
+					longitude: "",
+					speed: "" ,
+					distance: "",
+					laneId: ""
+			})
+	}
 
     updateData(obj){
 		if(obj.carId){
@@ -31,14 +42,18 @@ export class LogsContainer extends Component{
 	    		latitude: obj.lat,
 	    		longitude: obj.lng,
 	    		speed: obj.speed
-    		});	
-		}                                    
+    		});
+		}
     }
 
 	render(){
 		return (
 			<div className="log-container">
-				<label className="logs-header"> Device Logs </label>
+				<label className="logs-header"> Device Logs
+					<button>
+						<i className="fa fa-trash" onClick={this.clearLogs.bind(this)}></i>
+					</button>
+				</label>
 				<hr/>
 				ID: {this.state.carId}<br/>
 				Latitude: {this.state.latitude} <br/>

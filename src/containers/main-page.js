@@ -14,6 +14,7 @@ export class MainPage extends Component{
 		this.state = {
 			vehicle: 0,
 			logs: null,
+			message: null,
 			signalPanel: null
 		};
 	}
@@ -24,6 +25,10 @@ export class MainPage extends Component{
 
 	handleVehicleMount(obj){
 		this.setState({vehicle: obj});
+	}
+
+	handleMessageMount(obj) {
+		this.setState({message: obj});
 	}
 
 	handleLogsMount(obj){
@@ -37,11 +42,11 @@ export class MainPage extends Component{
 				Main Page
 				<div className="top-panel">
 					<SignalPanel onSignalPanelMount={this.handleSignalPanelMount.bind(this)}/>
-					<MessageContainer />
+					<MessageContainer onMessageMount={this.handleMessageMount.bind(this)}/>
 					<VehicleContainer onVehicleMount={this.handleVehicleMount.bind(this)}/>
 				</div>
 				<div className="bottom-panel">
-					<MapContainer signalpanel={this.state.signalPanel} vehicle={this.state.vehicle}/>
+					<MapContainer signalpanel={this.state.signalPanel} vehicle={this.state.vehicle} message={this.state.message}/>
 					<LogsContainer onLogsMount={this.handleLogsMount.bind(this)}/>
 				</div>
   			</div>

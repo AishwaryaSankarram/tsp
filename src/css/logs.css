@@ -9,8 +9,25 @@
     margin-right: 15px;
 }
 .logs-header{
-	margin-bottom: 0px; 
+	margin-bottom: 0px;
 }
+
+.logs-header button {
+	background: rgb(0, 188, 212);
+	outline: none;
+	border: 1px solid #fff;
+	padding: 6px;
+	color: #fff;
+}
+
+.logs-header button:hover {
+	color: #000;
+}
+
+.logs-header button .fa {
+	float: right;
+}
+
 .log-container hr{
 	margin: 0;
 }

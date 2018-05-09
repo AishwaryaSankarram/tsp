@@ -1,9 +1,10 @@
 .message-container{
 	  text-align: left;
     border: 1px solid black;
-    margin: 0 auto 0 auto;
+    margin: 15px auto 10px  auto;
     padding-left: 10px;
     width: 25%;
+    overflow: scroll;
 }
 .message-header{
 	margin-bottom: 0px;

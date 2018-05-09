@@ -22,6 +22,10 @@ export class SignalPanel extends Component {
     webSocket.on('signal', self.renderSignals);
   }
 
+  componentWillUnmount() {
+    this.props.onSignalPanelMount(null);
+  }
+
   intersectionToSignalMap(obj) {
     this.setState({intToSignalMap: obj});
   }
@@ -45,7 +49,7 @@ export class SignalPanel extends Component {
 
         return (
           <li title={self.state.intToSignalMap[Object.keys(self.state.socketData)[index]]} className="signal" key={"signal-li_" + index}>
-            <button><i class="fa fa-plus"></i></button>
+            <button><i className="fa fa-plus"></i></button>
             <Signal key={index} data={data} />
           </li>
         );

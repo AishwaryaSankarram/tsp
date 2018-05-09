@@ -3,12 +3,12 @@
     float: right;
     border: 1px solid black;
     margin-right: 15px;
-    margin-top: 10px;
+    margin-top: 5px;
     padding-left: 10px;
     width: 25%;
 }
 .bus-header{
-	margin-bottom: 0px; 
+	margin-bottom: 0px;
 }
 .bus-container hr{
 	margin: 0;
