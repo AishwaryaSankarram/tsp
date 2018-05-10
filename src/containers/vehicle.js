@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import '../css/vehicle.css';
+import busIcon from '../images/bus-icon';
 
 export class VehicleContainer extends Component{
 	constructor(props){
@@ -39,9 +40,12 @@ export class VehicleContainer extends Component{
     }
 
 	render(){
+		let bus = busIcon.replace(/rotateDeg/g,0);
+		let html = bus + '<label> Vehicle Details </label>';
 		return (
 			<div className="bus-container">
-				<label className="bus-header"> Vehicle Details </label>
+				<div className="bus-header" dangerouslySetInnerHTML={{__html: html}}>
+				</div>
 				<hr/>
 				ID: {this.state.carId}<br/>
 				Latitude: {this.state.latitude} <br/>

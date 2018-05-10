@@ -51,7 +51,7 @@ export class Vehicles extends React.Component {
         for(let i=0; i<data.length; i++){
             let car = data[i];
             markers[car.carId] = {carId: car.carId, overview_poly: car.poly, isEv: car.useAsEv, color: car.color,
-                                    carLabel: car.carLabel, lat: car.poly[0].lat, lng: car.poly[0].lng, speed: car.poly[0].speed};
+                                    carLabel: car.carLabel,  lng: car.poly[0].lng, speed: car.poly[0].speed, rotation: 0};
             if(car.useAsEv)
                 mainCar = markers[car.carId];
         }
@@ -70,24 +70,30 @@ export class Vehicles extends React.Component {
         let self = this;
         let jsonData = JSON.parse(data);
         let currentCar = markers[jsonData.carId];
+        var heading = 0;
 
         if(currentCar){
+            let p = new google.maps.LatLng(jsonData.lat, jsonData.lng);
+            if(currentCar.lat){
+                let lastPosn = new google.maps.LatLng(currentCar.lat,currentCar.lng);
+                heading = google.maps.geometry.spherical.computeHeading(lastPosn,p);
+            }
             currentCar.lat = jsonData.lat;
             currentCar.lng = jsonData.lng;
-        if(currentCar.isEv){
-          let pos = { lat: jsonData.lat, lng: jsonData.lng };
-          self.props.vehicle.updateData(currentCar);
-          self.checkForExistingBounds(pos);
-        }
-        }else{
-            markers[jsonData.carId] = { lat: jsonData.lat, lng: jsonData.lng, carId: jsonData.carId };
+            currentCar.rotation = heading;
+            if(currentCar.isEv){
+              self.props.vehicle.updateData(currentCar);
+              self.checkForExistingBounds(p);
+            }
+        }else{ //Car details were not avl earlier
+            markers[jsonData.carId] = { lat: jsonData.lat, lng: jsonData.lng, carId: jsonData.carId, rotation: heading };
         }
         self.setState({ markers: markers});
     }
 
 
-    checkForExistingBounds(pos){
-        let latLng = new window.google.maps.LatLng(pos.lat, pos.lng);
+    checkForExistingBounds(latLng){
+        // let latLng = new google.maps.LatLng(pos.lat, pos.lng);
         let self = this;
         let map = self.props.mapObj;
         // window.myMap = map;
@@ -104,10 +110,10 @@ export class Vehicles extends React.Component {
         for(var car in markers){
           let marker = markers[car];
           let cIcon = Object.assign({}, carIcon);
-          // cIcon.rotation=45;
+          cIcon.rotation=marker.rotation;
           // cIcon['fillColor'] = marker.color;
 
-          let bus = busIcon.replace(/rotateDeg/g, '-45');
+          let bus = busIcon.replace(/rotateDeg/g, -1 * marker.rotation);
           let bIcon = { url: 'data:image/svg+xml;charset=UTF-8,' + encodeURIComponent(bus),
                        scaledSize: new google.maps.Size(50, 50)
                       };

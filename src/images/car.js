@@ -6,7 +6,7 @@ let carIcon = {
 	strokeColor: '#090872',
 	strokeWeight: .10,
 	fillOpacity: 1,
-	fillColor: '#f47142'
+	fillColor: '#000000'
 };
 
 
