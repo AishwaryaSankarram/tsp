@@ -7,3 +7,14 @@ body {
 div.gm-style-iw  + div {
   display:none;
 }
+.main-page{
+  width: 100%;
+}
+.left-panel{
+  width: 75%;
+  float: left;
+}
+.right-panel{
+  width: 25%;
+  float: right;
+}

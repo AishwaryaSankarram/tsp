@@ -66,11 +66,13 @@ export class SignalPanel extends Component {
     return (
 
         <div className="signal-panel">
-          <label> Intersection Details </label>
-          <Checkbox className="signals-checkbox" checked={this.state.showAllSignals} onChange={(event) => this.handleChange(event)}>
-            Show All Signals
-          </Checkbox>
-          <ul key="signal-list">{signals}</ul>
+          <div className="signal-header">
+            <label> Intersection Details </label>
+            <Checkbox className="signals-checkbox" checked={this.state.showAllSignals} onChange={(event) => this.handleChange(event)}>
+              Show All Signals
+            </Checkbox>
+          </div>
+        <div className="text-content"><ul key="signal-list">{signals}</ul></div>
         </div>
 
     );

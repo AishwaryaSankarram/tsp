@@ -1,11 +1,12 @@
 .log-container {
 	background: #ffffff;
 	float: left;
-    width: 25%;
+    width: 100%;
     text-align: left;
     padding: 12px 18px;
-    margin: 15px;
-    border-radius: 6px;
+    margin: 15px 0px;
+	border-radius: 6px;
+	height: 943px;
 }
 .logs-header{
 	margin-bottom: 0px;

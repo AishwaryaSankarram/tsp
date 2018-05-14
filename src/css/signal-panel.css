@@ -1,5 +1,5 @@
 .signal-panel{
-    width: 30%;
+    width: 38%;
     height: 185px;
     background: #fff;
     float: left;
@@ -41,7 +41,6 @@
 }
 
 .signals-checkbox {
-  display: inline;
   float: right;
   margin-top: 0px;
 }
