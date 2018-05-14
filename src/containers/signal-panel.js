@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import { Signal } from '../components/signal';
+import {Checkbox} from "react-bootstrap";
 import '../css/signal-panel.css';
 
 export class SignalPanel extends Component {
@@ -8,7 +9,8 @@ export class SignalPanel extends Component {
     super(props);
 
     this.state = {socketData: {},
-                  intToSignalMap: {}
+                  intToSignalMap: {},
+                  showAllSignals: false
                 };
 
     this.renderSignals = this.renderSignals.bind(this);
@@ -20,6 +22,12 @@ export class SignalPanel extends Component {
     this.props.onSignalPanelMount(this);
     let webSocket = window.socket
     webSocket.on('signal', self.renderSignals);
+  }
+
+  handleChange(event) {
+    this.setState({
+      showAllSignals: event.target.checked
+    });
   }
 
   componentWillUnmount() {
@@ -56,7 +64,15 @@ export class SignalPanel extends Component {
     });
 
     return (
-      <div className="signal-panel"><label> Intersection Details </label><ul key="signal-list">{signals}</ul></div>
+
+        <div className="signal-panel">
+          <label> Intersection Details </label>
+          <Checkbox className="signals-checkbox" checked={this.state.showAllSignals} onChange={(event) => this.handleChange(event)}>
+            Show All Signals
+          </Checkbox>
+          <ul key="signal-list">{signals}</ul>
+        </div>
+
     );
 
   }

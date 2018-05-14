@@ -6,7 +6,7 @@ export class ActionButtons extends Component {
  constructor(props){
  	super(props);
  	this.state = {
- 		enablePriority: true,
+ 		enablePriority: false,
     isPlaying: false
  	}
  }
