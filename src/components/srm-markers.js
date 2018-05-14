@@ -39,8 +39,8 @@ export class SRMMarkers extends Component {
     });
 
     return (
-      <div>{markers}</div>;
-    )
+      <div>{markers}</div>
+    );
 
   }
 }
