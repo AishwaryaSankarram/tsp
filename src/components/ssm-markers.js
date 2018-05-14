@@ -12,11 +12,17 @@ export class SSMMarkers extends Component {
 
     this.processSSM = this.processSSM.bind(this);
     this.handleClick = this.handleClick.bind(this);
+    this.displaySSM = this.displaySSM.bind(this);
   }
 
   componentDidMount(){
     let webSocket = window.socket;
-    webSocket.on('ssm', this.processSSM);
+    // webSocket.on('ssm', this.processSSM);
+    webSocket.on('ssm', this.displaySSM);
+  }
+
+  displaySSM(data) {
+    console.info("SSM Info received in event", "ssm", data);
   }
 
   processSSM(data) {

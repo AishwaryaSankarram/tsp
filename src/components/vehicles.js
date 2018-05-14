@@ -17,6 +17,7 @@ export class Vehicles extends React.Component {
         this.updateMeth = this.updateMeth.bind(this);
         this.placeCars = this.placeCars.bind(this);
         this.checkForExistingBounds = this.checkForExistingBounds.bind(this);
+        this.displayBSM = this.displayBSM.bind(this);
     }
 
 
@@ -40,7 +41,12 @@ export class Vehicles extends React.Component {
 
     componentDidMount() {
         console.log("Marker comp did Mount------------");
-        this.startSocket();
+        // this.startSocket();
+        window.socket.on("bsm", this.displayBSM);
+    }
+
+    displayBSM(data){
+        console.info("BSM Info received in event", "bsm", data);
     }
 
     placeCars(data){

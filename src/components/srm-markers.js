@@ -10,13 +10,19 @@ export class SRMMarkers extends Component {
       srmMarkers: []
     };
 
+    this.displaySRM = this.displaySRM.bind(this);
     this.processSRM = this.processSRM.bind(this);
     this.handleClick = this.handleClick.bind(this);
   }
 
   componentDidMount(){
     let webSocket = window.socket;
-    webSocket.on('srmData', this.processSSM)
+    webSocket.on('srmData', this.processSSM);
+    webSocket.on('srm', this.displaySRM);
+  }
+
+  displaySRM(data){
+    console.info("SRM Info received in event", "srm", data);
   }
 
   processSRM(data) {

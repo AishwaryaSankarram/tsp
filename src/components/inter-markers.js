@@ -14,13 +14,19 @@ export class InterMarkers extends Component {
     };
 
     this.updateIntersections = this.updateIntersections.bind(this);
+    this.displayMapData = this.displayMapData.bind(this);
   }
 
   componentDidMount() {
     let self = this;
     let webSocket = window.socket;
-    webSocket.on("mockMap", self.updateIntersections);
+    webSocket.on("mapData", self.displayMapData);
+    // webSocket.on("mockMap", self.updateIntersections);
 
+  }
+
+  displayMapData(data){
+    console.info("mapData received in event", "mapData", data);
   }
 
   updateIntersections(data) {

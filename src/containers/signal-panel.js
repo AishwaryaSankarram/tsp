@@ -15,13 +15,19 @@ export class SignalPanel extends Component {
 
     this.renderSignals = this.renderSignals.bind(this);
     this.intersectionToSignalMap = this.intersectionToSignalMap.bind(this);
+    this.displaySPAT = this.displaySPAT.bind(this);
   }
 
   componentDidMount() {
     let self = this;
     this.props.onSignalPanelMount(this);
     let webSocket = window.socket
-    webSocket.on('signal', self.renderSignals);
+    // webSocket.on('signal', self.renderSignals);
+    webSocket.on('spat', self.displaySPAT);
+  }
+
+  displaySPAT(data){
+    console.info("SPAT Info received in event", "spat", data);
   }
 
   handleChange(event) {
