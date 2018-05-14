@@ -22,9 +22,9 @@ export class LogsContainer extends Component{
         this.props.onLogsMount(this);
     }
 
-  componentWillUnmount(){
-    	this.props.onLogsMount(null);
-  }
+	componentWillUnmount(){
+			this.props.onLogsMount(null);
+	}
 
 	clearLogs() {
 			this.setState({
@@ -47,10 +47,10 @@ export class LogsContainer extends Component{
 
 		let currentLogs = this.state.logs;
 		let logsElement;
-		if (currentLogs.length != 0) {
+		if (currentLogs.length !== 0) {
 			logsElement = currentLogs.map((log, index) => {
 				return(
-					<div className="text-content">
+					<div className="text-content" key={"log_" + index}>
 						<label>ID:</label> {log.carId}<br/>
 						<label>Latitude:</label> {log.latitude} <br/>
 						<label>Longitude:</label> {log.longitude} <br/>
@@ -62,7 +62,7 @@ export class LogsContainer extends Component{
 			});
 		} else {
 			logsElement = (
-				<div className="text-content">
+				<div className="text-content" key={"log_none"}>
 					<br/>
 					<strong>No Logs To Display</strong>
 				</div>

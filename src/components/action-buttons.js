@@ -6,7 +6,8 @@ export class ActionButtons extends Component {
  constructor(props){
  	super(props);
  	this.state = {
- 		enablePriority: false,
+    enablePriority: true,
+    isStarted: false, 
     isPlaying: false
  	}
  }
@@ -19,7 +20,16 @@ export class ActionButtons extends Component {
 
  togglePlay() {
    let isPlaying = this.state.isPlaying;
-   this.setState({isPlaying: !isPlaying});
+   let isStarted = this.state.isStarted;
+   let socket = window.socket;
+   console.log("openSocket------", socket);
+   if(!this.state.isStarted){ //Play for first time
+     socket.emit("play", "Start sending events-------"); 
+     isStarted = true;
+   }else{ //already started so pause now
+     socket.emit("pause", "Start sending events-------");
+   }
+   this.setState({isPlaying: !isPlaying, isStarted: isStarted});
  }
 
  render() {
@@ -33,14 +43,14 @@ export class ActionButtons extends Component {
                 <i className="fa fa-trash"></i>
               </button>
             </div>
-          <div className="action-button-container" title={this.state.isPlaying ? "Stop" : "Play"} onClick={this.togglePlay.bind(this)}>
+          <div className="action-button-container" title={this.state.isPlaying ? "Pause" : "Play"} onClick={this.togglePlay.bind(this)}>
             <button>
-              <i className={"fa " + (this.state.isPlaying ? "fa-stop" : "fa-play") }></i>
+              <i className={"fa " + (this.state.isPlaying ? "fa-pause" : "fa-play") }></i>
             </button>
           </div>
-          <div className="action-button-container" title="Send SRM">
+        <div className="action-button-container" title="Restart" disabled={!this.state.isStarted}>
             <button>
-              Send SRM
+                <i className="fa fa-undo"></i>
             </button>
           </div>
         </div>

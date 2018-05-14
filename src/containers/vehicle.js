@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import '../css/vehicle.css';
-import busIcon from '../images/bus-icon';
+// import busIcon from '../images/bus-icon';
 
 export class VehicleContainer extends Component{
 	constructor(props){
@@ -40,7 +40,7 @@ export class VehicleContainer extends Component{
     }
 
 	render(){
-		let bus = busIcon.replace(/rotateDeg/g,0);
+		// let bus = busIcon.replace(/rotateDeg/g,0);
 		let html = '<label> Vehicle Details </label>';
 		return (
 			<div className="bus-container">

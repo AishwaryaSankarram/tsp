@@ -6,6 +6,10 @@
     color: #fff;
 }
 
+.action-button-container button:disabled {
+    background: rgb(229, 229, 229);
+}
+
 .action-button-container button .fa {
     margin: 0 5px;
 }

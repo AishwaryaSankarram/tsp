@@ -54,15 +54,21 @@ export class SignalPanel extends Component {
     let self = this;
 
     let signals = currentSocketValues.map((data, index) => {
-
-        return (
-          <li title={self.state.intToSignalMap[Object.keys(self.state.socketData)[index]]} className="signal" key={"signal-li_" + index}>
-            <button><i className="fa fa-plus"></i></button>
-            <Signal key={index} data={data} />
-          </li>
-        );
+        if(index < 5){
+          return (
+            <li title={self.state.intToSignalMap[Object.keys(self.state.socketData)[index]]} className="signal" key={"signal-li_" + index}>
+              <button><i className="fa fa-plus"></i></button>
+              <Signal key={index} data={data} />
+            </li>
+          );
+        }
     });
 
+/*  This code is added for icon testing
+      let signals = <li title={"A"} className="signal" key={"signal-li_" + 0}>
+              <button><i className="fa fa-plus"></i></button>
+      <Signal key={0} />
+          </li>; */
     return (
 
         <div className="signal-panel">

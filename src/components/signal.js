@@ -31,14 +31,16 @@ export class Signal extends Component {
       clearInterval(this.intervalTimer);
       this.intervalTimer = null;
     }
-    this.setState ({
-      straight: props.data.straight,
-      left: props.data.left,
-      right: props.data.right
-    });
-
+    if(props.data){
+      this.setState({
+        straight: props.data.straight,
+        left: props.data.left,
+        right: props.data.right
+      });
+    }
+    
     this.intervalTimer = setInterval(function() {
-      let currentState = self.state
+      let currentState = self.state;
       currentState.straight.timer = currentState.straight.timer - 1;
       currentState.left.timer = currentState.left.timer - 1;
       currentState.right.timer = currentState.right.timer - 1;
