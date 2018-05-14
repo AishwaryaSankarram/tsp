@@ -1,11 +1,13 @@
 .message-container{
-    text-align: left;
-    margin-top: 10px;
-    border: 1px solid black;
-    width: 35%;
+    width: 30%;
+    height: 185px;
     float: left;
-    height: 135px;
-    margin-right: 40px;
+    background: #fff;
+    text-align: left;
+    padding: 12px 18px;
+    margin: 15px;
+    border-radius: 6px;
+
 }
 .message-header{
 	margin-bottom: 0px;

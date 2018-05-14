@@ -41,18 +41,17 @@ export class VehicleContainer extends Component{
 
 	render(){
 		let bus = busIcon.replace(/rotateDeg/g,0);
-		let html = bus + '<label> Vehicle Details </label>';
+		let html = '<label> Vehicle Details </label>';
 		return (
 			<div className="bus-container">
 				<div className="bus-header" dangerouslySetInnerHTML={{__html: html}}>
 				</div>
-				<hr/>
-				ID: {this.state.carId}<br/>
-				Latitude: {this.state.latitude} <br/>
-				Longitude: {this.state.longitude} <br/>
-				Speed: {this.state.speed + ' mph'} <br/>
-				Distance from the intersection: {this.state.distance + ' metres'}  <br/>
-				Lane ID: {this.state.laneId}
+				<label>ID:</label> {this.state.carId}<br/>
+				<label>Latitude:</label> {this.state.latitude} <br/>
+				<label>Longitude:</label> {this.state.longitude} <br/>
+				<label>Speed</label>: {this.state.speed + ' mph'} <br/>
+				<label>Distance from the intersection:</label> {this.state.distance + ' metres'}  <br/>
+				<label>Lane ID:</label> {this.state.laneId}
   			</div>
 		);
 	}

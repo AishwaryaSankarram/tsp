@@ -30,13 +30,12 @@ export class MessageContainer extends Component {
 
     return (
       <div className="message-container">
-        <label className="message-header">Message Details</label>
-        <hr/>
-        ID: {this.state.id}<br/>
-        Type: {this.state.type} <br/>
-        Message: {this.state.message} <br/>
-
-
+        <div className="message-header"><label>Message Details</label></div>
+        <div className="content">
+            <label>ID: </label> {this.state.id}<br/>
+            <label>Type: </label> {this.state.type} <br/>
+            <label>Message: </label> {this.state.message} <br/>
+        </div>
       </div>
     );
   }

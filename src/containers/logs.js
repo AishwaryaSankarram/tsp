@@ -49,18 +49,17 @@ export class LogsContainer extends Component{
 	render(){
 		return (
 			<div className="log-container">
-				<label className="logs-header"> Device Logs
-					<button>
-						<i className="fa fa-trash" onClick={this.clearLogs.bind(this)}></i>
-					</button>
-				</label>
-				<hr/>
-				ID: {this.state.carId}<br/>
-				Latitude: {this.state.latitude} <br/>
-				Longitude: {this.state.longitude} <br/>
-				Speed: {this.state.speed + ' mph'} <br/>
-				Distance from the intersection: {this.state.distance + ' metres'}  <br/>
-				Lane ID: {this.state.laneId}
+				<div className="logs-header"> <label>Device Logs</label>
+					<div className="clear-logs" onClick={this.clearLogs.bind(this)}>Clear logs</div>
+				</div>
+				<div className="text-content">
+					<label>ID:</label> {this.state.carId}<br/>
+					<label>Latitude:</label> {this.state.latitude} <br/>
+					<label>Longitude:</label> {this.state.longitude} <br/>
+					<label>Speed:</label> {this.state.speed + ' mph'} <br/>
+					<label>Distance from the intersection: </label> {this.state.distance + ' metres'}  <br/>
+					<label>Lane ID:</label> {this.state.laneId}
+				</div>
   			</div>
 		);
 	}

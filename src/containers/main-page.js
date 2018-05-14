@@ -6,7 +6,7 @@ import { SignalPanel } from './signal-panel';
 import {MessageContainer} from './message'
 import openSocket from 'socket.io-client';
 
-window.socket = openSocket("http://localhost:8808", { transports: ['websocket'] });
+window.socket = openSocket("http://192.168.1.3:8808", { transports: ['websocket'] });
 
 export class MainPage extends Component{
 	constructor(props){
@@ -38,12 +38,11 @@ export class MainPage extends Component{
 
 	render(){
 		return (
-			<div>
-				Main Page
+			<div className="main-page">
 				<div className="top-panel">
-					<SignalPanel onSignalPanelMount={this.handleSignalPanelMount.bind(this)}/>
+					<VehicleContainer onVehicleMount={this.handleVehicleMount.bind(this)} />
 					<MessageContainer onMessageMount={this.handleMessageMount.bind(this)}/>
-					<VehicleContainer onVehicleMount={this.handleVehicleMount.bind(this)}/>
+					<SignalPanel onSignalPanelMount={this.handleSignalPanelMount.bind(this)} />
 				</div>
 				<div className="bottom-panel">
 					<MapContainer signalpanel={this.state.signalPanel} vehicle={this.state.vehicle} message={this.state.message}/>

@@ -28,17 +28,17 @@ export class ActionButtons extends Component {
           <Checkbox className="priority-checkbox" checked={this.state.enablePriority} onChange={(event) => this.handleChange(event, "enablePriority")}>
       	  	Enable Signal Priority
       	  </Checkbox>
-            <div className="action-button-container">
+            <div className="action-button-container" title="Clear all data">
               <button>
                 <i className="fa fa-trash"></i>
               </button>
             </div>
-          <div className="action-button-container" onClick={this.togglePlay.bind(this)}>
+          <div className="action-button-container" title={this.state.isPlaying ? "Stop" : "Play"} onClick={this.togglePlay.bind(this)}>
             <button>
               <i className={"fa " + (this.state.isPlaying ? "fa-stop" : "fa-play") }></i>
             </button>
           </div>
-          <div className="action-button-container">
+          <div className="action-button-container" title="Send SRM">
             <button>
               Send SRM
             </button>

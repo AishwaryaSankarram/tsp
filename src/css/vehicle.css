@@ -1,11 +1,12 @@
 .bus-container{
-	text-align: left;
-    float: right;
-    border: 1px solid black;
-    margin-right: 40px;
-    margin-top: 10px;
-    padding-left: 10px;
-    width: 25%;
+    width: 30%;
+    height: 185px;
+    float: left;
+    background: #fff;
+    text-align: left;
+    padding: 12px 18px;
+    margin: 15px;
+    border-radius: 6px;
 }
 .bus-header{
 	margin-bottom: 0px;
