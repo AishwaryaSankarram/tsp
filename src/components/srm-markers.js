@@ -1,13 +1,14 @@
 import React, {Component} from 'react';
+import { Marker } from "react-google-maps";
 
-class SRMMarkers extends Component {
+export class SRMMarkers extends Component {
 
   constructor(props) {
     super(props);
 
     this.state = {
       srmMarkers: []
-    }
+    };
 
     this.processSRM = this.processSRM.bind(this);
     this.handleClick = this.handleClick.bind(this);
@@ -25,11 +26,15 @@ class SRMMarkers extends Component {
   }
 
 
+  handleClick(id){
+    console.log("Click on SRM --", id);
+  }
+
   render() {
     let currentMarkers = this.state.srmMarkers;
     let markers = currentMarkers.map((pos, index) => {
       return (
-        <Marker key={index} pos={pos} draggable={false} onClick={(pos.id) => this.handleClick(pos.id)} />
+        <Marker key={index} pos={pos} draggable={false} onClick={(id) => {this.handleClick(pos.id)} } />
       );
     });
 
