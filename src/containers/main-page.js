@@ -45,7 +45,7 @@ export class MainPage extends Component{
 						
 					</div>
 					<div className="bottom-panel">
-						<MapContainer signalpanel={this.state.signalPanel} vehicle={this.state.vehicle} message={this.state.message} />
+						<MapContainer signalpanel={this.state.signalPanel} logs={this.state.logs} vehicle={this.state.vehicle} message={this.state.message} />
 					</div>
 				</div>
 				<div className="right-panel">

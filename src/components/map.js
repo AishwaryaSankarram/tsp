@@ -4,7 +4,8 @@ import { withGoogleMap, GoogleMap} from "react-google-maps";
 import { compose, lifecycle} from "recompose";
 import {Vehicles} from './vehicles';
 import {InterMarkers} from './inter-markers.js';
-import {SSMMarkers} from "./ssm-markers";
+import { SSMMarkers } from "./ssm-markers";
+import {SRMMarkers} from "./srm-markers";
 
 export const MapComponent = compose(
   lifecycle({
@@ -37,6 +38,7 @@ export const MapComponent = compose(
      {console.log("props in maps------------", props)}
      <Vehicles mapObj={props.mapObj} vehicle={props.vehicle} />
      <InterMarkers mapObj={props.mapObj} signalpanel={props.signalpanel} />
-     <SSMMarkers mapObj={props.mapObj} />>
+     <SSMMarkers mapObj={props.mapObj} />
+     <SRMMarkers mapObj={props.mapObj} logs={props.logs} />
     </GoogleMap>
 ));

@@ -7,7 +7,7 @@ export class SRMMarkers extends Component {
     super(props);
 
     this.state = {
-      srmMarkers: []
+      srmMarkers: [{ lat: 42.331280891921075, lng: -83.0733836184375, id: 789, deviceType: 0 }]
     };
 
     this.displaySRM = this.displaySRM.bind(this);
@@ -34,13 +34,14 @@ export class SRMMarkers extends Component {
 
   handleClick(id){
     console.log("Click on SRM --", id);
+    this.props.logs.openTabs("srm", id);
   }
 
   render() {
     let currentMarkers = this.state.srmMarkers;
     let markers = currentMarkers.map((pos, index) => {
       return (
-        <Marker key={index} pos={pos} draggable={false} onClick={(id) => {this.handleClick(pos.id)} } />
+        <Marker key={index} position={pos} draggable={false} onClick={(id) => {this.handleClick(pos)} } />
       );
     });
 

@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Tabs, Tab } from 'material-ui/Tabs';
-import {LogComponent} from "../components/log";
+import { LogComponent } from "../components/log";
 import '../css/logs.css';
 import { MuiThemeProvider } from 'material-ui/styles';
 
@@ -26,11 +26,14 @@ export class LogContainer extends Component {
                 distance: "30",
                 laneId: "A1"
             }],
+            srmInfo: "",
+            ssmInfo: "",
             showTabs: false,
             activeTab: "logs"
 
         };
         this.updateData = this.updateData.bind(this);
+        this.openTabs = this.openTabs.bind(this);
     } 
     
     componentDidMount() {
@@ -59,8 +62,16 @@ export class LogContainer extends Component {
         });
     };
 
-    saveLogs(){
+    saveLogs() {
         console.log("Click on save logs----------");
+    }
+
+    openTabs(msgType, data) {
+        if(msgType === 'srm'){
+            this.setState({ showTabs: true, activeTab: "srm-tab", srmInfo: data});
+        }else{
+            this.setState({ showTabs: true, activeTab: "ssm-tab", ssmInfo: data });
+        }
     }
 
     clearLogs() {
@@ -91,6 +102,9 @@ export class LogContainer extends Component {
                                use controllable Tabs, you need to give all of your tabs values or else
                                you wont be able to select them.
                             </p>
+                            <p>
+                                {Object.keys(this.state.srmInfo)}
+                            </p>
                        </div>
                    </Tab>}
                    {this.state.showTabs &&
@@ -98,6 +112,9 @@ export class LogContainer extends Component {
                        <div>
                            <p>
                               SSM Tab
+                            </p>
+                            <p>
+                                {this.state.ssmInfo}
                             </p>
                        </div>
                    </Tab>
