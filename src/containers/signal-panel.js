@@ -107,8 +107,8 @@ export class SignalPanel extends Component {
              open={this.state.isPopoverOpen}
              anchorEl={this.state.anchorElement}
              canAutoPosition={true}
-             anchorOrigin={{horizontal: 'center', vertical: 'bottom'}}
-             targetOrigin={{horizontal: 'center', vertical: 'top'}}
+             anchorOrigin={{horizontal: 'middle', vertical: 'top'}}
+             targetOrigin={{horizontal: 'middle', vertical: 'top'}}
              onRequestClose={this.handleRequestClose}>
               <LaneData />
             </Popover>
