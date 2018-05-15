@@ -7,7 +7,7 @@ export class SSMMarkers extends Component {
     super(props);
 
     this.state = {
-      ssmMarkers: []
+      ssmMarkers: [{ lat: 42.3416928, lng: -83.0790249, deviceType: 0, id: 789 }, { lat: 42.3350748, lng: -83.0494584, deviceType: 1, id: 987 }]
     };
 
     this.processSSM = this.processSSM.bind(this);
@@ -32,15 +32,16 @@ export class SSMMarkers extends Component {
     this.setState({ssmMarkers: currentMarkers});
   }
 
-  handleClick(id){
-    console.log("On click SSM------", id);
+  handleClick(data){
+    console.log("On click SSM------", data);
+    this.props.logs.openTabs("ssm", data);
   }
 
   render() {
     let currentMarkers = this.state.ssmMarkers;
     let markers = currentMarkers.map((pos, index) => {
       return (
-        <Marker key={index} pos={pos} draggable={false} onClick={id => this.handleClick(pos.id)} />
+        <Marker key={index} position={pos} draggable={false} onClick={id => this.handleClick(pos)} />
         );
     });
 

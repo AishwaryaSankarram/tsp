@@ -37,6 +37,7 @@ export class SRMMarkers extends Component {
 
   handleClick(id){
     console.log("Click on SRM --", id);
+    this.props.logs.openTabs("srm", id);
   }
 
   render() {
