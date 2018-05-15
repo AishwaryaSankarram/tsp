@@ -39,7 +39,7 @@ export class ActionButtons extends Component {
    let isStarted = this.state.isStarted;
    let socket = window.socket;
    console.log("openSocket------", socket);
-   if (this.state.isStarted) { //Bus is in transit; So issue a reset now
+   if (isStarted) { //Bus is in transit; So issue a reset now
      socket.emit("reset", "Reset all events-------");
      this.setState({isPlaying: true});
    } else {  //Reset has been when not started; So do nothing

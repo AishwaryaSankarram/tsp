@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import {MapContainer} from './map';
 import {VehicleContainer} from './vehicle';
-import {LogsContainer} from './logs';
+import {LogContainer} from './log';
 import { SignalPanel } from './signal-panel';
 // import {MessageContainer} from './message'
 
@@ -50,7 +50,7 @@ export class MainPage extends Component{
 				</div>
 				<div className="right-panel">
 					<div className="side-panel">
-						<LogsContainer onLogsMount={this.handleLogsMount.bind(this)} />
+						<LogContainer onLogsMount={this.handleLogsMount.bind(this)} />
 					</div>
 				</div>
   			</div>
