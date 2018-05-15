@@ -3,7 +3,6 @@ import {MapContainer} from './map';
 import {VehicleContainer} from './vehicle';
 import {LogContainer} from './log';
 import { SignalPanel } from './signal-panel';
-// import {MessageContainer} from './message'
 
 
 export class MainPage extends Component{
@@ -12,7 +11,6 @@ export class MainPage extends Component{
 		this.state = {
 			vehicle: 0,
 			logs: null,
-			message: null,
 			signalPanel: null
 		};
 	}
@@ -25,27 +23,29 @@ export class MainPage extends Component{
 		this.setState({vehicle: obj});
 	}
 
-	handleMessageMount(obj) {
-		this.setState({message: obj});
-	}
-
 	handleLogsMount(obj){
 		this.setState({logs: obj});
 	}
 
+	fetchSSMandUpdateLogs(msgType, srmInfo){
+		let ssmData = this.ssm.state.ssmInfo;
+		console.log("ssmData=========", ssmData, srmInfo);
+		let ssm = ssmData.filter((s) => s.id === srmInfo.id)[0];
+		console.log("ssm aft=========", ssm);
+		this.state.logs.openTabs("srm", srmInfo, ssm);
+	}
 
 	render(){
 		return (
 			<div className="main-page"> 
 				<div className="left-panel">
-					<div className="top-panel">
+					<div  className="top-panel">
 						<SignalPanel onSignalPanelMount={this.handleSignalPanelMount.bind(this)} />
 						<VehicleContainer onVehicleMount={this.handleVehicleMount.bind(this)} />
-						{/* <MessageContainer onMessageMount={this.handleMessageMount.bind(this)} /> */}
-						
 					</div>
 					<div className="bottom-panel">
-						<MapContainer signalpanel={this.state.signalPanel} logs={this.state.logs} vehicle={this.state.vehicle} message={this.state.message} />
+						<MapContainer signalpanel={this.state.signalPanel} logs={this.fetchSSMandUpdateLogs.bind(this)} 
+						onSrmMount={ref => (this.srm = ref)} onSsmMount={ref => (this.ssm = ref)} vehicle={this.state.vehicle} />
 					</div>
 				</div>
 				<div className="right-panel">

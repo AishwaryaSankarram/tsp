@@ -7,7 +7,7 @@ export class SSMMarkers extends Component {
     super(props);
 
     this.state = {
-      ssmMarkers: [{ lat: 42.3416928, lng: -83.0790249, deviceType: 0, id: 789 }, { lat: 42.3350748, lng: -83.0494584, deviceType: 1, id: 987 }]
+      ssmInfo: [{ lat: 42.3416928, lng: -83.0790249, deviceType: 0, id: 789 }, { lat: 42.3350748, lng: -83.0494584, deviceType: 1, id: 987 }]
     };
 
     this.processSSM = this.processSSM.bind(this);
@@ -16,20 +16,25 @@ export class SSMMarkers extends Component {
   }
 
   componentDidMount(){
+    this.props.onMount(this);
     let webSocket = window.socket;
     // webSocket.on('ssm', this.processSSM);
     webSocket.on('ssm', this.displaySSM);
   }
 
+  componentWillUnmount() {
+    this.props.onMount(null);
+  }
+  
   displaySSM(data) {
     console.info("SSM Info received in event", "ssm", data);
   }
 
   processSSM(data) {
     console.log("SSm Data arrived----", data, typeof data);
-    let currentMarkers = this.state.ssmMarkers;
+    let currentMarkers = this.state.ssmInfo;
     currentMarkers.push(data);
-    this.setState({ssmMarkers: currentMarkers});
+    this.setState({ssmInfo: currentMarkers});
   }
 
   handleClick(data){
@@ -38,7 +43,7 @@ export class SSMMarkers extends Component {
   }
 
   render() {
-    let currentMarkers = this.state.ssmMarkers;
+    let currentMarkers = this.state.ssmInfo;
     let markers = currentMarkers.map((pos, index) => {
       return (
         <Marker key={index} position={pos} draggable={false} onClick={id => this.handleClick(pos)} />

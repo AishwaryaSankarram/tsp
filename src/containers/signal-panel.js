@@ -44,10 +44,16 @@ export class SignalPanel extends Component {
   }
 
   openPopover(event) {
-    this.setState({
-      isPopoverOpen: true,
-      anchorElement: event.currentTarget
-    });
+    console.log("Old state-----", this.state.isPopoverOpen);
+    if(this.state.isPopoverOpen){
+      this.setState({ isPopoverOpen: false });
+    }else{
+      this.setState({
+        isPopoverOpen: true,
+        anchorElement: event.currentTarget
+      });
+    }
+    
   }
 
   handlePopoverClose() {
@@ -90,7 +96,7 @@ export class SignalPanel extends Component {
 
 // This code is added for icon testing
       let signals = <li title={"A"} className="signal" key={"signal-li_" + 0}>
-              <button><i className={this.state.isPopoverOpen ? "fa fa-minus" : "fa fa-plus"} onClick={(event) => this.openPopover(event)}></i></button>
+        <button onClick={this.openPopover}><i className={this.state.isPopoverOpen ? "fa fa-minus" : "fa fa-plus"}></i></button>
       <Signal key={0} />
           </li>;
     return (
@@ -103,15 +109,18 @@ export class SignalPanel extends Component {
             </Checkbox>
           </div>
           <MuiThemeProvider >
-             <Popover className="menu_header"
-             open={this.state.isPopoverOpen}
-             anchorEl={this.state.anchorElement}
-             canAutoPosition={true}
-             anchorOrigin={{horizontal: 'middle', vertical: 'top'}}
-             targetOrigin={{horizontal: 'middle', vertical: 'top'}}
-             onRequestClose={this.handleRequestClose}>
-              <LaneData />
-            </Popover>
+              <div>
+              {this.state.isPopoverOpen && <Popover className="menu_header"
+                open={this.state.isPopoverOpen}
+
+                anchorEl={this.state.anchorElement}
+                canAutoPosition={true}
+                anchorOrigin={{horizontal: 'middle', vertical: 'top'}}
+                targetOrigin={{horizontal: 'middle', vertical: 'top'}}
+                onRequestClose={this.handlePopoverClose.bind(this)}>
+                  <LaneData />
+                </Popover> }
+              </div>
             </MuiThemeProvider>
         <div className="text-content"><ul key="signal-list">{signals}</ul></div>
         </div>

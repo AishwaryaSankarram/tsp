@@ -66,11 +66,11 @@ export class LogContainer extends Component {
         console.log("Click on save logs----------");
     }
 
-    openTabs(msgType, data) {
+    openTabs(msgType, srmData, ssmData) {
         if(msgType === 'srm'){
-            this.setState({ showTabs: true, activeTab: "srm-tab", srmInfo: data});
+            this.setState({ showTabs: true, activeTab: "srm-tab", srmInfo: srmData, ssmInfo: ssmData});
         }else{
-            this.setState({ showTabs: true, activeTab: "ssm-tab", ssmInfo: data });
+            this.setState({ showTabs: true, activeTab: "ssm-tab", srmInfo: srmData, ssmInfo: ssmData });
         }
     }
 
@@ -114,7 +114,7 @@ export class LogContainer extends Component {
                               SSM Tab
                             </p>
                             <p>
-                                {this.state.ssmInfo}
+                                {this.state.ssmInfo.lat}
                             </p>
                        </div>
                    </Tab>

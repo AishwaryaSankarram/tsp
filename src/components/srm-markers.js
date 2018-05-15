@@ -7,7 +7,7 @@ export class SRMMarkers extends Component {
     super(props);
 
     this.state = {
-      srmData: []
+      srmData: [{ Current_Lat: 42.331280891921075, Current_Lon: -83.0733836184375, id: 789, deviceType: 0 }]
     };
 
     this.displaySRM = this.displaySRM.bind(this);
@@ -17,11 +17,16 @@ export class SRMMarkers extends Component {
 
   componentDidMount(){
     console.log("SRM COMPONENT MOUNTED -----");
+    this.props.onMount(this);
     let webSocket = window.socket;
     //webSocket.on('srmData', this.processSSM);
     webSocket.on('srm', this.displaySRM);
   }
 
+  componentWillUnmount() {
+    this.props.onMount(null);
+  }
+  
   displaySRM(data){
     console.info("SRM Info received in event", "srm", data);
 
@@ -37,7 +42,7 @@ export class SRMMarkers extends Component {
 
   handleClick(id){
     console.log("Click on SRM --", id);
-    this.props.logs.openTabs("srm", id);
+    this.props.logs("srm", id);
   }
 
   render() {
@@ -45,7 +50,7 @@ export class SRMMarkers extends Component {
     let markers = currentMarkers.map((data, index) => {
       let pos = {lat: data.Current_Lat, lng: data.Current_Lon}
       return (
-        <Marker key={index} pos={pos} draggable={false} onClick={(id) => {this.handleClick(data.id)} } />
+        <Marker key={index} position={pos} draggable={false} onClick={(id) => {this.handleClick(data)} } />
       );
     });
 
