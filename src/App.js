@@ -5,7 +5,7 @@ import 'font-awesome/css/font-awesome.min.css';
 
 import openSocket from 'socket.io-client';
 
-window.socket = openSocket("http://192.168.1.3:8088", { transports: ['websocket'] });
+window.socket = openSocket("http://192.168.1.6:8090", { transports: ['websocket'] });
 
 class App extends Component {
   render() {
@@ -19,4 +19,3 @@ class App extends Component {
 }
 
 export default App;
-

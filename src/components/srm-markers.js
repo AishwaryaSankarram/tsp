@@ -7,7 +7,7 @@ export class SRMMarkers extends Component {
     super(props);
 
     this.state = {
-      srmMarkers: []
+      srmData: []
     };
 
     this.displaySRM = this.displaySRM.bind(this);
@@ -16,19 +16,22 @@ export class SRMMarkers extends Component {
   }
 
   componentDidMount(){
+    console.log("SRM COMPONENT MOUNTED -----");
     let webSocket = window.socket;
-    webSocket.on('srmData', this.processSSM);
+    //webSocket.on('srmData', this.processSSM);
     webSocket.on('srm', this.displaySRM);
   }
 
   displaySRM(data){
     console.info("SRM Info received in event", "srm", data);
+
+    this.processSRM(data);
   }
 
   processSRM(data) {
-    let currentMarkers = this.state.srmMarkers;
-    this.currentMarkers.push(data);
-    this.setState({srmMarkers: currentMarkers});
+    let currentMarkers = this.state.srmData;
+    currentMarkers.push(data);
+    this.setState({srmData: currentMarkers});
   }
 
 
@@ -37,10 +40,11 @@ export class SRMMarkers extends Component {
   }
 
   render() {
-    let currentMarkers = this.state.srmMarkers;
-    let markers = currentMarkers.map((pos, index) => {
+    let currentMarkers = this.state.srmData;
+    let markers = currentMarkers.map((data, index) => {
+      let pos = {lat: data.Current_Lat, lng: data.Current_Lon}
       return (
-        <Marker key={index} pos={pos} draggable={false} onClick={(id) => {this.handleClick(pos.id)} } />
+        <Marker key={index} pos={pos} draggable={false} onClick={(id) => {this.handleClick(data.id)} } />
       );
     });
 

@@ -1,7 +1,11 @@
 import React, {Component} from 'react';
 import { Signal } from '../components/signal';
+import {LaneData} from './lane-data';
 import {Checkbox} from "react-bootstrap";
+import Popover from "material-ui/Popover";
+import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import '../css/signal-panel.css';
+
 
 export class SignalPanel extends Component {
 
@@ -10,12 +14,15 @@ export class SignalPanel extends Component {
 
     this.state = {socketData: {},
                   intToSignalMap: {},
-                  showAllSignals: false
+                  showAllSignals: false,
+                  isPopoverOpen: false,
+                  anchorElement: null
                 };
 
     this.renderSignals = this.renderSignals.bind(this);
     this.intersectionToSignalMap = this.intersectionToSignalMap.bind(this);
     this.displaySPAT = this.displaySPAT.bind(this);
+    this.openPopover = this.openPopover.bind(this);
   }
 
   componentDidMount() {
@@ -34,6 +41,17 @@ export class SignalPanel extends Component {
     this.setState({
       showAllSignals: event.target.checked
     });
+  }
+
+  openPopover(event) {
+    this.setState({
+      isPopoverOpen: true,
+      anchorElement: event.currentTarget
+    });
+  }
+
+  handlePopoverClose() {
+    this.setState({isPopoverOpen: false});
   }
 
   componentWillUnmount() {
@@ -59,22 +77,22 @@ export class SignalPanel extends Component {
 
     let self = this;
 
-    let signals = currentSocketValues.map((data, index) => {
-        if(index < 5){
-          return (
-            <li title={self.state.intToSignalMap[Object.keys(self.state.socketData)[index]]} className="signal" key={"signal-li_" + index}>
-              <button><i className="fa fa-plus"></i></button>
-              <Signal key={index} data={data} />
-            </li>
-          );
-        }
-    });
+    // let signals = currentSocketValues.map((data, index) => {
+    //     if(index < 5){
+    //       return (
+    //         <li title={self.state.intToSignalMap[Object.keys(self.state.socketData)[index]]} className="signal" key={"signal-li_" + index}>
+    //           <button><i className="fa fa-plus"></i></button>
+    //           <Signal key={index} data={data} />
+    //         </li>
+    //       );
+    //     }
+    // });
 
-/*  This code is added for icon testing
+// This code is added for icon testing
       let signals = <li title={"A"} className="signal" key={"signal-li_" + 0}>
-              <button><i className="fa fa-plus"></i></button>
+              <button><i className={this.state.isPopoverOpen ? "fa fa-minus" : "fa fa-plus"} onClick={(event) => this.openPopover(event)}></i></button>
       <Signal key={0} />
-          </li>; */
+          </li>;
     return (
 
         <div className="signal-panel">
@@ -84,6 +102,17 @@ export class SignalPanel extends Component {
               Show All Signals
             </Checkbox>
           </div>
+          <MuiThemeProvider >
+             <Popover className="menu_header"
+             open={this.state.isPopoverOpen}
+             anchorEl={this.state.anchorElement}
+             canAutoPosition={true}
+             anchorOrigin={{horizontal: 'center', vertical: 'bottom'}}
+             targetOrigin={{horizontal: 'center', vertical: 'top'}}
+             onRequestClose={this.handleRequestClose}>
+              <LaneData />
+            </Popover>
+            </MuiThemeProvider>
         <div className="text-content"><ul key="signal-list">{signals}</ul></div>
         </div>
 

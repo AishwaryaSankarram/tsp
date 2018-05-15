@@ -123,7 +123,7 @@ export class Vehicles extends React.Component {
           let bIcon = { url: 'data:image/svg+xml;charset=UTF-8,' + encodeURIComponent(bus),
                        scaledSize: new google.maps.Size(50, 50)
                       };
-          let icon = marker.isEv ? bIcon : cIcon;                      
+          let icon = marker.isEv ? bIcon : cIcon;
           m.push(<Marker  key={marker.carId} position={{lat: marker.lat, lng: marker.lng}}
                           icon={icon} title={marker.carLabel} />
                 );

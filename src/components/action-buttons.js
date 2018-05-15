@@ -7,7 +7,7 @@ export class ActionButtons extends Component {
  	super(props);
  	this.state = {
     enablePriority: true,
-    isStarted: false, 
+    isStarted: false,
     isPlaying: false
  	}
  }
@@ -24,7 +24,7 @@ export class ActionButtons extends Component {
    let socket = window.socket;
    console.log("openSocket------", socket);
    if(!this.state.isStarted){ //Play for first time
-     socket.emit("play", "Start sending events-------"); 
+     socket.emit("play", "Start sending events-------");
      isStarted = true;
    }else if(!this.state.isPlaying){ //In Pause state; So resume now
      socket.emit("resume", "Resume sending events-------");
