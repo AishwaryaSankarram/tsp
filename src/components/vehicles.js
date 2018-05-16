@@ -42,11 +42,34 @@ export class Vehicles extends React.Component {
     componentDidMount() {
         console.log("Marker comp did Mount------------");
         // this.startSocket();
-        window.socket.on("bsm", this.displayBSM);
+        // window.socket.on("bsm", this.displayBSM);
+        window.socket.on("bsm", this.processBSM);
     }
 
     displayBSM(data){
         console.info("BSM Info received in event", "bsm", data);
+    }
+
+    processBSM(d){
+        let self = this;
+        let data = JSON.parse(d);
+        // { 1: { carId: "1", lat: 13.181953, lng: 79.608065 } }
+        let cars = self.state.markers;
+        //{"Speed":0.59,"Heading":26.96,"Msg_type":"BSM","Device_Type":"OBU","Latitude":13.048968833,"Vehicle_id":90,
+        // "Direction":"TX","Longitude":80.252762667,"timestamp":1526469989603}
+        if(cars[data.Vehicle_id]){
+            cars[data.Vehicle_id].rotation = data.Heading;
+            cars[data.Vehicle_id].lat = data.Latitude;
+            cars[data.Vehicle_id].lng = data.Longitude;
+            cars[data.Vehicle_id].timestamp = data.timestamp;
+        }else{
+            cars[data.Vehicle_id] = {
+                useAsEv: data.Direction === 'TX' ?  true : false,
+                carId: data.Vehicle_id, rotation: data.Heading, speed: data.Speed, lat: data.Latitude, lng: data.Longitude, timestamp: data.timestamp
+            }
+        }
+        self.props.vehicle.updateData(cars[data.Vehicle_id]);
+        self.setState({markers: cars});
     }
 
     placeCars(data){
@@ -125,7 +148,7 @@ export class Vehicles extends React.Component {
                       };
           let icon = marker.isEv ? bIcon : cIcon;
           m.push(<Marker  key={marker.carId} position={{lat: marker.lat, lng: marker.lng}}
-                          icon={icon} title={marker.carLabel} />
+                          icon={icon} />
                 );
         }
         return <div className="my-marker-test"> { m } </div> ;
