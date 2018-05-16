@@ -15,6 +15,7 @@ export class Vehicles extends React.Component {
             markers: {}//{1: {carId: "1", lat:13.181953, lng:79.608065}}
         };
         this.updateMeth = this.updateMeth.bind(this);
+        this.processBSM = this.processBSM.bind(this);
         this.placeCars = this.placeCars.bind(this);
         this.checkForExistingBounds = this.checkForExistingBounds.bind(this);
         this.displayBSM = this.displayBSM.bind(this);
