@@ -1,5 +1,10 @@
 import React, {Component} from 'react';
-//import {leftArrow} from '../images/left'
+import {LeftStraightRightArrow} from '../images/left-straight-right-arrow';
+import {LeftStraightArrow} from '../images/left-straight-arrow';
+import {LeftArrow} from '../images/left-arrow'
+import {StraightRightArrow} from '../images/straight-right-arrow'
+import {RightArrow} from '../images/right-arrow'
+import {StraightArrow} from '../images/straight-arrow'
 
 
 export class LaneData extends Component {
@@ -13,10 +18,10 @@ export class LaneData extends Component {
     this.laneWidth = 220;
 
     this.buildLanes = this.buildLanes.bind(this);
-    this.getBlueBox = this.getBlueBox.bind(this);
-    this.getBorderBox = this.getBorderBox.bind(this);
+    this.getBlueBoxWidth = this.getBlueBoxWidth.bind(this);
+    this.getBorderBoxWidth = this.getBorderBoxWidth.bind(this);
     this.getViewBox = this.getViewBox.bind(this);
-    this.getWidthString = this.getWidthString.bind(this);
+    this.getWidth = this.getWidth.bind(this);
   }
 
   buildLanes() {
@@ -29,10 +34,7 @@ export class LaneData extends Component {
             <rect id="l-1" x="0" y="100.86218" width="7" height="51.25"/>
             <rect id="l-1" x="0" y="201.36218" width="7" height="51.25"/>
             <rect id="l-1" x="0" y="301.36218" width="7" height="51.25"/>
-            <g key={"arrow" + i} id="l-s-r" transform="translate(10.000000, 60.000)" fill="#FFFFFF" fill-rule="nonzero" stroke="#FFFFFF" stroke-width="1">
-                        <path d="M89.147397,207.238756 L108.539844,207.238756 L108.539852,52.388573 L121.931416,58.248082 C129.979479,61.576897 132.602323,57.5823 127.063981,47.178653 L99.711935,0 L70.478537,50.362491 C66.1559942,58.240019 70.937494,62.64654 78.285636,58.659991 L89.292111,51.954405 L89.292111,142.114848 C80.146218,135.653387 68.531881,129.549639 51.9544111,130.103101 L58.3220761,119.538555 C62.310107,110.367177 55.2243366,108.225705 49.5795228,111.934688 L0,140.667648 L50.9413617,170.045768 C59.994637,174.072922 61.0392047,166.79742 58.4791358,162.210221 L52.388568,150.653312 C76.379528,152.110271 89.224997,170.295966 89.002674,195.516454 L89.147397,207.238756 Z" id="path3828"></path>
-                        <path d="M88,207 L109.603194,207 L109.603194,180.881604 C111.259918,169.370116 125.385756,154.669417 135.485016,154.600865 L158.340017,154.600865 L152.548376,168.77981 C150.204347,174.407198 153.023525,180.776996 163.338565,174.947539 L218,143.760348 L162.907398,112.169502 C152.555767,106.157625 149.090942,114.010535 152.974822,119.139776 L160.825526,132.786841 L133.774512,132.814353 C115.868539,132.905131 88.76598,150.283094 88,176.181278 L88,207 Z" id="path3832" stroke-linecap="round"></path>
-                </g>
+            <StraightRightArrow color={"#FFFF00"} />
         </g>
       );
       }
@@ -40,13 +42,13 @@ export class LaneData extends Component {
     return laneElements;
   }
 
-  getBlueBox() {
+  getBlueBoxWidth() {
     let numberOfLanes = this.state.numberOfLanes;
     let blueBoxWidth = (numberOfLanes * this.laneWidth) + 28;
     return blueBoxWidth.toString();
   }
 
-  getBorderBox() {
+  getBorderBoxWidth() {
     let numberOfLanes = this.state.numberOfLanes;
     let borderBoxWidth = (numberOfLanes * this.laneWidth) + 36;
     return borderBoxWidth.toString();
@@ -58,7 +60,7 @@ export class LaneData extends Component {
     return "0 0 " + svgWidth.toString() + " 450";
   }
 
-  getWidthString() {
+  getWidth() {
     let numberOfLanes = this.state.numberOfLanes;
     let svgWidth = (numberOfLanes * this.laneWidth) + 66;
     return svgWidth.toString() + "px";
@@ -68,13 +70,13 @@ export class LaneData extends Component {
   render() {
 
     return (
-      <svg width={this.getWidthString()} height="450px" viewBox={this.getViewBox()} version="1.1" style={{zoom: 0.25}}>
+      <svg width={this.getWidth()} height="450px" viewBox={this.getViewBox()} version="1.1" style={{zoom: 0.25}}>
       <g id="Page-1" stroke="none" strokeWidth="1" fill="none" fillRule="evenodd" strokeLinejoin="round">
           <g id="road-lane-icon" transform="translate(16.000000, 16.000000)" fillRule="nonzero">
-              <rect id="bg-2" stroke="#0066B3" strokeWidth="32" fill="#0066B3" strokeLinecap="round" x="0.607143" y="0.53571" width={this.getBlueBox()} height="403.03571"/>
+              <rect id="bg-2" stroke="#0066B3" strokeWidth="32" fill="#0066B3" strokeLinecap="round" x="0.607143" y="0.53571" width={this.getBlueBoxWidth()} height="403.03571"/>
               <g id="bg-1" strokeLinecap="round">
                   <use fill="#0066B3" fillRule="evenodd"/>
-                  <rect stroke="#FFFFFF" strokeWidth="12" x="-2" y="-2.07141" width={this.getBorderBox()} height="408.60715"/>
+                  <rect stroke="#FFFFFF" strokeWidth="12" x="-2" y="-2.07141" width={this.getBorderBoxWidth()} height="408.60715"/>
               </g>
               {this.buildLanes()}
            </g>
