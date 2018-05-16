@@ -11,7 +11,39 @@ export class SRMMarkers extends Component {
     super(props);
 
     this.state = {
-      srmData: [{ Current_Lat: 42.331280891921075, Current_Lon: -83.0733836184375, id: 789, deviceType: 0 }]
+      srmData: [{
+        "Current_Lon": 80.252628667,
+        "Speed": 0.206,
+        "Msg_type": "SRM",
+        "Request_id": 100,
+        "Device_Type": "OBU",
+        "count": 314,
+        "Direction": "TX",
+        "Current_Lat": 13.048906167,
+        "Msg_Data": {
+          "dsecond": 1,
+          "srm_list": [{
+            "duration": 30,
+            "min_of_year": 0,
+            "Signal_Request": {
+              "IntersectionId": 0,
+              "Request_Type": 1,
+              "Request_id": 100,
+              "Inbound LaneId": 0
+            },
+            "second": 0
+          }],
+          "Requestor": {
+            "Role": 0,
+            "Sub Role": 0,
+            "Vehicle_Id": 1234,
+            "Imp Role": 0
+          },
+          "msg_count": 1,
+          "timestamp": 0
+        },
+        "timestamp": 1526456326315
+      }]
     };
 
     this.displaySRM = this.displaySRM.bind(this);
@@ -39,7 +71,6 @@ export class SRMMarkers extends Component {
 
   processSRM(data) {
     let map = this.props.mapObj;
-    console.log("TYPE OF LAT", typeof(data["Current_Lat"]));
     let latLng = new google.maps.LatLng({lat: data.Current_Lat, lng: data.Current_Lon});
     map.panTo(latLng);
     let currentMarkers = this.state.srmData;
@@ -64,7 +95,7 @@ export class SRMMarkers extends Component {
         scaledSize: new google.maps.Size(100, 100), anchor: new google.maps.Point(0, 0)
       };
       return (
-        <Marker key={index} position={pos} draggable={false} onClick={(id) => {this.handleClick(data)} } icon={icon} />
+        <Marker key={"srm_" + index} position={pos} draggable={false} onClick={(id) => {this.handleClick(data)} } icon={icon} />
       );
     });
 

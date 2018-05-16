@@ -9,7 +9,8 @@ export class SSMMarkers extends Component {
     super(props);
 
     this.state = {
-      ssmInfo: [{ lat: 42.3416928, lng: -83.0790249, deviceType: 0, id: 789 }, { lat: 42.3350748, lng: -83.0494584, deviceType: 1, id: 987 }]
+      ssmInfo: [{ Current_Lat: 42.3416928, Current_Lon: -83.0790249, deviceType: 0, Request_id: 789 }, 
+        { Current_Lat: 42.3350748, Current_Lon: -83.0494584, deviceType: 1, Request_id: 100 }]
     };
 
     this.processSSM = this.processSSM.bind(this);
@@ -53,8 +54,9 @@ export class SSMMarkers extends Component {
         url: 'data:image/svg+xml;charset=UTF-8,' + encodeURIComponent(ssmFlag),
         scaledSize: new google.maps.Size(100, 100), anchor: new google.maps.Point(0, 0)
       };
+      let p = { lat: pos.Current_Lat, lng: pos.Current_Lon };
       return (
-        <Marker key={index} position={pos} draggable={false} onClick={id => this.handleClick(pos)} icon={icon} />
+        <Marker key={index} position={p} draggable={false} onClick={id => this.handleClick(pos)} icon={icon} />
         );
     });
 

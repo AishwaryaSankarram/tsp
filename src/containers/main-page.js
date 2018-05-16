@@ -29,9 +29,9 @@ export class MainPage extends Component{
 
 	fetchSSMandUpdateLogs(msgType, srmInfo){
 		let ssmData = this.ssm.state.ssmInfo;
-		console.log("ssmData=========", ssmData, srmInfo);
+		// console.log("ssmData=========", ssmData, srmInfo);
 		let ssm = ssmData.filter((s) => s.id === srmInfo.id)[0];
-		console.log("ssm aft=========", ssm);
+		// console.log("ssm aft=========", ssm);
 		if(!ssm){
 			ssm = {};
 		}
@@ -40,9 +40,9 @@ export class MainPage extends Component{
 
 	fetchSRMandUpdateLogs(ssmInfo) {
 		let srmData = this.srm.state.srmData;
-		console.log("srmData=========", srmData, ssmInfo);
+		// console.log("srmData=========", srmData, ssmInfo);
 		let srm = srmData.filter((s) => s.id === ssmInfo.id)[0];
-		console.log("srm aft=========", srm);
+		// console.log("srm aft=========", srm);
 		if(!srm){
 			srm = {};
 		}

@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Tabs, Tab } from 'material-ui/Tabs';
 import { LogComponent } from "../components/log";
+import { LogDataComponent } from "../components/log-data";
 import '../css/logs.css';
 import { MuiThemeProvider } from 'material-ui/styles';
 
@@ -102,9 +103,7 @@ export class LogContainer extends Component {
                                use controllable Tabs, you need to give all of your tabs values or else
                                you wont be able to select them.
                             </p>
-                            <p>
-                                {Object.keys(this.state.srmInfo)}
-                            </p>
+                               <LogDataComponent data={this.state.srmInfo}/>
                        </div>
                    </Tab>}
                    {this.state.showTabs &&
@@ -114,8 +113,8 @@ export class LogContainer extends Component {
                               SSM Tab
                             </p>
                             <p>
-                                {this.state.ssmInfo.lat}
-                            </p>
+                                   {JSON.stringify(this.state.ssmInfo)}
+                                                            </p>
                        </div>
                    </Tab>
                    }
