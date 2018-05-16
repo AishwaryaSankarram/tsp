@@ -1,17 +1,11 @@
-import React, { Component } from 'react';
+import React from 'react';
 import '../css/logs.css';
 
-export class LogComponent extends Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            logs: this.props.logs
-        };
-    }
+export const LogComponent = (props) => {
 
-    render() {
 
-        let currentLogs = this.state.logs;
+        console.log("Render called from Log Component");
+        let currentLogs = props.logs;
         let logsElement;
         if (currentLogs && currentLogs.length !== 0) {
             logsElement = currentLogs.map((log, index) => {
@@ -41,5 +35,4 @@ export class LogComponent extends Component {
                 {logsElement}
             </div>
         );
-    }
 }

@@ -34,7 +34,7 @@ export class LaneData extends Component {
             <rect id="l-1" x="0" y="100.86218" width="7" height="51.25"/>
             <rect id="l-1" x="0" y="201.36218" width="7" height="51.25"/>
             <rect id="l-1" x="0" y="301.36218" width="7" height="51.25"/>
-            <StraightRightArrow color={"#FFFF00"} />
+            <StraightArrow color={"#FFFF00"} />
         </g>
       );
       }

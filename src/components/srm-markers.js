@@ -49,6 +49,7 @@ export class SRMMarkers extends Component {
     this.displaySRM = this.displaySRM.bind(this);
     this.processSRM = this.processSRM.bind(this);
     this.handleClick = this.handleClick.bind(this);
+    this.clearData = this.clearData.bind(this);
   }
 
   componentDidMount(){
@@ -67,6 +68,11 @@ export class SRMMarkers extends Component {
     console.info("SRM Info received in event", "srm", data);
 
     this.processSRM(JSON.parse(data));
+  }
+
+  clearData() {
+    console.log("CLEARING FROM SRM MARKERS COMPONENT");
+    this.setState({srmData: []});
   }
 
   processSRM(data) {

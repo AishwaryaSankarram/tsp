@@ -35,8 +35,8 @@ export class LogContainer extends Component {
         };
         this.updateData = this.updateData.bind(this);
         this.openTabs = this.openTabs.bind(this);
-    } 
-    
+    }
+
     componentDidMount() {
         console.log("Log div Did Mount------------");
         this.props.onLogsMount(this);
@@ -76,12 +76,14 @@ export class LogContainer extends Component {
     }
 
     clearLogs() {
+      console.log("CLEARING FROM LOGS COMPONENT");
         this.setState({
             logs: []
         });
     }
 
     render() {
+      console.log("Render called for logs component");
        return (
            <MuiThemeProvider>
             <div className="log-container">

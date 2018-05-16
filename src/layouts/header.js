@@ -1,10 +1,13 @@
 import React, { Component } from 'react';
-import '../css/header.css'; 
+import '../css/header.css';
 import logo from '../images/logo.png';
 import {ActionButtons} from '../components/action-buttons';
 
 
 export class Header extends Component {
+ constructor(props) {
+    super(props);
+ }
  render() {
     return (
         <header>
@@ -15,7 +18,7 @@ export class Header extends Component {
                 </figure>
               </div>
               <div className="header-title">Transit Signal Priority</div>
-              <ActionButtons/>
+              <ActionButtons clearData={this.props.clearData}/>
             </div>
         </header>
     );

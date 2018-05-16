@@ -54,6 +54,7 @@ export class Vehicles extends React.Component {
     processBSM(d){
         let self = this;
         let data = JSON.parse(d);
+        console.info("BSM Info received in event", "bsm", data);
         // { 1: { carId: "1", lat: 13.181953, lng: 79.608065 } }
         let cars = self.state.markers;
         //{"Speed":0.59,"Heading":26.96,"Msg_type":"BSM","Device_Type":"OBU","Latitude":13.048968833,"Vehicle_id":90,
@@ -143,11 +144,11 @@ export class Vehicles extends React.Component {
           cIcon.rotation=marker.rotation;
           // cIcon['fillColor'] = marker.color;
 
-          let bus = busIcon.replace(/rotateDeg/g, -1 * marker.rotation);
+          let bus = busIcon.replace(/rotateDeg/g, marker.rotation-90);
           let bIcon = { url: 'data:image/svg+xml;charset=UTF-8,' + encodeURIComponent(bus),
                        scaledSize: new google.maps.Size(50, 50)
                       };
-          let icon = marker.isEv ? bIcon : cIcon;
+          let icon = marker.useAsEv ? bIcon : cIcon;
           m.push(<Marker  key={marker.carId} position={{lat: marker.lat, lng: marker.lng}}
                           icon={icon} />
                 );

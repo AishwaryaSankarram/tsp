@@ -36,15 +36,19 @@ export class ActionButtons extends Component {
  }
 
  handleReset(){
-   let isStarted = this.state.isStarted;
+   this.setState({isPlaying: true});
+   this.props.clearData();
    let socket = window.socket;
-   console.log("openSocket------", socket);
-   if (isStarted) { //Bus is in transit; So issue a reset now
-     socket.emit("restart", "Restart all events-------");
-     this.setState({isPlaying: true});
-   } else {  //Reset has been when not started; So do nothing
-     console.log("Invalid action");
-   }
+   socket.emit("restart", "Restart all events-------");
+   // let isStarted = this.state.isStarted;
+   // let socket = window.socket;
+   // console.log("openSocket------", socket);
+   // if (isStarted) { //Bus is in transit; So issue a reset now
+   //   socket.emit("restart", "Restart all events-------");
+   //   this.setState({isPlaying: true});
+   // } else {  //Reset has been when not started; So do nothing
+   //   console.log("Invalid action");
+   // }
  }
 
  render() {

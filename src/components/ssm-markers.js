@@ -9,13 +9,14 @@ export class SSMMarkers extends Component {
     super(props);
 
     this.state = {
-      ssmInfo: [{ Current_Lat: 42.3416928, Current_Lon: -83.0790249, deviceType: 0, Request_id: 789 }, 
+      ssmInfo: [{ Current_Lat: 42.3416928, Current_Lon: -83.0790249, deviceType: 0, Request_id: 789 },
         { Current_Lat: 42.3350748, Current_Lon: -83.0494584, deviceType: 1, Request_id: 100 }]
     };
 
     this.processSSM = this.processSSM.bind(this);
     this.handleClick = this.handleClick.bind(this);
     this.displaySSM = this.displaySSM.bind(this);
+    this.clearData = this.clearData.bind(this);
   }
 
   componentDidMount(){
@@ -28,9 +29,14 @@ export class SSMMarkers extends Component {
   componentWillUnmount() {
     this.props.onMount(null);
   }
-  
+
   displaySSM(data) {
     console.info("SSM Info received in event", "ssm", data);
+  }
+
+  clearData() {
+    console.log("CLEARING FROM SSM MARKERS COMPONENT");
+    this.setState({ssmInfo: []});
   }
 
   processSSM(data) {
