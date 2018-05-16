@@ -32,7 +32,21 @@ export class MainPage extends Component{
 		console.log("ssmData=========", ssmData, srmInfo);
 		let ssm = ssmData.filter((s) => s.id === srmInfo.id)[0];
 		console.log("ssm aft=========", ssm);
+		if(!ssm){
+			ssm = {};
+		}
 		this.state.logs.openTabs("srm", srmInfo, ssm);
+	}
+
+	fetchSRMandUpdateLogs(ssmInfo) {
+		let srmData = this.srm.state.srmData;
+		console.log("srmData=========", srmData, ssmInfo);
+		let srm = srmData.filter((s) => s.id === ssmInfo.id)[0];
+		console.log("srm aft=========", srm);
+		if(!srm){
+			srm = {};
+		}
+		this.state.logs.openTabs("ssm", srm, ssmInfo);
 	}
 
 	render(){
@@ -45,6 +59,7 @@ export class MainPage extends Component{
 					</div>
 					<div className="bottom-panel">
 						<MapContainer signalpanel={this.state.signalPanel} logs={this.fetchSSMandUpdateLogs.bind(this)} 
+						fetchSRM={this.fetchSRMandUpdateLogs.bind(this)}
 						onSrmMount={ref => (this.srm = ref)} onSsmMount={ref => (this.ssm = ref)} vehicle={this.state.vehicle} />
 					</div>
 				</div>

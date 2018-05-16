@@ -9,15 +9,6 @@ export class LogComponent extends Component {
         };
     }
 
-/*     componentWillReceiveProps(nextProps){
-        let l = this.state.logs;
-        console.log("Component receives props=========", nextProps.logs, l);
-        if(nextProps.logs){
-            // l.push(nextProps.logs);
-            // this.setState({ logs: l })
-        }
-    } */
-
     render() {
 
         let currentLogs = this.state.logs;

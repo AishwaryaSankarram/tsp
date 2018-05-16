@@ -1,5 +1,7 @@
 import React, {Component} from 'react';
 import { Marker } from "react-google-maps";
+import srmIcon from "../images/srm-flag";
+import { color_codes } from '../constants';
 
 let google = window.google;
 
@@ -53,10 +55,16 @@ export class SRMMarkers extends Component {
 
   render() {
     let currentMarkers = this.state.srmData;
+    let google = window.google;
     let markers = currentMarkers.map((data, index) => {
-      let pos = {lat: data.Current_Lat, lng: data.Current_Lon}
+      let pos = {lat: data.Current_Lat, lng: data.Current_Lon};
+      let srmFlag = srmIcon.replace(/fillColor/g, color_codes[index]);
+      let icon = {
+        url: 'data:image/svg+xml;charset=UTF-8,' + encodeURIComponent(srmFlag),
+        scaledSize: new google.maps.Size(100, 100), anchor: new google.maps.Point(0, 0)
+      };
       return (
-        <Marker key={index} position={pos} draggable={false} />
+        <Marker key={index} position={pos} draggable={false} onClick={(id) => {this.handleClick(data)} } icon={icon} />
       );
     });
 

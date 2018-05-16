@@ -1,5 +1,7 @@
 import React, {Component} from 'react';
 import { Marker } from "react-google-maps";
+import ssmIcon from "../images/ssm-flag";
+import { color_codes } from '../constants';
 
 export class SSMMarkers extends Component {
 
@@ -39,14 +41,20 @@ export class SSMMarkers extends Component {
 
   handleClick(data){
     console.log("On click SSM------", data);
-    this.props.logs.openTabs("ssm", data);
+    this.props.fetchSRM(data);
   }
 
   render() {
     let currentMarkers = this.state.ssmInfo;
+    let google = window.google;
     let markers = currentMarkers.map((pos, index) => {
+      let ssmFlag = ssmIcon.replace(/fillColor/g, color_codes[index]);
+      let icon = {
+        url: 'data:image/svg+xml;charset=UTF-8,' + encodeURIComponent(ssmFlag),
+        scaledSize: new google.maps.Size(100, 100), anchor: new google.maps.Point(0, 0)
+      };
       return (
-        <Marker key={index} position={pos} draggable={false} onClick={id => this.handleClick(pos)} />
+        <Marker key={index} position={pos} draggable={false} onClick={id => this.handleClick(pos)} icon={icon} />
         );
     });
 

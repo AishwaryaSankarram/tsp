@@ -13,6 +13,7 @@ export class MapContainer extends Component{
   			   vehicle={this.props.vehicle}
 			   signalpanel={this.props.signalpanel}
 			   logs={this.props.logs}
+			   fetchSRM={this.props.fetchSRM}
 			   onSrmMount={this.props.onSrmMount} 
 			   onSsmMount={this.props.onSsmMount}	
   			/>
