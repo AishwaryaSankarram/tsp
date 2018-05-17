@@ -43,10 +43,10 @@ export class MainPage extends Component{
 		this.setState({logs: obj});
 	}
 
-	fetchSSMandUpdateLogs(msgType, srmInfo){
+	fetchSSMandUpdateLogs(srmInfo){
 		let ssmData = this.ssm.state.ssmInfo;
 		// console.log("ssmData=========", ssmData, srmInfo);
-		let ssm = ssmData.filter((s) => s.id === srmInfo.id)[0];
+		let ssm = ssmData.filter((s) => s.Request_id === srmInfo.Request_id)[0];
 		// console.log("ssm aft=========", ssm);
 		if(!ssm){
 			ssm = {};
@@ -57,7 +57,7 @@ export class MainPage extends Component{
 	fetchSRMandUpdateLogs(ssmInfo) {
 		let srmData = this.srm.state.srmData;
 		// console.log("srmData=========", srmData, ssmInfo);
-		let srm = srmData.filter((s) => s.id === ssmInfo.id)[0];
+		let srm = srmData.filter((s) => s.Request_id === ssmInfo.Request_id)[0];
 		// console.log("srm aft=========", srm);
 		if(!srm){
 			srm = {};

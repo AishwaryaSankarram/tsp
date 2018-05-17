@@ -5,16 +5,6 @@ import { LogDataComponent } from "../components/log-data";
 import '../css/logs.css';
 import { MuiThemeProvider } from 'material-ui/styles';
 
-/* const styles = {
-    headline: {
-        fontSize: 24,
-        paddingTop: 16,
-        marginBottom: 12,
-        fontWeight: 400
-    }
-}; */
-
-
 export class LogContainer extends Component {
     constructor(props) {
         super(props);

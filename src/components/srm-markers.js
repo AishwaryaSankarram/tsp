@@ -85,9 +85,9 @@ export class SRMMarkers extends Component {
   }
 
 
-  handleClick(id){
-    console.log("Click on SRM --", id);
-    this.props.logs("srm", id);
+  handleClick(data){
+    console.log("Click on SRM --", data);
+    this.props.logs(data);
   }
 
   render() {
