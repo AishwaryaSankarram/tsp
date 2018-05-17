@@ -80,8 +80,10 @@ export class SRMMarkers extends Component {
     // let latLng = new google.maps.LatLng({lat: data.Current_Lat, lng: data.Current_Lon});
     // map.panTo(latLng);
     let currentMarkers = this.state.srmData;
-    currentMarkers.push(data);
-    this.setState({srmData: currentMarkers});
+    if (currentMarkers[currentMarkers.length - 1].Current_Lat !== data.Current_Lat || currentMarkers[currentMarkers.length - 1].Current_Lng !== data.Current_Lng ){
+      currentMarkers.push(data);
+      this.setState({ srmData: currentMarkers });  
+    }
   }
 
 

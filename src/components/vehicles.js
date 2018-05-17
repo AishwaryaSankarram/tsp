@@ -51,7 +51,7 @@ export class Vehicles extends React.Component {
         console.info("BSM Info received in event", "bsm", data);
     }
 
-    processBSM(d){
+    processBSM(d) {
         let self = this;
         let data = JSON.parse(d);
         console.info("BSM Info received in event", "bsm", data);
@@ -59,23 +59,34 @@ export class Vehicles extends React.Component {
         let cars = self.state.markers;
         //{"Speed":0.59,"Heading":26.96,"Msg_type":"BSM","Device_Type":"OBU","Latitude":13.048968833,"Vehicle_id":90,
         // "Direction":"TX","Longitude":80.252762667,"timestamp":1526469989603}
-        if(cars[data.Vehicle_id]){
-            cars[data.Vehicle_id].rotation = data.Heading;
-            cars[data.Vehicle_id].lat = data.Latitude;
-            cars[data.Vehicle_id].lng = data.Longitude;
-            cars[data.Vehicle_id].timestamp = data.timestamp;
-        }else{
-            cars[data.Vehicle_id] = {
-                useAsEv: data.Direction === 'TX' ?  true : false,
+        let currentCar = cars[data.Vehicle_id];
+        let flag = true;
+        if (currentCar) {
+            if(currentCar.lat === data.Latitude && currentCar.lng === data.Longitude){
+                flag = false;
+            }else{
+                currentCar.rotation = data.Heading;
+                currentCar.lat = data.Latitude;
+                currentCar.lng = data.Longitude;
+                currentCar.speed = data.Speed;
+                currentCar.timestamp = data.timestamp;
+            }
+        } else {
+            currentCar = {
+                useAsEv: data.Direction === 'TX' ? true : false,
                 carId: data.Vehicle_id, rotation: data.Heading, speed: data.Speed, lat: data.Latitude, lng: data.Longitude, timestamp: data.timestamp
             }
         }
-        if(cars[data.Vehicle_id].useAsEv) {
-          let latLng = new google.maps.LatLng(cars[data.Vehicle_id].lat,cars[data.Vehicle_id].lng);
-          self.checkForExistingBounds(latLng);
+        if(flag){
+            if (currentCar.useAsEv) {
+                console.error("Lat Lng of car-", currentCar.lat, currentCar.lng);
+                let latLng = new google.maps.LatLng(currentCar.lat, currentCar.lng);
+                self.checkForExistingBounds(latLng);
+                self.props.vehicle.updateData(currentCar);
+            }
+            cars[data.Vehicle_id] = currentCar;
+            self.setState({ markers: cars });
         }
-        self.props.vehicle.updateData(cars[data.Vehicle_id]);
-        self.setState({markers: cars});
     }
 
     placeCars(data){
