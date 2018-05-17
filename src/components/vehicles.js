@@ -48,13 +48,13 @@ export class Vehicles extends React.Component {
     }
 
     displayBSM(data){
-        console.info("BSM Info received in event", "bsm", data);
+        // console.info("BSM Info received in event", "bsm", data);
     }
 
     processBSM(d) {
         let self = this;
         let data = JSON.parse(d);
-        console.info("BSM Info received in event", "bsm", data);
+        // console.info("BSM Info received in event", "bsm", data);
         // { 1: { carId: "1", lat: 13.181953, lng: 79.608065 } }
         let cars = self.state.markers;
         //{"Speed":0.59,"Heading":26.96,"Msg_type":"BSM","Device_Type":"OBU","Latitude":13.048968833,"Vehicle_id":90,

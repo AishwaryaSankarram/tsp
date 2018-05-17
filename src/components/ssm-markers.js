@@ -31,11 +31,11 @@ export class SSMMarkers extends Component {
   }
 
   displaySSM(data) {
-    console.info("SSM Info received in event", "ssm", data);
+    //console.info("SSM Info received in event", "ssm", data);
   }
 
   clearData() {
-    console.log("CLEARING FROM SSM MARKERS COMPONENT");
+    //console.log("CLEARING FROM SSM MARKERS COMPONENT");
     this.setState({ssmInfo: []});
   }
 

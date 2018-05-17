@@ -26,7 +26,7 @@ export class InterMarkers extends Component {
   }
 
   displayMapData(data){
-    console.info("mapData received in event", "mapData", data);
+    //console.info("mapData received in event", "mapData", data);
   }
 
   updateIntersections(data) {

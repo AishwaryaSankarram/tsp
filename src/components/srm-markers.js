@@ -3,7 +3,7 @@ import { Marker } from "react-google-maps";
 import srmIcon from "../images/srm-flag";
 import { color_codes } from '../constants';
 
-let google = window.google;
+// let google = window.google;
 
 export class SRMMarkers extends Component {
 
@@ -64,12 +64,13 @@ export class SRMMarkers extends Component {
   }
 
   displaySRM(data){
-    console.info("SRM Info received in event", "srm", data);
+    //console.info("SRM Info received in event", "srm", data);
+
     this.processSRM(JSON.parse(data));
   }
 
   clearData() {
-    console.log("CLEARING FROM SRM MARKERS COMPONENT");
+    //console.log("CLEARING FROM SRM MARKERS COMPONENT");
     this.setState({srmData: []});
   }
 
@@ -82,7 +83,7 @@ export class SRMMarkers extends Component {
       currentMarkers.unshift(data);
       if(currentMarkers.length > 3)
         currentMarkers.pop();
-      this.setState({ srmData: currentMarkers });            
+      this.setState({ srmData: currentMarkers });
     }
     let logInfo = <div className="srm-text"> {new Date(data.timestamp).toLocaleString()} - <label> SRM </label> with request ID {data.Request_id} sent by  {data.Msg_Data.Requestor.Vehicle_Id} at {data.Current_Lat}, {data.Current_Lon} </div>
     this.props.addLogs(logInfo);
@@ -96,7 +97,6 @@ export class SRMMarkers extends Component {
 
   render() {
     let currentMarkers = this.state.srmData;
-    let google = window.google;
     let markers = currentMarkers.map((data, index) => {
       let pos = {lat: data.Current_Lat, lng: data.Current_Lon};
 

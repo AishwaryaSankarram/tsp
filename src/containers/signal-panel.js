@@ -34,7 +34,7 @@ export class SignalPanel extends Component {
   }
 
   displaySPAT(data){
-    console.info("SPAT Info received in event", "spat", data);
+    //console.info("SPAT Info received in event", "spat", data);
   }
 
   handleChange(event) {
@@ -53,7 +53,7 @@ export class SignalPanel extends Component {
         anchorElement: event.currentTarget
       });
     }
-    
+
   }
 
   handlePopoverClose() {
