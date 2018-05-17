@@ -37,8 +37,8 @@ export const MapComponent = compose(
      >
      {console.log("props in maps------------", props)}
      <Vehicles mapObj={props.mapObj} vehicle={props.vehicle} />
-     <InterMarkers mapObj={props.mapObj} signalpanel={props.signalpanel} />
-        <SRMMarkers mapObj={props.mapObj} logs={props.logs} onMount={props.onSrmMount} />
-        <SSMMarkers mapObj={props.mapObj} fetchSRM={props.fetchSRM} onMount={props.onSsmMount} />
+        <InterMarkers mapObj={props.mapObj} signalpanel={props.signalpanel} addLogs={props.addLogs}/>
+        <SRMMarkers mapObj={props.mapObj} fetchSSM={props.fetchSSM} onMount={props.onSrmMount} addLogs={props.addLogs}/>
+        <SSMMarkers mapObj={props.mapObj} fetchSRM={props.fetchSRM} onMount={props.onSsmMount} addLogs={props.addLogs}/>
     </GoogleMap>
 ));

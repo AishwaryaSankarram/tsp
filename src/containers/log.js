@@ -10,16 +10,9 @@ export class LogContainer extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            logs: [{
-                carId: 123,
-                latitude: 12345.96,
-                longitude: 987456.389,
-                speed: "110",
-                distance: "30",
-                laneId: "A1"
-            }],
-            srmInfo: "",
-            ssmInfo: "",
+            logs: [],
+            srmInfo: null,
+            ssmInfo: null,
             showTabs: false,
             activeTab: "logs"
 
@@ -37,14 +30,9 @@ export class LogContainer extends Component {
     }
 
     updateData(obj) {
-      /*   if (obj.carId && obj.carId.length > 0) {
-            this.setState({
-                carId: obj.carId,
-                latitude: obj.lat,
-                longitude: obj.lng,
-                speed: obj.speed
-            });
-        } */
+        let logs = this.state.logs;
+        logs.unshift(obj);
+        this.setState({logs: logs});
     }
 
     handleChange = (value) => {
@@ -78,34 +66,35 @@ export class LogContainer extends Component {
                    onChange={this.handleChange}
                >
                    <Tab label="Logs" value="logs" className="logs-header">
-                        <div className="logs-header"> <label>Device Logs</label>
+                        <div className="logs-header">
                             <div className="clear-logs" onClick={this.clearLogs.bind(this)}>Clear</div>
                                <DownloadLink
                                    className="clear-logs"
                                    tagName="div" 
                                    filename={"device_logs_" + new Date().getTime() + ".txt"}
-                                   exportFile={() => JSON.stringify(this.state.logs)}
-                               >
+                                   exportFile={() => JSON.stringify(this.state.logs)}>
                                    Save
                                 </DownloadLink>
                         </div>
-                           <LogComponent logs={this.state.logs}/>
+                        <br/>
+                        <LogComponent logs={this.state.logs}/>
                    </Tab>
-                   {this.state.showTabs &&
+
                    <Tab label="SRM" value="srm-tab" className="logs-header">
                        <div>
                           <LogDataComponent data={this.state.srmInfo}/>
                        </div>
-                   </Tab>}
-                   {this.state.showTabs &&
+                   </Tab>
+
                    <Tab label="SSM" value="ssm-tab" className="logs-header">
                        <div>
-                            <p>
-                                {JSON.stringify(this.state.ssmInfo)}
-                            </p>
+                               {this.state.ssmInfo ? JSON.stringify(this.state.ssmInfo) : <div className="text-content" key={"ssm_none"}>
+                                   <br />
+                                   <em>No Data To Display</em>
+                               </div>}
                        </div>
                    </Tab>
-                   }
+                   
                </Tabs>
             </div>
            </MuiThemeProvider>

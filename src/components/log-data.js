@@ -4,8 +4,10 @@ import '../css/logs.css';
 export class LogDataComponent extends Component {
     render() {
         let data = this.props.data;
-        return (
-            <div className="log-content">
+        let content;
+        if(data && data.Request_id){
+            content = (
+                <div>
                 <table>
                     <thead>
                         <tr>
@@ -52,6 +54,17 @@ export class LogDataComponent extends Component {
                     <div> {JSON.stringify(data.Msg_Data)} </div>
                 </div>
             </div>
+        );
+        }else{
+            content =(
+                <div>
+                 <br />
+                       <em>No Data To Display</em>
+                </div>
+            );
+        }
+        return (
+            <div className="log-content"> {content} </div>
         );
     }
 }

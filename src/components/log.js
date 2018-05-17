@@ -7,10 +7,7 @@ export const LogComponent = (props) => {
             logsElement = currentLogs.map((log, index) => {
                 return (
                     <div className="text-content" key={"log_" + index}>
-                        <label>ID:</label> {log.carId}<br />
-                        <label>Latitude:</label> {log.latitude} <br />
-                        <label>Longitude:</label> {log.longitude} <br />
-                        <label>Speed:</label> {log.speed + ' mph'} <br />
+                        {log}
                     </div>
                 );
             });
@@ -18,7 +15,7 @@ export const LogComponent = (props) => {
             logsElement = (
                 <div className="text-content" key={"log_none"}>
                     <br />
-                    <strong>No Logs To Display</strong>
+                    <em>No Logs To Display</em>
                 </div>
 
             );

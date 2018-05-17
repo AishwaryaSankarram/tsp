@@ -14,6 +14,7 @@ export class MainPage extends Component{
 			signalPanel: null
 		};
 		this.clearData = this.clearData.bind(this);
+		this.addLogs = this.addLogs.bind(this);
 	}
 
 	clearData() {
@@ -54,6 +55,10 @@ export class MainPage extends Component{
 		this.state.logs.openTabs("srm", srmInfo, ssm);
 	}
 
+	addLogs(message){
+		this.state.logs.updateData(message);
+	}
+
 	fetchSRMandUpdateLogs(ssmInfo) {
 		let srmData = this.srm.state.srmData;
 		// console.log("srmData=========", srmData, ssmInfo);
@@ -65,6 +70,8 @@ export class MainPage extends Component{
 		this.state.logs.openTabs("ssm", srm, ssmInfo);
 	}
 
+
+
 	render(){
 		return (
 			<div className="main-page">
@@ -74,8 +81,8 @@ export class MainPage extends Component{
 						<VehicleContainer onVehicleMount={this.handleVehicleMount.bind(this)} />
 					</div>
 					<div className="bottom-panel">
-						<MapContainer signalpanel={this.state.signalPanel} logs={this.fetchSSMandUpdateLogs.bind(this)}
-						fetchSRM={this.fetchSRMandUpdateLogs.bind(this)}
+						<MapContainer signalpanel={this.state.signalPanel} fetchSSM={this.fetchSSMandUpdateLogs.bind(this)}
+						fetchSRM={this.fetchSRMandUpdateLogs.bind(this)} addLogs={this.addLogs}
 						onSrmMount={ref => (this.srm = ref)} onSsmMount={ref => (this.ssm = ref)} vehicle={this.state.vehicle} />
 					</div>
 				</div>
