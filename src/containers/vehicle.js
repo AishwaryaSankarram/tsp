@@ -50,8 +50,6 @@ export class VehicleContainer extends Component{
 				<label>Latitude:</label> {this.state.latitude} <br/>
 				<label>Longitude:</label> {this.state.longitude} <br/>
 				<label>Speed</label>: {this.state.speed + ' mph'} <br/>
-				<label>Distance from the intersection:</label> {this.state.distance + ' metres'}  <br/>
-				<label>Lane ID:</label> {this.state.laneId}
   			</div>
 		);
 	}

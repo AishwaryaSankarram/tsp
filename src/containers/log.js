@@ -4,6 +4,7 @@ import { LogComponent } from "../components/log";
 import { LogDataComponent } from "../components/log-data";
 import '../css/logs.css';
 import { MuiThemeProvider } from 'material-ui/styles';
+import DownloadLink from "react-download-link";
 
 export class LogContainer extends Component {
     constructor(props) {
@@ -28,7 +29,6 @@ export class LogContainer extends Component {
     }
 
     componentDidMount() {
-        console.log("Log div Did Mount------------");
         this.props.onLogsMount(this);
     }
 
@@ -53,10 +53,6 @@ export class LogContainer extends Component {
         });
     };
 
-    saveLogs() {
-        console.log("Click on save logs----------");
-    }
-
     openTabs(msgType, srmData, ssmData) {
         if(msgType === 'srm'){
             this.setState({ showTabs: true, activeTab: "srm-tab", srmInfo: srmData, ssmInfo: ssmData});
@@ -73,7 +69,6 @@ export class LogContainer extends Component {
     }
 
     render() {
-      console.log("Render called for logs component");
        return (
            <MuiThemeProvider>
             <div className="log-container">
@@ -83,9 +78,18 @@ export class LogContainer extends Component {
                    onChange={this.handleChange}
                >
                    <Tab label="Logs" value="logs" className="logs-header">
-                       <div>
+                        <div className="logs-header"> <label>Device Logs</label>
+                            <div className="clear-logs" onClick={this.clearLogs.bind(this)}>Clear</div>
+                               <DownloadLink
+                                   className="clear-logs"
+                                   tagName="div" 
+                                   filename={"device_logs_" + new Date().getTime() + ".txt"}
+                                   exportFile={() => JSON.stringify(this.state.logs)}
+                               >
+                                   Save
+                                </DownloadLink>
+                        </div>
                            <LogComponent logs={this.state.logs}/>
-                       </div>
                    </Tab>
                    {this.state.showTabs &&
                    <Tab label="SRM" value="srm-tab" className="logs-header">
@@ -97,7 +101,7 @@ export class LogContainer extends Component {
                    <Tab label="SSM" value="ssm-tab" className="logs-header">
                        <div>
                             <p>
-                                   {JSON.stringify(this.state.ssmInfo)}
+                                {JSON.stringify(this.state.ssmInfo)}
                             </p>
                        </div>
                    </Tab>

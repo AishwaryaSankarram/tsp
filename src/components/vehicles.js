@@ -79,7 +79,6 @@ export class Vehicles extends React.Component {
         }
         if(flag){
             if (currentCar.useAsEv) {
-                console.error("Lat Lng of car-", currentCar.lat, currentCar.lng);
                 let latLng = new google.maps.LatLng(currentCar.lat, currentCar.lng);
                 self.checkForExistingBounds(latLng);
                 self.props.vehicle.updateData(currentCar);

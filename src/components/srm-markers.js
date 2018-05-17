@@ -53,7 +53,6 @@ export class SRMMarkers extends Component {
   }
 
   componentDidMount(){
-    console.log("SRM COMPONENT MOUNTED -----");
     this.props.onMount(this);
     let webSocket = window.socket;
     //webSocket.on('srmData', this.processSSM);
