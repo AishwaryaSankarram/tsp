@@ -1,5 +1,5 @@
 const srmIcon = [
-    '<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="589px" height="265px" viewBox="0 0 589 265" version="1.1">',
+    '<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="589px" height="265px" viewBox="0 0 589 265" transform="scale(0.18)"  version="1.1">',
     '<g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">',
         '<g id="flag-op-2">',
             '<path d="M20.9,215.9 L20.9,10.057 C20.899,4.503 16.396,0 10.841,0 C5.286,0 0.784,4.503 0.784,10.057 L0.784,30.681 L0.784,113.178 L0.784,215.9 L20.9,215.9 Z" id="Shape" fill="fillColor" fill-rule="nonzero"></path>',
@@ -12,4 +12,3 @@ const srmIcon = [
     '</svg>'].join('\n');
 
 export default srmIcon;
-
