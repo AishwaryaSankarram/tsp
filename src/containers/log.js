@@ -100,23 +100,15 @@ export class LogContainer extends Component {
                    {this.state.showTabs &&
                    <Tab label="SRM" value="srm-tab" className="logs-header">
                        <div>
-                           <p>
-                               This is another example of a controllable tab. Remember, if you
-                               use controllable Tabs, you need to give all of your tabs values or else
-                               you wont be able to select them.
-                            </p>
-                               <LogDataComponent data={this.state.srmInfo}/>
+                          <LogDataComponent data={this.state.srmInfo}/>
                        </div>
                    </Tab>}
                    {this.state.showTabs &&
                    <Tab label="SSM" value="ssm-tab" className="logs-header">
                        <div>
-                           <p>
-                              SSM Tab
-                            </p>
                             <p>
                                    {JSON.stringify(this.state.ssmInfo)}
-                                                            </p>
+                            </p>
                        </div>
                    </Tab>
                    }

@@ -55,7 +55,7 @@ export class SSMMarkers extends Component {
     let currentMarkers = this.state.ssmInfo;
     let google = window.google;
     let markers = currentMarkers.map((pos, index) => {
-      let ssmFlag = ssmIcon.replace(/fillColor/g, color_codes[index]);
+      let ssmFlag = ssmIcon.replace(/fillColor/g, color_codes[index] % 10);
       let icon = {
         url: 'data:image/svg+xml;charset=UTF-8,' + encodeURIComponent(ssmFlag),
         scaledSize: new google.maps.Size(100, 100), anchor: new google.maps.Point(0, 0)

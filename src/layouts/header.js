@@ -5,9 +5,6 @@ import {ActionButtons} from '../components/action-buttons';
 
 
 export class Header extends Component {
- constructor(props) {
-    super(props);
- }
  render() {
     return (
         <header>
