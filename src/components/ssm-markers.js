@@ -58,7 +58,8 @@ export class SSMMarkers extends Component {
       let ssmFlag = ssmIcon.replace(/fillColor/g, color_codes[index % 10]);
       let icon = {
         url: 'data:image/svg+xml;charset=UTF-8,' + encodeURIComponent(ssmFlag),
-        scaledSize: new google.maps.Size(100, 100), anchor: new google.maps.Point(0, 0)
+        /*scaledSize: new google.maps.Size(100, 100),*/
+         anchor: new google.maps.Point(0, 0)
       };
       let p = { lat: pos.Current_Lat, lng: pos.Current_Lon };
       return (

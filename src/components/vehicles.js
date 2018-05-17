@@ -141,13 +141,14 @@ export class Vehicles extends React.Component {
         // let latLng = new google.maps.LatLng(pos.lat, pos.lng);
         let self = this;
         let map = self.props.mapObj;
+        map.panTo(latLng);
         // window.myMap = map;
-        if (!map.getBounds().contains(latLng)) {
-            // console.log("new lat lng not in bounds----");
-            latLngBounds.extend(latLng);
-            // map.fitBounds(latLngBounds);
-            map.panTo(latLng);
-        }
+        // if (!map.getBounds().contains(latLng)) {
+        //     // console.log("new lat lng not in bounds----");
+        //     latLngBounds.extend(latLng);
+        //     // map.fitBounds(latLngBounds);
+        //
+        // }
     }
 
     render() {
@@ -159,9 +160,10 @@ export class Vehicles extends React.Component {
           // cIcon['fillColor'] = marker.color;
 
           let bus = busIcon.replace(/rotateDeg/g, marker.rotation-90);
-          let bIcon = { url: 'data:image/svg+xml;charset=UTF-8,' + encodeURIComponent(bus),
-          anchor: new google.maps.Point(0, 0)
-                       /*scaledSize: new google.maps.Size(50, 50)*/
+          let bIcon = { url: 'data:image/svg+xml;charset=UTF-8,' + encodeURIComponent(bus)
+
+                       /*scaledSize: new google.maps.Size(50, 50),
+                       anchor: new google.maps.Point(0, 0)*/
                       };
           let icon = marker.useAsEv ? bIcon : cIcon;
           m.push(<Marker  key={marker.carId} position={{lat: marker.lat, lng: marker.lng}}

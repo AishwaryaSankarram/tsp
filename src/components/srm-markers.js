@@ -79,9 +79,12 @@ export class SRMMarkers extends Component {
     // let latLng = new google.maps.LatLng({lat: data.Current_Lat, lng: data.Current_Lon});
     // map.panTo(latLng);
     let currentMarkers = this.state.srmData;
-    if (currentMarkers[currentMarkers.length - 1].Current_Lat !== data.Current_Lat || currentMarkers[currentMarkers.length - 1].Current_Lng !== data.Current_Lng ){
-      currentMarkers.push(data);
-      this.setState({ srmData: currentMarkers });  
+    if(currentMarkers.length > 3) {
+      currentMarkers.pop();
+    }
+    if (currentMarkers.length === 0 || currentMarkers[currentMarkers.length - 1].Current_Lat !== data.Current_Lat || currentMarkers[currentMarkers.length - 1].Current_Lng !== data.Current_Lng ){
+      currentMarkers.unshift(data);
+      this.setState({ srmData: currentMarkers });
     }
   }
 
@@ -99,8 +102,8 @@ export class SRMMarkers extends Component {
 
       let srmFlag = srmIcon.replace(/fillColor/g, (color_codes[index % 10]));
       let icon = {
-        url: 'data:image/svg+xml;charset=UTF-8,' + encodeURIComponent(srmFlag),
-        /*scaledSize: new google.maps.Size(100, 100),*/ anchor: new google.maps.Point(0, 0)
+        url: 'data:image/svg+xml;charset=UTF-8,' + encodeURIComponent(srmFlag)
+        /*scaledSize: new google.maps.Size(500, 500), anchor: new google.maps.Point(0, 0)*/
       };
       return (
         <Marker key={"srm_" + index} position={pos} draggable={false} onClick={(id) => {this.handleClick(data)} } icon={icon} />
