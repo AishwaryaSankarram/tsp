@@ -70,6 +70,10 @@ export class Vehicles extends React.Component {
                 carId: data.Vehicle_id, rotation: data.Heading, speed: data.Speed, lat: data.Latitude, lng: data.Longitude, timestamp: data.timestamp
             }
         }
+        if(cars[data.Vehicle_id].useAsEv) {
+          let latLng = new google.maps.LatLng(cars[data.Vehicle_id].lat,cars[data.Vehicle_id].lng);
+          self.checkForExistingBounds(latLng);
+        }
         self.props.vehicle.updateData(cars[data.Vehicle_id]);
         self.setState({markers: cars});
     }
