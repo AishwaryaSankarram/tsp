@@ -23,7 +23,7 @@ export const LogComponent = (props) => {
 
         return (
             <div className="log-content">
-                {logsElement}
+                <div class="text-content"><div class="srm-text"> 5/18/2018, 8:35:07 PM - <label> SRM </label>  with request ID 100 sent by 1234 at 37.3522, -121.968483333 </div></div><div class="text-content"><div class="srm-text"> 5/18/2018, 8:35:07 PM - <label> SRM </label>  with request ID 100 sent by 1234 at 37.3522, -121.968483333 </div></div><div class="text-content"><div class="srm-text"> 5/18/2018, 8:35:07 PM - <label> SRM </label>  with request ID 100 sent by 1234 at 37.3522, -121.968483333 </div></div><div class="text-content"><div class="srm-text"> 5/18/2018, 8:35:07 PM - <label> SRM </label>  with request ID 100 sent by 1234 at 37.3522, -121.968483333 </div></div><div class="text-content"><div class="srm-text"> 5/18/2018, 8:35:07 PM - <label> SRM </label>  with request ID 100 sent by 1234 at 37.3522, -121.968483333 </div></div><div class="text-content"><div class="srm-text"> 5/18/2018, 8:35:07 PM - <label> SRM </label>  with request ID 100 sent by 1234 at 37.3522, -121.968483333 </div></div><div class="text-content"><div class="srm-text"> 5/18/2018, 8:35:07 PM - <label> SRM </label>  with request ID 100 sent by 1234 at 37.3522, -121.968483333 </div></div><div class="text-content"><div class="srm-text"> 5/18/2018, 8:35:07 PM - <label> SRM </label>  with request ID 100 sent by 1234 at 37.3522, -121.968483333 </div></div>
             </div>
         );
 }
