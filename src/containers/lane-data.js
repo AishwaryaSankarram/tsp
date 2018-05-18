@@ -1,9 +1,9 @@
 import React, {Component} from 'react';
-import {LeftStraightRightArrow} from '../images/left-straight-right-arrow';
-import {LeftStraightArrow} from '../images/left-straight-arrow';
-import {LeftArrow} from '../images/left-arrow'
-import {StraightRightArrow} from '../images/straight-right-arrow'
-import {RightArrow} from '../images/right-arrow'
+// import {LeftStraightRightArrow} from '../images/left-straight-right-arrow';
+// import {LeftStraightArrow} from '../images/left-straight-arrow';
+// import {LeftArrow} from '../images/left-arrow';
+// import {StraightRightArrow} from '../images/straight-right-arrow';
+// import {RightArrow} from '../images/right-arrow';
 import {StraightArrow} from '../images/straight-arrow'
 
 

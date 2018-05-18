@@ -70,7 +70,7 @@ export class LogContainer extends Component {
                             <div className="clear-logs" onClick={this.clearLogs.bind(this)}>Clear</div>
                                <DownloadLink
                                    className="clear-logs"
-                                   tagName="div" 
+                                   tagName="div"
                                    filename={"device_logs_" + new Date().getTime() + ".txt"}
                                    exportFile={() => JSON.stringify(this.state.logs)}>
                                    Save
@@ -90,11 +90,11 @@ export class LogContainer extends Component {
                        <div>
                                {this.state.ssmInfo ? JSON.stringify(this.state.ssmInfo) : <div className="text-content" key={"ssm_none"}>
                                    <br />
-                                   <em>No Data To Display</em>
+                                   <em>No data to display.</em>
                                </div>}
                        </div>
                    </Tab>
-                   
+
                </Tabs>
             </div>
            </MuiThemeProvider>

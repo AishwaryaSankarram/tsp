@@ -15,7 +15,7 @@ export const LogComponent = (props) => {
             logsElement = (
                 <div className="text-content" key={"log_none"}>
                     <br />
-                    <em>No Logs To Display</em>
+                    <em>No logs to display.</em>
                 </div>
 
             );

@@ -59,7 +59,7 @@ export class LogDataComponent extends Component {
             content =(
                 <div>
                  <br />
-                       <em>No Data To Display</em>
+                       <em>No data to display.</em>
                 </div>
             );
         }

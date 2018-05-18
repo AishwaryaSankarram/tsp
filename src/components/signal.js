@@ -10,16 +10,16 @@ export class Signal extends Component {
 
     this.state = {
       straight: {
-        color: "#000000",
-        timer: "XX"
+        color: "#FF0000",
+        timer: "88"
       },
       left: {
-        color: "#000000",
-        timer: "XX"
+        color: "#00FF00",
+        timer: "88"
       },
       right: {
-        color: "#000000",
-        timer: "XX"
+        color: "#FF0000",
+        timer: "88"
       }
     }
   }
@@ -38,13 +38,17 @@ export class Signal extends Component {
         right: props.data.right
       });
     }
-    
+
     this.intervalTimer = setInterval(function() {
       let currentState = self.state;
-      currentState.straight.timer = currentState.straight.timer - 1;
-      currentState.left.timer = currentState.left.timer - 1;
-      currentState.right.timer = currentState.right.timer - 1;
-      self.setState({currentState});
+      if(currentState.straight.timer > 0)
+        currentState.straight.timer = currentState.straight.timer - 1;
+      if(currentState.left.timer > 0)
+        currentState.left.timer = currentState.left.timer - 1;
+      if(currentState.right.timer > 0)
+        currentState.right.timer = currentState.right.timer - 1;
+      if(currentState.straight.timer > 0 || currentState.left.timer > 0 || currentState.right.timer > 0)
+          self.setState({currentState});
     }, 1000);
   }
 

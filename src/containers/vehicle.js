@@ -6,12 +6,12 @@ export class VehicleContainer extends Component{
 	constructor(props){
 		super(props);
 		this.state = {
-			carId: 123,
-			latitude: 12345.96, 
-			longitude: 987456.389,
-			speed: "110" ,
-			distance: "30", 
-			laneId: "A1"	 
+			carId: "",
+			latitude: "",
+			longitude: "",
+			speed: "" ,
+			distance: "",
+			laneId: ""
 		};
 		this.updateData = this.updateData.bind(this);
 	}
@@ -22,7 +22,7 @@ export class VehicleContainer extends Component{
     }
 
     componentWillUnmount(){
-    	this.props.onVehicleMount(null);	
+    	this.props.onVehicleMount(null);
     }
 
     updateData(obj){
@@ -35,8 +35,8 @@ export class VehicleContainer extends Component{
 	    		latitude: obj.lat,
 	    		longitude: obj.lng,
 	    		speed: obj.speed
-    		});	
-		}                                    
+    		});
+		}
     }
 
 	render(){
