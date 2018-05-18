@@ -7,7 +7,7 @@ export const LogComponent = (props) => {
             logsElement = currentLogs.map((log, index) => {
                 return (
                     <div className="text-content" key={"log_" + index}>
-                        {log}
+                         <div className={log.className}> {log.timestamp} - <label> {log.label} </label> {log.content} </div>
                     </div>
                 );
             });

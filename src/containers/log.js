@@ -56,6 +56,16 @@ export class LogContainer extends Component {
         });
     }
 
+    getFileContent(){
+        let content = [];
+        let l = this.state.logs;
+        for(let i = 0; i < l.length; i++){
+            content.push(l[i].timestamp + " " + l[i].label + " " + l[i].content)
+        }
+        return content.join('\n');
+    }
+
+
     render() {
        return (
            <MuiThemeProvider>
@@ -72,7 +82,7 @@ export class LogContainer extends Component {
                                    className="clear-logs"
                                    tagName="div"
                                    filename={"device_logs_" + new Date().getTime() + ".txt"}
-                                   exportFile={() => JSON.stringify(this.state.logs)}>
+                                   exportFile={this.getFileContent.bind(this)}>
                                    Save
                                 </DownloadLink>
                         </div>

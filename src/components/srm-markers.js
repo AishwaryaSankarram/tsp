@@ -85,7 +85,8 @@ export class SRMMarkers extends Component {
         currentMarkers.pop();
       this.setState({ srmData: currentMarkers });
     }
-    let logInfo = <div className="srm-text"> {new Date(data.timestamp).toLocaleString()} - <label> SRM </label> with request ID {data.Request_id} sent by  {data.Msg_Data.Requestor.Vehicle_Id} at {data.Current_Lat}, {data.Current_Lon} </div>
+    let content =  " with request ID " +  data.Request_id + " sent by " + data.Msg_Data.Requestor.Vehicle_Id + " at " + data.Current_Lat + ", " + data.Current_Lon ;
+    let logInfo = {className: "srm-text", timestamp: new Date(data.timestamp).toLocaleString(), label: "SRM", content: content }
     this.props.addLogs(logInfo);
   }
 
