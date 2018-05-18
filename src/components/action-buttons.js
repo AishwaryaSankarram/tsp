@@ -8,7 +8,8 @@ export class ActionButtons extends Component {
  	this.state = {
     enablePriority: true,
     isStarted: false,
-    isPlaying: false
+    isPlaying: false,
+    isLoading: false
  	}
  }
 
@@ -36,19 +37,19 @@ export class ActionButtons extends Component {
  }
 
  handleReset(){
-   this.setState({isPlaying: true});
-   this.props.clearData();
+   let self = this;
    let socket = window.socket;
-   socket.emit("restart", "Restart all events-------");
-   // let isStarted = this.state.isStarted;
-   // let socket = window.socket;
-   // console.log("openSocket------", socket);
-   // if (isStarted) { //Bus is in transit; So issue a reset now
-   //   socket.emit("restart", "Restart all events-------");
-   //   this.setState({isPlaying: true});
-   // } else {  //Reset has been when not started; So do nothing
-   //   console.log("Invalid action");
-   // }
+   let isStarted = this.state.isStarted;
+   if (isStarted) { //Bus is in transit; So issue a reset now
+     self.setState({isPlaying: true, isLoading: true});
+     self.props.clearData();
+     socket.emit("restart", "Restart all events-------");
+     setTimeout(function() {
+          self.setState({isLoading: false});
+      }, 2000);
+   } else {  //Reset has been when not started; So do nothing
+     console.log("Invalid action");
+   }
  }
 
  render() {
@@ -64,7 +65,7 @@ export class ActionButtons extends Component {
           </div>
         <div className="action-button-container" title="Restart"  onClick={this.handleReset.bind(this)}>
           <button disabled={!this.state.isStarted}>
-                <i className="fa fa-undo"></i>
+                <i className={this.state.isLoading? "fa fa-undo fa-spin fa-fw" : "fa fa-undo" } ></i>
             </button>
           </div>
         </div>
