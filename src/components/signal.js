@@ -55,13 +55,13 @@ export class Signal extends Component {
 
 
   render() {
-    let svg = signalSVG;
+    let svg = SignalImage;
 
-    svg = svg.replace(/leftTurnSignal/g, this.state.left.color);
+ /*    svg = svg.replace(/leftTurnSignal/g, this.state.left.color);
     svg = svg.replace(/straightSignal/g, this.state.straight.color);
     svg = svg.replace(/rightTurnSignal/g, this.state.right.color);
     svg = svg.replace(/leftTimer/g, this.state.left.timer);
-    svg = svg.replace(/straightTimer/g, this.state.straight.timer);
+    svg = svg.replace(/straightTimer/g, this.state.straight.timer); */
     return <SignalImage />
    }
 }
