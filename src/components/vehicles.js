@@ -160,10 +160,9 @@ export class Vehicles extends React.Component {
           // cIcon['fillColor'] = marker.color;
 
           let bus = busIcon.replace(/rotateDeg/g, marker.rotation-90);
-          let bIcon = { url: 'data:image/svg+xml;charset=UTF-8,' + encodeURIComponent(bus)
-
-                       /*scaledSize: new google.maps.Size(50, 50),
-                       anchor: new google.maps.Point(0, 0)*/
+          let bIcon = { url: 'data:image/svg+xml;charset=UTF-8,' + encodeURIComponent(bus),
+                       scaledSize: new google.maps.Size(50, 50)
+                       /*anchor: new google.maps.Point(0, 0)*/
                       };
           let icon = marker.useAsEv ? bIcon : cIcon;
           m.push(<Marker  key={marker.carId} position={{lat: marker.lat, lng: marker.lng}}
