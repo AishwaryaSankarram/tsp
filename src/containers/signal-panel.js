@@ -31,7 +31,6 @@ export class SignalPanel extends Component {
     let webSocket = window.socket
     // webSocket.on('signal', self.renderSignals);
     webSocket.on('spat', self.displaySPAT);
-    webSocket.on('map', self.constructMap)
   }
 
   displaySPAT(data){
@@ -45,7 +44,6 @@ export class SignalPanel extends Component {
   }
 
   openPopover(event) {
-    console.log("Old state-----", this.state.isPopoverOpen);
     if(this.state.isPopoverOpen){
       this.setState({ isPopoverOpen: false });
     } else {
@@ -80,6 +78,7 @@ export class SignalPanel extends Component {
 
 
   render() {
+    console.log("INT_TO_SIGNAL_MAP", this.state.intToSignalMap);
     // let currentSocketValues = Object.values(this.state.socketData);
 
     // let self = this;
@@ -119,7 +118,7 @@ export class SignalPanel extends Component {
                 anchorOrigin={{horizontal: 'middle', vertical: 'top'}}
                 targetOrigin={{horizontal: 'middle', vertical: 'top'}}
                 onRequestClose={this.handlePopoverClose.bind(this)}>
-                  <LaneData/>
+                  <LaneData data={this.state.intToSignalMap["565"]}/>
                 </Popover> }
               </div>
             </MuiThemeProvider>
