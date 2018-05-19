@@ -14,6 +14,11 @@ export class ActionButtons extends Component {
  }
 
  handleChange = (event, item) => {
+  let socketCommand;
+  event.target.checked ? socketCommand = "enable" : socketCommand = "disable";
+  let webSocket = window.socket;
+  console.log("Sending signal priority...");
+  webSocket.emit("priorities",JSON.stringify({command:socketCommand}));
 	this.setState({
 	  [item]: event.target.checked
 	});

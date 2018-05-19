@@ -95,10 +95,13 @@ export class SignalPanel extends Component {
     // });
 
 // This code is added for icon testing
-      let signals = <li title={"A"} className="signal" key={"signal-li_" + 0}  onClick={this.openPopover}>
-        {/* <button onClick={this.openPopover}><i className={this.state.isPopoverOpen ? "fa fa-minus" : "fa fa-plus"}></i></button> */}
-      <Signal key={0} />
-          </li>;
+      let signals;
+      if(!this.state.showAllSignals) {
+        signals = <span title={"A"} className="signal" key={"signal-li_" + 0}  onClick={this.openPopover}>
+          {/* <button onClick={this.openPopover}><i className={this.state.isPopoverOpen ? "fa fa-minus" : "fa fa-plus"}></i></button> */}
+        <Signal key={0} />
+            </span>;
+        }
     return (
 
         <div className="signal-panel">
@@ -122,7 +125,7 @@ export class SignalPanel extends Component {
                 </Popover> }
               </div>
             </MuiThemeProvider>
-        <div className="text-content"><ul key="signal-list">{signals}</ul></div>
+        <div className="text-content">{signals}</div>
         </div>
 
     );

@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Marker } from 'react-google-maps';
 import InterIcon from '../images/intersection-icon';
+import SignalInterIcon from '../images/signal-intersection-icon'
 
 window.signalToInt = {};
 
@@ -64,11 +65,11 @@ export class InterMarkers extends Component {
     let mapDataValues = Object.values(this.state.signalToIntMap);
 
     let markers = mapDataValues.map( (mapData, index) => {
-        let iconImg = InterIcon;
+        let iconImg = SignalInterIcon;
         let pos = {lat: mapData.intersection_lat, lng: mapData.intersection_lng, title: mapData.intersection_id.toString()};
         iconImg = iconImg.replace(/label/g, pos.title);
         let icon = { url: 'data:image/svg+xml;charset=UTF-8,' + encodeURIComponent(iconImg),
-                       scaledSize: new window.google.maps.Size(50, 50),
+                       scaledSize: new window.google.maps.Size(100, 100),
                        /*anchor: new window.google.maps.Point(0,0)*/
                       };
         return (
