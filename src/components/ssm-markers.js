@@ -41,11 +41,12 @@ export class SSMMarkers extends Component {
 
   processSSM(data) {
     console.log("SSm Data arrived----", data, typeof data);
+    let parsedData = JSON.parse(data);
     let currentMarkers = this.state.ssmInfo;
-    currentMarkers.push(data);
+    currentMarkers.push(parsedData);
     this.setState({ssmInfo: currentMarkers});
-    let content =  " with request ID " +  data.Request_id + " sent by " + data.Msg_Data.Requestor.Vehicle_Id + " at " + data.Current_Lat + ", " + data.Current_Lon ;
-    let logInfo = {className: "srm-text", timestamp: data.timestamp.toString(), label: "SRM", content: content }
+    let content =  " with request ID " +  parsedData.Request_id + " sent by " + "RSU" + " at " + parsedData.Current_Lat + ", " + parsedData.Current_Lon ;
+    let logInfo = {className: "ssm-text", timestamp: parsedData.timestamp, label: "SSM", content: content }
     this.props.addLogs(logInfo);
   }
 
