@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Marker } from 'react-google-maps';
-import InterIcon from '../images/intersection-icon';
+// import InterIcon from '../images/intersection-icon';
 import SignalInterIcon from '../images/signal-intersection-icon'
 
 window.signalToInt = {};

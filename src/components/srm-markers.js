@@ -79,7 +79,7 @@ export class SRMMarkers extends Component {
     // let latLng = new google.maps.LatLng({lat: data.Current_Lat, lng: data.Current_Lon});
     // map.panTo(latLng);
     let currentMarkers = this.state.srmData;
-    if (currentMarkers.length != 0 && (currentMarkers[currentMarkers.length - 1].Current_Lat !== data.Current_Lat || currentMarkers[currentMarkers.length - 1].Current_Lon !== data.Current_Lon )){
+    if (currentMarkers.length !== 0 && (currentMarkers[currentMarkers.length - 1].Current_Lat !== data.Current_Lat || currentMarkers[currentMarkers.length - 1].Current_Lon !== data.Current_Lon )){
       currentMarkers.unshift(data);
       if(currentMarkers.length > 3)
         currentMarkers.pop();

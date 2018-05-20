@@ -61,7 +61,7 @@ export class LaneData extends Component {
             arrowString += "right"
           }
           ArrowElement = arrowMap[arrowString];
-          laneInfo[i].lane_id == vehicleLaneId ? color = "#FFFF00" : color = "#FFFFFF"
+          laneInfo[i].lane_id === vehicleLaneId ? color = "#FFFF00" : color = "#FFFFFF"
         }
         laneElements.push(<g key={"lane_" + i} id={"lane_" + i} transform={"translate(" + (14.000000 + (i*this.laneWidth)) + ", 25.637820)"} fill="#FFFFFF" stroke="#69BCFB" strokeLinecap="round">
             <rect id="l-1" x="0" y="0.36218" width="7" height="51.25"/>
