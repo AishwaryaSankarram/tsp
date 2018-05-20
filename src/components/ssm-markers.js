@@ -23,7 +23,7 @@ export class SSMMarkers extends Component {
     this.props.onMount(this);
     let webSocket = window.socket;
     // webSocket.on('ssm', this.processSSM);
-    webSocket.on('ssm', this.displaySSM);
+    webSocket.on('ssm', this.processSSM);
   }
 
   componentWillUnmount() {
@@ -44,6 +44,9 @@ export class SSMMarkers extends Component {
     let currentMarkers = this.state.ssmInfo;
     currentMarkers.push(data);
     this.setState({ssmInfo: currentMarkers});
+    let content =  " with request ID " +  data.Request_id + " sent by " + data.Msg_Data.Requestor.Vehicle_Id + " at " + data.Current_Lat + ", " + data.Current_Lon ;
+    let logInfo = {className: "srm-text", timestamp: data.timestamp.toString(), label: "SRM", content: content }
+    this.props.addLogs(logInfo);
   }
 
   handleClick(data){

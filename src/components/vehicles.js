@@ -160,14 +160,15 @@ export class Vehicles extends React.Component {
           let marker = markers[car];
           let cIcon = Object.assign({}, carIcon);
             let lineOptions = {
-                strokeColor: "#000000",
+                strokeColor: "#0000FF",
                 strokeOpacity: 1.0,
                 strokeWeight: 4,
                 zIndex: 100
             };
           cIcon.rotation=marker.rotation;
           // cIcon['fillColor'] = marker.color;
-
+          let map = this.props.mapObj;
+          window.mapObjVehicle = map;
           let bus = busIcon.replace(/rotateDeg/g, marker.rotation);
           let bIcon = { url: 'data:image/svg+xml;charset=UTF-8,' + encodeURIComponent(bus),
                        scaledSize: new google.maps.Size(100, 100),
