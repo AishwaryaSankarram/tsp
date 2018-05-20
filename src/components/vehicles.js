@@ -147,8 +147,8 @@ export class Vehicles extends React.Component {
         // window.myMap = map;
         if (!map.getBounds().contains(latLng)) {
             // console.log("new lat lng not in bounds----");
-            latLngBounds.extend(latLng);
-            map.fitBounds(latLngBounds);
+            //latLngBounds.extend(latLng);
+            //map.fitBounds(latLngBounds);
             map.panTo(latLng);
 
         }

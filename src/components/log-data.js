@@ -5,7 +5,7 @@ export class LogDataComponent extends Component {
     render() {
         let data = this.props.data;
         let content;
-        if(data && data.Request_id){
+        if(data){
             content = (
                 <div>
                 <table>
