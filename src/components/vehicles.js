@@ -75,7 +75,7 @@ export class Vehicles extends React.Component {
         } else {
             currentCar = {
                 useAsEv: data.Direction === 'TX' ? true : false,
-                carId: data.Vehicle_id, rotation: data.Heading, speed: data.Speed, lat: data.Latitude, lng: data.Longitude, timestamp: data.timestamp, 
+                carId: data.Vehicle_id, rotation: data.Heading, speed: data.Speed, lat: data.Latitude, lng: data.Longitude, timestamp: data.timestamp,
                 path: [{lat: data.Latitude, lng: data.Longitude}]
             }
         }
@@ -168,12 +168,12 @@ export class Vehicles extends React.Component {
           cIcon.rotation=marker.rotation;
           // cIcon['fillColor'] = marker.color;
 
-          let bus = busIcon.replace(/rotateDeg/g, marker.rotation-90);
+          let bus = busIcon.replace(/rotateDeg/g, marker.rotation);
           let bIcon = { url: 'data:image/svg+xml;charset=UTF-8,' + encodeURIComponent(bus),
-                       //scaledSize: new google.maps.Size(75, 75),
-                       //anchor: new google.maps.Point(75, 75)
+                       scaledSize: new google.maps.Size(100, 100),
+                       anchor: new google.maps.Point(50, 50)
                       };
-          let icon = marker.useAsEv ? cIcon : cIcon;
+          let icon = marker.useAsEv ? bIcon : cIcon;
           m.push(<div><Marker  key={marker.carId} position={{lat: marker.lat, lng: marker.lng}}
                           icon={icon} />
                   <Polyline key={'poly_' + marker.carId} path={marker.path} options={lineOptions} />
