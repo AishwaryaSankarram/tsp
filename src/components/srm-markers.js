@@ -79,14 +79,14 @@ export class SRMMarkers extends Component {
     // let latLng = new google.maps.LatLng({lat: data.Current_Lat, lng: data.Current_Lon});
     // map.panTo(latLng);
     let currentMarkers = this.state.srmData;
-    if (currentMarkers[currentMarkers.length - 1].Current_Lat !== data.Current_Lat || currentMarkers[currentMarkers.length - 1].Current_Lon !== data.Current_Lon ){
+    if (currentMarkers.length != 0 && (currentMarkers[currentMarkers.length - 1].Current_Lat !== data.Current_Lat || currentMarkers[currentMarkers.length - 1].Current_Lon !== data.Current_Lon )){
       currentMarkers.unshift(data);
       if(currentMarkers.length > 3)
         currentMarkers.pop();
       this.setState({ srmData: currentMarkers });
     }
     let content =  " with request ID " +  data.Request_id + " sent by " + data.Msg_Data.Requestor.Vehicle_Id + " at " + data.Current_Lat + ", " + data.Current_Lon ;
-    let logInfo = {className: "srm-text", timestamp: new Date(data.timestamp).toLocaleString(), label: "SRM", content: content }
+    let logInfo = {className: "srm-text", timestamp: data.timestamp.toString(), label: "SRM", content: content }
     this.props.addLogs(logInfo);
   }
 
