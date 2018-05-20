@@ -27,7 +27,7 @@ export class InterMarkers extends Component {
           },
           {
             lane_id: 3,
-            connecting_dirs: ["straight", "right"]
+            connecting_dirs: ["left", "right"]
           }
         ]
       }

@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 
-import {lt, st, rt, lt_st, st_rt, lt_st_rt} from '../constants.js';
+import {lt, st, rt, lt_st, st_rt, lt_st_rt, lt_rt} from '../constants.js';
 
 const directionToArrowMap = {
   "lt": lt,
@@ -20,7 +20,8 @@ export class SignalImage extends Component {
     }
 
     getDirection() {
-      return lt_st_rt;
+      return lt_rt;
+      console.log("THIS.PROPS.CONNECTINGDIRS", this.props.connectingDirs);
     }
 
     render(){

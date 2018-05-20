@@ -3,6 +3,7 @@ import {LeftStraightRightArrow} from '../images/left-straight-right-arrow';
 import {LeftStraightArrow} from '../images/left-straight-arrow';
 import {LeftArrow} from '../images/left-arrow';
 import {StraightRightArrow} from '../images/straight-right-arrow';
+import {LeftRightArrow} from '../images/left-right-arrow';
 import {RightArrow} from '../images/right-arrow';
 import {StraightArrow} from '../images/straight-arrow'
 
@@ -13,6 +14,7 @@ export const arrowMap = {
   "right": RightArrow,
   "leftstraight": LeftStraightArrow,
   "straightright": StraightRightArrow,
+  "leftright": LeftRightArrow,
   "leftstraightright": LeftStraightRightArrow
 }
 
