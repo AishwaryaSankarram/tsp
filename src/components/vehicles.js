@@ -5,7 +5,7 @@ import busIcon from '../images/bus-icon';
 
 
 let google = window.google;
-// let latLngBounds = new google.maps.LatLngBounds();
+let latLngBounds = new google.maps.LatLngBounds();
 
 export class Vehicles extends React.Component {
 
@@ -138,17 +138,18 @@ export class Vehicles extends React.Component {
 
 
     checkForExistingBounds(latLng){
-        // let latLng = new google.maps.LatLng(pos.lat, pos.lng);
+        //let latLng = new google.maps.LatLng(pos.lat, pos.lng);
         let self = this;
         let map = self.props.mapObj;
-        map.panTo(latLng);
+
         // window.myMap = map;
-        // if (!map.getBounds().contains(latLng)) {
-        //     // console.log("new lat lng not in bounds----");
-        //     latLngBounds.extend(latLng);
-        //     // map.fitBounds(latLngBounds);
-        //
-        // }
+        if (!map.getBounds().contains(latLng)) {
+            // console.log("new lat lng not in bounds----");
+            latLngBounds.extend(latLng);
+            map.fitBounds(latLngBounds);
+            map.panTo(latLng);
+
+        }
     }
 
     render() {
@@ -161,8 +162,8 @@ export class Vehicles extends React.Component {
 
           let bus = busIcon.replace(/rotateDeg/g, marker.rotation-90);
           let bIcon = { url: 'data:image/svg+xml;charset=UTF-8,' + encodeURIComponent(bus),
-                       scaledSize: new google.maps.Size(50, 50)
-                       /*anchor: new google.maps.Point(0, 0)*/
+                       scaledSize: new google.maps.Size(50, 50),
+                       anchor: new google.maps.Point(0, 50)
                       };
           let icon = marker.useAsEv ? bIcon : cIcon;
           m.push(<Marker  key={marker.carId} position={{lat: marker.lat, lng: marker.lng}}

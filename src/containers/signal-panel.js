@@ -16,7 +16,8 @@ export class SignalPanel extends Component {
                   intToSignalMap: {},
                   showAllSignals: false,
                   isPopoverOpen: false,
-                  anchorElement: null
+                  anchorElement: null,
+                  laneData: null
                 };
 
     this.renderSignals = this.renderSignals.bind(this);
@@ -99,7 +100,7 @@ export class SignalPanel extends Component {
       if(!this.state.showAllSignals) {
         signals = <span title={"A"} className="signal" key={"signal-li_" + 0}  onClick={this.openPopover}>
           {/* <button onClick={this.openPopover}><i className={this.state.isPopoverOpen ? "fa fa-minus" : "fa fa-plus"}></i></button> */}
-        <Signal key={0} />
+        <Signal key={0} data={this.state.socketData} />
             </span>;
         }
     return (
@@ -118,8 +119,8 @@ export class SignalPanel extends Component {
 
                 anchorEl={this.state.anchorElement}
                 canAutoPosition={true}
-                anchorOrigin={{horizontal: 'middle', vertical: 'top'}}
-                targetOrigin={{horizontal: 'middle', vertical: 'top'}}
+                anchorOrigin={{horizontal: 'middle', vertical: 'bottom'}}
+                targetOrigin={{horizontal: 'middle', vertical: 'bottom'}}
                 onRequestClose={this.handlePopoverClose.bind(this)}>
                   <LaneData data={this.state.intToSignalMap["565"]}/>
                 </Popover> }

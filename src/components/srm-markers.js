@@ -103,8 +103,9 @@ export class SRMMarkers extends Component {
 
       let srmFlag = srmIcon.replace(/fillColor/g, (color_codes[index % 10]));
       let icon = {
-        url: 'data:image/svg+xml;charset=UTF-8,' + encodeURIComponent(srmFlag)
-        /*scaledSize: new google.maps.Size(500, 500), anchor: new google.maps.Point(0, 0)*/
+        url: 'data:image/svg+xml;charset=UTF-8,' + encodeURIComponent(srmFlag),
+        scaledSize: new window.google.maps.Size(50, 50),
+        anchor: new window.google.maps.Point(0,50)
       };
       return (
         <Marker key={"srm_" + index} position={pos} draggable={false} onClick={(id) => {this.handleClick(data)} } icon={icon} />
