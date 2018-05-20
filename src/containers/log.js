@@ -98,10 +98,7 @@ export class LogContainer extends Component {
 
                    <Tab label="SSM" value="ssm-tab" className="logs-header">
                        <div>
-                               {this.state.ssmInfo ? JSON.stringify(this.state.ssmInfo) : <div className="text-content" key={"ssm_none"}>
-                                   <br />
-                                   <em>No data to display.</em>
-                               </div>}
+                               <LogDataComponent data={this.state.ssmInfo} />
                        </div>
                    </Tab>
 
