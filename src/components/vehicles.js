@@ -1,5 +1,5 @@
 import React from 'react';
-import { Marker } from 'react-google-maps';
+import { Marker, Polyline } from 'react-google-maps';
 import carIcon from '../images/car';
 import busIcon from '../images/bus-icon';
 
@@ -70,11 +70,13 @@ export class Vehicles extends React.Component {
                 currentCar.lng = data.Longitude;
                 currentCar.speed = data.Speed;
                 currentCar.timestamp = data.timestamp;
+                currentCar.path.push({ lat: data.Latitude, lng: data.Longitude })
             }
         } else {
             currentCar = {
                 useAsEv: data.Direction === 'TX' ? true : false,
-                carId: data.Vehicle_id, rotation: data.Heading, speed: data.Speed, lat: data.Latitude, lng: data.Longitude, timestamp: data.timestamp
+                carId: data.Vehicle_id, rotation: data.Heading, speed: data.Speed, lat: data.Latitude, lng: data.Longitude, timestamp: data.timestamp, 
+                path: [{lat: data.Latitude, lng: data.Longitude}]
             }
         }
         if(flag){
@@ -157,6 +159,12 @@ export class Vehicles extends React.Component {
         for(var car in markers){
           let marker = markers[car];
           let cIcon = Object.assign({}, carIcon);
+            let lineOptions = {
+                strokeColor: "#000000",
+                strokeOpacity: 1.0,
+                strokeWeight: 4,
+                zIndex: 100
+            };
           cIcon.rotation=marker.rotation;
           // cIcon['fillColor'] = marker.color;
 
@@ -166,8 +174,10 @@ export class Vehicles extends React.Component {
                        //anchor: new google.maps.Point(75, 75)
                       };
           let icon = marker.useAsEv ? cIcon : cIcon;
-          m.push(<Marker  key={marker.carId} position={{lat: marker.lat, lng: marker.lng}}
+          m.push(<div><Marker  key={marker.carId} position={{lat: marker.lat, lng: marker.lng}}
                           icon={icon} />
+                  <Polyline key={'poly_' + marker.carId} path={marker.path} options={lineOptions} />
+                </div>
                 );
         }
         return <div className="my-marker-test"> { m } </div> ;
