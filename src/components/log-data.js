@@ -11,7 +11,7 @@ export class LogDataComponent extends Component {
                 <table>
                     <thead>
                         <tr>
-                            <th colSpan="2"> SRM Details - {data.Request_id}</th>
+                            <th colSpan="2"> {data.Msg_type || "SSM"} Details - {data.Request_id}</th>
                         </tr>
                     </thead>
                     <tbody>

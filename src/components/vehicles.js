@@ -11,7 +11,7 @@ export class Vehicles extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            markers: {}//{1: {carId: "1", lat:13.181953, lng:79.608065}}
+            markers: {}//{1: {carId: "1", lat:13.181953, lng:79.608065, path: [{lat:13.181953, lng:79.608065}]}}
         };
         this.updateMeth = this.updateMeth.bind(this);
         this.processBSM = this.processBSM.bind(this);
@@ -69,7 +69,8 @@ export class Vehicles extends React.Component {
                 currentCar.lng = data.Longitude;
                 currentCar.speed = data.Speed;
                 currentCar.timestamp = data.timestamp;
-                currentCar.path.push({ lat: data.Latitude, lng: data.Longitude })
+                let p = currentCar.path; //Never use Array#push here. It'll work correctly with PolyLine
+                currentCar.path = p.concat([({ lat: data.Latitude, lng: data.Longitude })]);
             }
         } else {
             currentCar = {
@@ -159,21 +160,20 @@ export class Vehicles extends React.Component {
           let marker = markers[car];
           let cIcon = Object.assign({}, carIcon);
             let lineOptions = {
-                strokeColor: "#0000FF",
+                strokeColor: "#33D4FF",
                 strokeOpacity: 1.0,
                 strokeWeight: 4,
                 zIndex: 100
             };
           cIcon.rotation=marker.rotation;
           // cIcon['fillColor'] = marker.color;
-          console.log("In marker render vehicles.js");
           let bus = busIcon.replace(/rotateDeg/g, marker.rotation);
           let bIcon = { url: 'data:image/svg+xml;charset=UTF-8,' + encodeURIComponent(bus),
                        scaledSize: new google.maps.Size(100, 100),
                        anchor: new google.maps.Point(50, 50)
                       };
           let icon = marker.useAsEv ? bIcon : cIcon;
-          m.push(<div><Marker  key={marker.carId} position={{lat: marker.lat, lng: marker.lng}}
+          m.push(<div key={"vehicle_div_" + marker.carId}><Marker  key={marker.carId} position={{lat: marker.lat, lng: marker.lng}}
                           icon={icon} />
                   <Polyline key={'poly_' + marker.carId} path={marker.path} options={lineOptions} />
                 </div>

@@ -26,10 +26,7 @@ export class VehicleContainer extends Component{
     }
 
     updateData(obj){
-    	// console.log("Calling updateData in VehicleContainer", obj);
-    	// {carId: car.carId, overview_poly: car.poly, isEv: car.useAsEv, color: car.color,
-                                    // carLabel: car.carLabel, lat: car.poly[0].lat, lng: car.poly[0].lng};
-		if(obj.carId){
+    	if(obj.carId){
 			this.setState({
 	    		carId: obj.carId,
 	    		latitude: obj.lat,
@@ -40,16 +37,15 @@ export class VehicleContainer extends Component{
     }
 
 	render(){
-		// let bus = busIcon.replace(/rotateDeg/g,0);
-		let html = '<label> Vehicle Details </label>';
+		let html = <label> Vehicle Details </label>;
 		return (
 			<div className="bus-container">
-				<div className="bus-header" dangerouslySetInnerHTML={{__html: html}}>
+				<div className="bus-header"> {html}
 				</div>
 				<label>ID:</label> {this.state.carId}<br/>
 				<label>Latitude:</label> {this.state.latitude} <br/>
 				<label>Longitude:</label> {this.state.longitude} <br/>
-				<label>Speed</label>: {this.state.speed + ' mph'} <br/>
+				<label>Speed</label>: {this.state.speed > 0 ? this.state.speed + ' mph' : ""} <br/>
   			</div>
 		);
 	}
