@@ -20,13 +20,13 @@ export const LogComponent = (props) => {
             logsElement = currentLogs.map((log, index) => {
                 return (
                     <div className="text-content" key={"log_" + index}>
-                        <div className={log.className}> <div className="main-timestamp"> {log.timestamp}  </div>- <label> {log.label} </label> <div className="log-inner-content">{log.content}</div> </div>
+                        <div className={log.className}> <div className="main-timestamp"> {log.timestamp}  </div> <label> - {log.label} </label> <div className="log-inner-content">{log.content}</div> </div>
                     </div>
                 );
             });
         } else {
             logsElement = (
-                <div className="text-content" key={"log_none"}>
+                <div className="empty-content" key={"log_none"}>
                     <br />
                     <em>No logs to display.</em>
                 </div>
@@ -36,7 +36,7 @@ export const LogComponent = (props) => {
 
         return (
             <div className="log-content">
-                {fakeLogs}
+                {logsElement}
             </div>
         );
 }

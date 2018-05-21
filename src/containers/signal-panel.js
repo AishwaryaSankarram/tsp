@@ -76,17 +76,24 @@ export class SignalPanel extends Component {
     let signals = this.state.signals;
     let activeSignal = data;
     signals[data.intersection_id] = data;
-    clearInterval(self.timer);
+    clearInterval(self.intervalTimer);
     self.setState({ signals: signals, activeSignal: data });
-    this.intervalTimer = setInterval(function () {
-        let currentState = self.state.activeSignal;
-        currentState.timer = parseInt(currentState.timer, 10) - 1;
-        signals[data.intersection_id] = currentState;
-        if (parseInt(currentState.timer,10) > 0 && parseInt(currentState.timer, 10) < 10)
-            currentState.timer = "0" + currentState.timer;
-        if(parseInt(currentState.timer,10) > 0)
-            self.setState({activeSignal: activeSignal, signals: signals});
-    }, 1000);
+    let currentState = data;
+    if (parseInt(currentState.timer, 10) > 0){
+      self.intervalTimer = setInterval(function () {
+        console.log("parseInt(currentState.timer, 10)", parseInt(currentState.timer, 10), currentState.timer);
+          currentState.timer = parseInt(currentState.timer, 10) - 1;
+          signals[data.intersection_id] = currentState;
+          if (parseInt(currentState.timer,10) > 0 && parseInt(currentState.timer, 10) < 10)
+              currentState.timer = "0" + currentState.timer;
+          if(parseInt(currentState.timer,10) > 0){
+            self.setState({ activeSignal: activeSignal, signals: signals });
+          }else{
+            clearInterval(self.intervalTimer);
+          }
+              
+      }, 1000);
+    }
   }
 
   handleChange(event) {
