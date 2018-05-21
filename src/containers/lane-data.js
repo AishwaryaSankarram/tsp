@@ -39,9 +39,9 @@ export class LaneData extends Component {
 
 
   buildLanes() {
-    let numberOfLanes = this.state.data.no_of_lanes;
+    let numberOfLanes = this.state.data.lane_info.length;
     let laneInfo = this.state.data.lane_info;
-    let vehicleLaneId = this.state.data.vehicle_lane_id;
+    let vehicleLaneId = this.state.data.veh_lane_id;
     let laneElements = []
     for(var i=0; i<numberOfLanes+1; i++) {
       let arrowString = "";
@@ -49,15 +49,15 @@ export class LaneData extends Component {
       let ArrowElement;
         if(i<numberOfLanes) {
           console.log(laneInfo[i]);
-          let connecting_dirs = laneInfo[i].connecting_dirs;
+          let connect_dirs = laneInfo[i].connect_dirs;
 
-          if(connecting_dirs.includes("left")){
+          if(connect_dirs.includes("left")){
             arrowString += "left"
           }
-          if(connecting_dirs.includes("straight")){
+          if(connect_dirs.includes("straight")){
             arrowString += "straight"
           }
-          if(connecting_dirs.includes("right")){
+          if(connect_dirs.includes("right")){
             arrowString += "right"
           }
           ArrowElement = arrowMap[arrowString];
@@ -77,25 +77,25 @@ export class LaneData extends Component {
   }
 
   getBlueBoxWidth() {
-    let numberOfLanes = this.state.data.no_of_lanes;
+    let numberOfLanes = this.state.data.lane_info.length;
     let blueBoxWidth = (numberOfLanes * this.laneWidth) + 28;
     return blueBoxWidth.toString();
   }
 
   getBorderBoxWidth() {
-    let numberOfLanes = this.state.data.no_of_lanes;
+    let numberOfLanes = this.state.data.lane_info.length;
     let borderBoxWidth = (numberOfLanes * this.laneWidth) + 36;
     return borderBoxWidth.toString();
   }
 
   getViewBox() {
-    let numberOfLanes = this.state.data.no_of_lanes;
+    let numberOfLanes = this.state.data.lane_info.length;
     let svgWidth = (numberOfLanes * this.laneWidth) + 66;
     return "0 0 " + svgWidth.toString() + " 450";
   }
 
   getWidth() {
-    let numberOfLanes = this.state.data.no_of_lanes;
+    let numberOfLanes = this.state.data.lane_info.length;
     let svgWidth = (numberOfLanes * this.laneWidth) + 66;
     return svgWidth.toString() + "px";
   }
