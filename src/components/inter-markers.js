@@ -89,7 +89,7 @@ export class InterMarkers extends Component {
 
     let markers = mapDataValues.map( (mapData, index) => {
         let iconImg = SignalInterIcon;
-        let pos = {lat: mapData.isec_lat, lng: mapData.intersection_lng, title: mapData.isec_id.toString()};
+        let pos = {lat: mapData.isec_lat, lng: mapData.isec_lng, title: mapData.isec_id.toString()};
         iconImg = iconImg.replace(/label/g, pos.title);
         let icon = { url: 'data:image/svg+xml;charset=UTF-8,' + encodeURIComponent(iconImg),
                        scaledSize: new window.google.maps.Size(100, 100),
