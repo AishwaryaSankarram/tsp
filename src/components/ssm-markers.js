@@ -45,7 +45,7 @@ export class SSMMarkers extends Component {
     let currentMarkers = this.state.ssmInfo;
     currentMarkers.push(parsedData);
     this.setState({ssmInfo: currentMarkers});
-    let content =  " with request ID " +  parsedData.Request_id + " sent by " + "RSU" + " at " + parsedData.Current_Lat + ", " + parsedData.Current_Lon ;
+    let content =  " with request ID " +  parsedData.Request_id + " sent by RSU at " + parsedData.Current_Lat + ", " + parsedData.Current_Lon ;
     let logInfo = {className: "ssm-text", timestamp: parsedData.timestamp, label: "SSM", content: content }
     this.props.addLogs(logInfo);
   }

@@ -5,7 +5,6 @@ import busIcon from '../images/bus-icon';
 
 
 let google = window.google;
-let latLngBounds = new google.maps.LatLngBounds();
 
 export class Vehicles extends React.Component {
 
