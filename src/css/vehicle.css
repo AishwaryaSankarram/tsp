@@ -19,3 +19,6 @@
 .bus-container hr{
 	margin: 0;
 }
+.bus-container table tr td{
+    padding: 8px;
+}

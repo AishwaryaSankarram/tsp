@@ -66,10 +66,17 @@
 .srm-log-content table{ 
 	width: 100%;
 	margin-bottom: 20px;
+	margin-top: 15px;
 }
 .srm-log-content table thead th{
     color: #31a536;  
 }
+
+.srm-log-content table thead tr{
+   border: none;
+}
+
+
 .srm-log-content table tr {
 	border-bottom: 1px solid #292929;
 }

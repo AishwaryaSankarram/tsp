@@ -69,7 +69,7 @@ export class Vehicles extends React.Component {
                 currentCar.lng = data.Longitude;
                 currentCar.speed = data.Speed;
                 currentCar.timestamp = data.timestamp;
-                let p = currentCar.path; //Never use Array#push here. It'll work correctly with PolyLine
+                let p = currentCar.path; //Never use Array#push here. It'll work incorrectly with PolyLine due to state mutation
                 currentCar.path = p.concat([({ lat: data.Latitude, lng: data.Longitude })]);
             }
         } else {

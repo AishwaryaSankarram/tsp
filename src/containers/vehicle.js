@@ -10,8 +10,9 @@ export class VehicleContainer extends Component{
 			latitude: "",
 			longitude: "",
 			speed: "" ,
+			heading: "",
 			distance: "",
-			laneId: ""
+			laneId: null
 		};
 		this.updateData = this.updateData.bind(this);
 	}
@@ -30,23 +31,55 @@ export class VehicleContainer extends Component{
 			this.setState({
 	    		carId: obj.carId,
 	    		latitude: obj.lat,
-	    		longitude: obj.lng,
+				longitude: obj.lng,
+				heading: obj.rotation,
 	    		speed: obj.speed
     		});
 		}
     }
 
 	render(){
-		let html = <label> Vehicle Details </label>;
 		return (
 			<div className="bus-container">
-				<div className="bus-header"> {html}
-				</div>
-				<label>ID:</label> {this.state.carId}<br/>
-				<label>Latitude:</label> {this.state.latitude} <br/>
-				<label>Longitude:</label> {this.state.longitude} <br/>
-				<label>Speed</label>: {this.state.speed > 0 ? this.state.speed + ' mph' : ""} <br/>
-  			</div>
+				<table>
+					<thead className="bus-header">
+						<tr>
+							<th colSpan="2">Vehicle Details</th>
+						</tr>
+					</thead>	
+					<tbody>
+						<tr>
+							<td colSpan="2"/>
+						</tr>
+						<tr>
+							<td>ID</td>
+							<td>{this.state.carId}</td>
+						</tr>
+						<tr>
+							<td>Latitude</td>
+							<td>{this.state.latitude} </td>
+						</tr>
+						<tr>
+							<td>Longitude</td>
+							<td>{this.state.longitude}</td>
+						</tr>
+						<tr>
+							<td>Speed</td>
+							<td>{this.state.speed > 0 ? this.state.speed + ' mph' : ""}</td>
+						</tr>
+						<tr>
+							<td>Heading</td>
+							<td>{this.state.heading}</td>
+						</tr>
+						{this.state.laneId &&
+						<tr>
+							<td>Lane ID</td>
+							<td>{this.state.laneId}</td>
+						</tr>
+						}
+					</tbody>
+				</table>
+			  </div>
 		);
 	}
 }
