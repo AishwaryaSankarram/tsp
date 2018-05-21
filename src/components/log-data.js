@@ -8,7 +8,7 @@ export class LogDataComponent extends Component {
         let content;
         if(data && data.hasOwnProperty('Request_id')){
             content = (
-                <div>
+                <div className="srm-log-content">
                 <table>
                     <thead>
                         <tr>
@@ -45,14 +45,14 @@ export class LogDataComponent extends Component {
                                 Sent At
                             </td>
                             <td>
-                                {new Date(data.timestamp).toLocaleString()}
+                                <div className="log-time"> {new Date(data.timestamp).toLocaleString()} </div>
                             </td>
                         </tr>
                     </tbody>
                 </table>
                 <div className="message-content">
                     <label> Message Data</label>
-                    <div> {JSON.stringify(data.Msg_Data)} </div>
+                        <div> <pre> {JSON.stringify(data.Msg_Data, undefined, 2)} </pre> </div>
                 </div>
             </div>
         );

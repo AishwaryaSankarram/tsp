@@ -12,14 +12,14 @@ export class SRMMarkers extends Component {
 
     this.state = {
       srmData: [{
-        "Current_Lon": 80.252628667,
+        "Current_Lon": - 121.968483333,
         "Speed": 0.206,
         "Msg_type": "SRM",
         "Request_id": 100,
         "Device_Type": "OBU",
         "count": 314,
         "Direction": "TX",
-        "Current_Lat": 13.048906167,
+        "Current_Lat": 37.3522, 
         "Msg_Data": {
           "dsecond": 1,
           "srm_list": [{
