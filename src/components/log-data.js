@@ -4,7 +4,6 @@ import '../css/logs.css';
 export class LogDataComponent extends Component {
     render() {
         let data = this.props.data;
-        console.log("SRM DATA", data);
         let content;
         if(data && data.hasOwnProperty('Request_id')){
             content = (

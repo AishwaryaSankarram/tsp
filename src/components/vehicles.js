@@ -30,7 +30,7 @@ export class Vehicles extends React.Component {
         socket.emit("carDetails", "hello---"); //Trigger Car Details Event
         socket.on("carDetails", self.placeCars);
         socket.on("connect_error", function(e) {
-            console.log("Errro ", e);
+            console.log("Errror ", e);
         });
         socket.on('disconnect', function() {
             console.log("Connection has been disconnected");
@@ -155,7 +155,7 @@ export class Vehicles extends React.Component {
 
     render() {
         let m=[], markers = this.state.markers;
-        for(var car in markers){
+        for(let car in markers){
           let marker = markers[car];
           let cIcon = Object.assign({}, carIcon);
             let lineOptions = {
@@ -166,8 +166,7 @@ export class Vehicles extends React.Component {
             };
           cIcon.rotation=marker.rotation;
           // cIcon['fillColor'] = marker.color;
-          let map = this.props.mapObj;
-          window.mapObjVehicle = map;
+          console.log("In marker render vehicles.js");
           let bus = busIcon.replace(/rotateDeg/g, marker.rotation);
           let bIcon = { url: 'data:image/svg+xml;charset=UTF-8,' + encodeURIComponent(bus),
                        scaledSize: new google.maps.Size(100, 100),

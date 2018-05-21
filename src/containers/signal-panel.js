@@ -138,7 +138,6 @@ export class SignalPanel extends Component {
 
 
   render() {
-    console.log("INT_TO_SIGNAL_MAP", this.state.intToSignalMap);
     // let currentSocketValues = Object.values(this.state.signals);
 
     // let self = this;
@@ -161,8 +160,6 @@ export class SignalPanel extends Component {
         <Signal key={0} data={this.state.activeSignal} />
             </span>;
         } else {
-          console.log("INSIDE ELSE LOOP");
-          console.log("SIGNAL STATE =>", this.state.signals);
           let signalObjects = Object.values(this.state.signals);
           signals = [];
           signalObjects.forEach((signal, index) => {
@@ -172,7 +169,7 @@ export class SignalPanel extends Component {
           });
         }
 
-        console.log("SIGNALS ->", signals);
+        // console.log("SIGNALS ->", signals);
     return (
 
         <div className="signal-panel">

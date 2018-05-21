@@ -34,7 +34,7 @@ export class InterMarkers extends Component {
       "575": {
         isec_id: 575,
         isec_lat: 42.334188,
-        intersection_lng: -83.034692,
+        isec_lng: -83.034692,
         no_of_lanes: 3,
         veh_lane_id: 2,
         lane_info: [
