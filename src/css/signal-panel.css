@@ -61,7 +61,7 @@
 
 .menu_header{
   top: 323px !important;
-  left: 394px !important;
+  /* left: 394px !important; */
   width: 20%;
-  height: 23%;
+  height: 24%;
 }

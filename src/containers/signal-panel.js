@@ -64,13 +64,13 @@ export class SignalPanel extends Component {
     // let data = JSON.parse(data);
     data = {
       "intersection_id": 575,
-        "vehicle_id": 2222,
-          "intersection_lat": 42.334088,
-            "intersection_lng": -83.034682,
-              "timestamp": 1342939205123,
-                "connecting_dirs": ["left", "straight"],
-                  "color": "green",
-                    "timer": 13
+      "vehicle_id": 2222,
+      "intersection_lat": 42.334088,
+      "intersection_lng": -83.034682,
+      "timestamp": 1342939205123,
+      "connecting_dirs": ["right", "straight"],
+      "color": "green",
+      "timer": 13
     }
     //console.info("SPAT Info received in event", "spat", data);
     let self = this;
