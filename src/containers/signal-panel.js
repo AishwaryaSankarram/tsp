@@ -62,7 +62,7 @@ export class SignalPanel extends Component {
   processSPAT(data){
     // let data = JSON.parse(data);
     data = {
-      "intersection_id": 565,
+      "intersection_id": 575,
         "vehicle_id": 2222,
           "intersection_lat": 42.334088,
             "intersection_lng": -83.034682,
@@ -148,12 +148,25 @@ export class SignalPanel extends Component {
 
 // This code is added for icon testing
       let signals;
-      if(!this.state.showAllSignals) {
-        signals = <span title={"A"} className="signal" key={"signal-li_" + 0}  onClick={this.openPopover}>
+      if(!this.state.showAllSignals || (this.state.showAllSignals && Object.values(this.state.signals).length == 1)) {
+        signals = <span title={this.state.activeSignal.intersection_id} className="signal" key={"signal-li_" + 0}  onClick={this.openPopover}>
           {/* <button onClick={this.openPopover}><i className={this.state.isPopoverOpen ? "fa fa-minus" : "fa fa-plus"}></i></button> */}
         <Signal key={0} data={this.state.activeSignal} />
             </span>;
+        } else {
+          console.log("INSIDE ELSE LOOP");
+          console.log("SIGNAL STATE =>", this.state.signals);
+          let signalObjects = Object.values(this.state.signals);
+          signals = [];
+          signalObjects.forEach((signal, index) => {
+            signals.push(<span title={signal.intersection_id} className="multi-signal" key={"signal-li_" + 0}  onClick={this.openPopover}>
+              {/* <button onClick={this.openPopover}><i className={this.state.isPopoverOpen ? "fa fa-minus" : "fa fa-plus"}></i></button> */}
+            <Signal key={0} data={signal} />
+                </span>);
+          });
         }
+
+        console.log("SIGNALS ->", signals);
     return (
 
         <div className="signal-panel">

@@ -30,6 +30,28 @@ export class InterMarkers extends Component {
             connecting_dirs: ["left", "right"]
           }
         ]
+      },
+
+      "575": {
+        intersection_id: 575,
+        intersection_lat: 42.334188,
+        intersection_lng: -83.034692,
+        no_of_lanes: 3,
+        vehicle_lane_id: 1,
+        lane_info: [
+          {
+            lane_id: 1,
+            connecting_dirs: ["left", "straight"]
+          },
+          {
+            lane_id: 2,
+            connecting_dirs: ["right", "straight"]
+          },
+          {
+            lane_id: 3,
+            connecting_dirs: ["left", "straight", "right"]
+          }
+        ]
       }
      }
     };

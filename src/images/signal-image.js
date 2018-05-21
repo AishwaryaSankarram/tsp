@@ -58,13 +58,13 @@ export class SignalImage extends Component {
                  </text>
               </g>
               <rect id="Rectangle" fill="#E5E5E5" fillRule="nonzero" x="147" y="1" width="135" height="125"/>
-              <g id="28" transform="translate(149.000000, 0.000000)" fill="#3B3B3B" fontFamily="Arial-BoldMT, Arial" fontSize="120" fontWeight="">
+              <g id="28" transform="translate(149.000000, 0.000000)" fill="#3B3B3B" fontFamily="Arial" fontSize="120" fontWeight="">
                  <text id="yellowSignalTimer">
                   <tspan x="0" y="109">{this.props.timers[1]}</tspan>
                  </text>
               </g>
               <rect id="Rectangle" fill="#E5E5E5" fillRule="nonzero" x="0" y="1" width="135" height="125"/>
-              <g id="28" transform="translate(3.000000, 0.000000)" fill="#3B3B3B" fontFamily="Arial-BoldMT, Arial" fontSize="120" fontWeight="">
+              <g id="28" transform="translate(3.000000, 0.000000)" fill="#3B3B3B" fontFamily="Arial" fontSize="120" fontWeight="">
                  <text id="redSignalTimer">
                   <tspan x="0" y="109">{this.props.timers[0]}</tspan>
                  </text>
