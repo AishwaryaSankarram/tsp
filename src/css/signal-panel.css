@@ -20,10 +20,12 @@
 
 .signal {
   float: left;
+  width: 70%;
   /* border:1px solid #ccc; */
   margin: 4px;
+  margin-top: -30px;
   padding: 4px 6px;
-  padding-left: 205px;
+  padding-left: 270px;
   position: relative;
 }
 
@@ -47,5 +49,8 @@
 }
 
 .menu_header{
-  top: 240px !important;
+  top: 323px !important;
+  left: 394px !important;
+  width: 20%;
+  height: 50%;
 }

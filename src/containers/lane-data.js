@@ -104,7 +104,7 @@ export class LaneData extends Component {
   render() {
 
     return (
-      <svg width={this.getWidth()} height="450px" viewBox={this.getViewBox()} version="1.1" style={{zoom: 0.25}}>
+      <svg width="100%" height="100%" viewBox={this.getViewBox()} version="1.1" style={{zoom: 0.25}}>
       <g id="Page-1" stroke="none" strokeWidth="1" fill="none" fillRule="evenodd" strokeLinejoin="round">
           <g id="road-lane-icon" transform="translate(16.000000, 16.000000)" fillRule="nonzero">
               <rect id="bg-2" stroke="#0066B3" strokeWidth="32" fill="#0066B3" strokeLinecap="round" x="0.607143" y="0.53571" width={this.getBlueBoxWidth()} height="403.03571"/>
