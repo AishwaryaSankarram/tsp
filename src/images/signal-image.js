@@ -32,7 +32,7 @@ export class SignalImage extends Component {
     render(){
     console.log("SIGNAL IMAGE PROPS", this.props);
     return (
-     <svg xmlns="http://www.w3.org/2000/svg" width="500px" height="300px" viewBox="0 0 480 700" preserveAspectRatio="none" version="1.1">
+     <svg xmlns="http://www.w3.org/2000/svg" width="100%" height="300px" viewBox="0 0 480 700" preserveAspectRatio="none" version="1.1">
      <g id="Page-1" stroke="none" strokeWidth="1" fill="none" fillRule="evenodd">
         <g id="signal-details-(1)" transform="translate(0,125)">
            <g id="signal-label" transform="translate(160, -151)">

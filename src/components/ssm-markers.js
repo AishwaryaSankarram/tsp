@@ -9,8 +9,8 @@ export class SSMMarkers extends Component {
     super(props);
 
     this.state = {
-      ssmInfo: [{ Current_Lat: 42.3416928, Current_Lon: -83.0790249, deviceType: 0, Request_id: 789 },
-        { Current_Lat: 42.3350748, Current_Lon: -83.0494584, deviceType: 1, Request_id: 100 }]
+      ssmInfo: [{ Current_Lat: 42.3416928, Current_Lon: -83.0790249, deviceType: 0, timestamp: 1526869831000, Request_id: 789, Msg_Data: {ssm_list: [{IntersectionId: 6}]}},
+        { Current_Lat: 42.3350748, Current_Lon: -83.0494584, deviceType: 1, timestamp: 1526869831000, Request_id: 100, Msg_Data: {ssm_list: [{IntersectionId: 6}] }} ]
     };
 
     this.processSSM = this.processSSM.bind(this);
