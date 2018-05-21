@@ -5,6 +5,7 @@ import {Checkbox} from "react-bootstrap";
 import Popover from "material-ui/Popover";
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import '../css/signal-panel.css';
+import { Divider } from 'material-ui';
 
 
 export class SignalPanel extends Component {
@@ -154,8 +155,9 @@ export class SignalPanel extends Component {
     // });
 
 // This code is added for icon testing
-      let signals;
-      if(!this.state.showAllSignals || (this.state.showAllSignals && Object.values(this.state.signals).length === 1)) {
+      let signals=<div></div>;
+      if(Object.keys(this.state.signals).length > 0){
+      if(!this.state.showAllSignals || (this.state.showAllSignals && Object.keys(this.state.signals).length === 1)) {
         signals = <span title={this.state.activeSignal.intersection_id} className="signal" key={"signal-li_" + 0} onClick={(event) => this.openPopover(event, this.state.activeSignal.intersection_id)}>
         <Signal key={0} data={this.state.activeSignal} />
             </span>;
@@ -168,6 +170,7 @@ export class SignalPanel extends Component {
                 </span>);
           });
         }
+      }
 
         // console.log("SIGNALS ->", signals);
     return (
