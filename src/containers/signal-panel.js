@@ -37,6 +37,7 @@ export class SignalPanel extends Component {
                   showAllSignals: false,
                   isPopoverOpen: false,
                   anchorElement: null,
+                  selIntersection: null,
                   laneData: null
                 };
 
@@ -81,7 +82,6 @@ export class SignalPanel extends Component {
     let currentState = data;
     if (parseInt(currentState.timer, 10) > 0){
       self.intervalTimer = setInterval(function () {
-        console.log("parseInt(currentState.timer, 10)", parseInt(currentState.timer, 10), currentState.timer);
           currentState.timer = parseInt(currentState.timer, 10) - 1;
           signals[data.intersection_id] = currentState;
           if (parseInt(currentState.timer,10) > 0 && parseInt(currentState.timer, 10) < 10)
@@ -102,20 +102,21 @@ export class SignalPanel extends Component {
     });
   }
 
-  openPopover(event) {
+  openPopover(event, id) {
     if(this.state.isPopoverOpen){
-      this.setState({ isPopoverOpen: false });
+      this.setState({ isPopoverOpen: false, selIntersection: null });
     } else {
       this.setState({
         isPopoverOpen: true,
-        anchorElement: event.currentTarget
+        anchorElement: event.currentTarget,
+        selIntersection: id
       });
     }
 
   }
 
   handlePopoverClose() {
-    this.setState({isPopoverOpen: false});
+    this.setState({ isPopoverOpen: false, selIntersection: null});
   }
 
   componentWillUnmount() {
@@ -156,8 +157,7 @@ export class SignalPanel extends Component {
 // This code is added for icon testing
       let signals;
       if(!this.state.showAllSignals || (this.state.showAllSignals && Object.values(this.state.signals).length == 1)) {
-        signals = <span title={this.state.activeSignal.intersection_id} className="signal" key={"signal-li_" + 0}  onClick={this.openPopover}>
-          {/* <button onClick={this.openPopover}><i className={this.state.isPopoverOpen ? "fa fa-minus" : "fa fa-plus"}></i></button> */}
+        signals = <span title={this.state.activeSignal.intersection_id} className="signal" key={"signal-li_" + 0} onClick={(event) => this.openPopover(event, this.state.activeSignal.intersection_id)}>
         <Signal key={0} data={this.state.activeSignal} />
             </span>;
         } else {
@@ -166,8 +166,7 @@ export class SignalPanel extends Component {
           let signalObjects = Object.values(this.state.signals);
           signals = [];
           signalObjects.forEach((signal, index) => {
-            signals.push(<span title={signal.intersection_id} className="multi-signal" key={"signal-li_" + 0}  onClick={this.openPopover}>
-              {/* <button onClick={this.openPopover}><i className={this.state.isPopoverOpen ? "fa fa-minus" : "fa fa-plus"}></i></button> */}
+            signals.push(<span title={signal.intersection_id} className="multi-signal" key={"signal-li_" + index} onClick={(event) => this.openPopover(event, signal.intersection_id)}>
             <Signal key={0} data={signal} />
                 </span>);
           });
@@ -187,13 +186,12 @@ export class SignalPanel extends Component {
               <div>
               {this.state.isPopoverOpen && <Popover className="menu_header"
                 open={this.state.isPopoverOpen}
-
                 anchorEl={this.state.anchorElement}
                 canAutoPosition={true}
                 anchorOrigin={{horizontal: 'middle', vertical: 'bottom'}}
                 targetOrigin={{horizontal: 'middle', vertical: 'bottom'}}
                 onRequestClose={this.handlePopoverClose.bind(this)}>
-                  <LaneData data={this.state.intToSignalMap[this.state.activeSignal.intersection_id]}/>
+                  <LaneData data={this.state.intToSignalMap[this.state.selIntersection]}/>
                 </Popover> }
               </div>
             </MuiThemeProvider>
