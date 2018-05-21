@@ -92,7 +92,7 @@ export class SignalPanel extends Component {
           }else{
             clearInterval(self.intervalTimer);
           }
-              
+
       }, 1000);
     }
   }
@@ -187,6 +187,7 @@ export class SignalPanel extends Component {
               {this.state.isPopoverOpen && <Popover className="menu_header"
                 open={this.state.isPopoverOpen}
                 anchorEl={this.state.anchorElement}
+                style={{width: this.state.intToSignalMap[this.state.selIntersection].lane_info.length * 60}}
                 canAutoPosition={true}
                 anchorOrigin={{horizontal: 'middle', vertical: 'bottom'}}
                 targetOrigin={{horizontal: 'middle', vertical: 'bottom'}}
