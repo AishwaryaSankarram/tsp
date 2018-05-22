@@ -70,7 +70,7 @@ export class LogContainer extends Component {
        return (
            <MuiThemeProvider>
             <div className="log-container">
-
+              <div className="fa fa-expand logs_expand" title="Log Expand view"></div>  
                <Tabs
                    value={this.state.activeTab}
                    onChange={this.handleChange}
