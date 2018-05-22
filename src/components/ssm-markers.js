@@ -50,7 +50,7 @@ export class SSMMarkers extends Component {
     this.setState({ssmInfo: currentSsmInfo});
     let content =  " with request ID " +  parsedData.Request_id + " sent by RSU at " + parsedData.Current_Lat + ", " + parsedData.Current_Lon ;
     let logInfo = {className: "ssm-text", timestamp: parsedData.timestamp, label: "SSM", content: content};
-    count = count + 1;
+    count += 1;
     this.props.addLogs(logInfo);
   }
 
@@ -64,7 +64,7 @@ export class SSMMarkers extends Component {
     console.log("SSM MARKERS =>", currentMarkers);
     console.log("COLOR CODES ", color_codes);
     let markers = currentMarkers.map((pos, index) => {
-      let ssmFlag = ssmIcon.replace(/fillColor/g, color_codes[index % 10]);
+      let ssmFlag = ssmIcon.replace(/fillColor/g, pos.color);
       let icon = {
         url: 'data:image/svg+xml;charset=UTF-8,' + encodeURIComponent(ssmFlag),
         scaledSize: new window.google.maps.Size(50, 50),

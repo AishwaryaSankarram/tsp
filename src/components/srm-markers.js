@@ -103,7 +103,7 @@ export class SRMMarkers extends Component {
     let markers = currentMarkers.map((data, index) => {
       let pos = {lat: data.Current_Lat, lng: data.Current_Lon};
 
-      let srmFlag = srmIcon.replace(/fillColor/g, (color_codes[index % 10]));
+      let srmFlag = srmIcon.replace(/fillColor/g, data.color);
       let icon = {
         url: 'data:image/svg+xml;charset=UTF-8,' + encodeURIComponent(srmFlag),
         scaledSize: new window.google.maps.Size(50, 50),
