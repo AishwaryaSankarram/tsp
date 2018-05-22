@@ -5,21 +5,24 @@ import { color_codes } from '../constants';
 
 // let google = window.google;
 
+let count = 0;
+
 export class SRMMarkers extends Component {
 
   constructor(props) {
     super(props);
 
     this.state = {
-      srmData: [{
+      srmData: {"100":{
         "Current_Lon": - 121.968483333,
         "Speed": 0.206,
         "Msg_type": "SRM",
         "Request_id": 100,
         "Device_Type": "OBU",
         "count": 314,
+        "color": color_codes[0],
         "Direction": "TX",
-        "Current_Lat": 37.3522, 
+        "Current_Lat": 37.3522,
         "Msg_Data": {
           "dsecond": 1,
           "srm_list": [{
@@ -43,7 +46,8 @@ export class SRMMarkers extends Component {
           "timestamp": 0
         },
         "timestamp": 1526456326315
-      }]
+      }
+    }
     };
 
     this.displaySRM = this.displaySRM.bind(this);
@@ -78,15 +82,13 @@ export class SRMMarkers extends Component {
     // let map = this.props.mapObj;
     // let latLng = new google.maps.LatLng({lat: data.Current_Lat, lng: data.Current_Lon});
     // map.panTo(latLng);
-    let currentMarkers = this.state.srmData;
-    if (currentMarkers.length === 0 || currentMarkers[currentMarkers.length - 1].Current_Lat !== data.Current_Lat || currentMarkers[currentMarkers.length - 1].Current_Lon !== data.Current_Lon){
-      currentMarkers.unshift(data);
-      if(currentMarkers.length > 5)
-        currentMarkers.pop();
-      this.setState({ srmData: currentMarkers });
-    }
+    let currentSrmData = this.state.srmData;
+    currentSrmData[data.Request_id] = data;
+    currentSrmData[data.Request_id].color = color_codes[count % 10];
+    this.setState({srmData: currentSrmData});
     let content =  " with request ID " +  data.Request_id + " sent by " + data.Msg_Data.Requestor.Vehicle_Id + " at " + data.Current_Lat + ", " + data.Current_Lon ;
-    let logInfo = {className: "srm-text", timestamp: data.timestamp.toString(), label: "SRM", content: content }
+    let logInfo = {className: "srm-text", timestamp: data.timestamp.toString(), label: "SRM", content: content};
+    count += 1;
     this.props.addLogs(logInfo);
   }
 
@@ -97,7 +99,7 @@ export class SRMMarkers extends Component {
   }
 
   render() {
-    let currentMarkers = this.state.srmData;
+    let currentMarkers = Object.values(this.state.srmData);
     let markers = currentMarkers.map((data, index) => {
       let pos = {lat: data.Current_Lat, lng: data.Current_Lon};
 

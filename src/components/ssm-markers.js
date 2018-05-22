@@ -3,14 +3,16 @@ import { Marker } from "react-google-maps";
 import ssmIcon from "../images/ssm-flag";
 import { color_codes } from '../constants';
 
+let count = 0;
+
 export class SSMMarkers extends Component {
 
   constructor(props) {
     super(props);
 
     this.state = {
-      ssmInfo: [{ Current_Lat: 42.3416928, Current_Lon: -83.0790249, deviceType: 0, timestamp: 1526869831000, Request_id: 789, Msg_Data: {ssm_list: [{IntersectionId: 6}]}},
-        { Current_Lat: 42.3350748, Current_Lon: -83.0494584, deviceType: 1, timestamp: 1526869831000, Request_id: 100, Msg_Data: {ssm_list: [{IntersectionId: 6}] }} ]
+      ssmInfo: {"789" :{ Current_Lat: 42.3416928, Current_Lon: -83.0790249, color: color_codes[1], deviceType: 0, timestamp: 1526869831000, Request_id: 789, Msg_Data: {ssm_list: [{IntersectionId: 6}]}},
+        "100": { Current_Lat: 42.3350748, Current_Lon: -83.0494584, deviceType: 1, color:color_codes[0], timestamp: 1526869831000, Request_id: 100, Msg_Data: {ssm_list: [{IntersectionId: 6}] }} }
     };
 
     this.processSSM = this.processSSM.bind(this);
@@ -42,11 +44,13 @@ export class SSMMarkers extends Component {
   processSSM(data) {
     console.log("SSm Data arrived----", data, typeof data);
     let parsedData = JSON.parse(data);
-    let currentMarkers = this.state.ssmInfo;
-    currentMarkers.push(parsedData);
-    this.setState({ssmInfo: currentMarkers});
+    let currentSsmInfo = this.state.ssmInfo;
+    currentSsmInfo[data.Request_id] = data;
+    currentSsmInfo[data.Request_id].color = color_codes[count % 10];
+    this.setState({ssmInfo: currentSsmInfo});
     let content =  " with request ID " +  parsedData.Request_id + " sent by RSU at " + parsedData.Current_Lat + ", " + parsedData.Current_Lon ;
-    let logInfo = {className: "ssm-text", timestamp: parsedData.timestamp, label: "SSM", content: content }
+    let logInfo = {className: "ssm-text", timestamp: parsedData.timestamp, label: "SSM", content: content};
+    count = count + 1;
     this.props.addLogs(logInfo);
   }
 
@@ -56,7 +60,9 @@ export class SSMMarkers extends Component {
   }
 
   render() {
-    let currentMarkers = this.state.ssmInfo;
+    let currentMarkers = Object.values(this.state.ssmInfo);
+    console.log("SSM MARKERS =>", currentMarkers);
+    console.log("COLOR CODES ", color_codes);
     let markers = currentMarkers.map((pos, index) => {
       let ssmFlag = ssmIcon.replace(/fillColor/g, color_codes[index % 10]);
       let icon = {

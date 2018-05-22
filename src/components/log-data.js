@@ -5,6 +5,9 @@ export class LogDataComponent extends Component {
     render() {
         let data = this.props.data;
         let content;
+
+        console.log("DATA ", data);
+
         if(data && data.hasOwnProperty('Request_id')){
             content = (
                 <div className="srm-log-content">
