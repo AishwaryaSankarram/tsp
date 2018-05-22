@@ -35,6 +35,9 @@ export class InterMarkers extends Component {
     console.log("MAP DATA JSON =>", data);
     let oldSignalToIntMap = this.state.signalToIntMap;
     oldSignalToIntMap[data.isec_id] = data;
+    let content =  "MAP data with intersection ID " +  data.isec_id + " sent by RSU at " + data.isec_lat + ", " + data.isec_lng ;
+    let logInfo = {className: "map-text", timestamp: data.timestamp, label: "MAP", content: content };
+    this.props.addLogs(logInfo);
     this.setState({signalToIntMap: oldSignalToIntMap});
     this.props.signalpanel.intersectionToSignalMap(this.state.signalToIntMap);
 
@@ -45,7 +48,7 @@ export class InterMarkers extends Component {
 
     let markers = mapDataValues.map( (mapData, index) => {
         let iconImg = SignalInterIcon;
-        let pos = {lat: mapData.isec_lat, lng: mapData.isec_lng, title: mapData.isec_id.toString()};
+        let pos = {lat: mapData.isec_lat, lng: mapData.isec_lng, title: mapData.isec_id};
         iconImg = iconImg.replace(/label/g, pos.title);
         let icon = { url: 'data:image/svg+xml;charset=UTF-8,' + encodeURIComponent(iconImg),
                        scaledSize: new window.google.maps.Size(100, 100),
