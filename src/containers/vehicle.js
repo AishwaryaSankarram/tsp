@@ -33,7 +33,8 @@ export class VehicleContainer extends Component{
 	    		latitude: obj.lat,
 				longitude: obj.lng,
 				heading: obj.rotation,
-	    		speed: obj.speed
+				speed: obj.speed,
+				laneId: obj.laneId
     		});
 		}
     }
@@ -48,9 +49,6 @@ export class VehicleContainer extends Component{
 						</tr>
 					</thead>	
 					<tbody>
-						<tr>
-							<td colSpan="2"/>
-						</tr>
 						<tr>
 							<td>ID</td>
 							<td>{this.state.carId}</td>
@@ -71,7 +69,7 @@ export class VehicleContainer extends Component{
 							<td>Heading</td>
 							<td>{this.state.heading}</td>
 						</tr>
-						{this.state.laneId &&
+						{this.state.laneId !== null &&
 						<tr>
 							<td>Lane ID</td>
 							<td>{this.state.laneId}</td>

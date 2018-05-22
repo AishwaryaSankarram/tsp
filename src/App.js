@@ -5,7 +5,7 @@ import 'font-awesome/css/font-awesome.min.css';
 
 import openSocket from 'socket.io-client';
 
-window.socket = openSocket("http://192.168.1.6:8089", { transports: ['websocket'] });
+window.socket = openSocket("http://localhost:8089", { transports: ['websocket']});
 
 class App extends Component {
   constructor(props) {

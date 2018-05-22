@@ -10,63 +10,7 @@ export class InterMarkers extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      signalToIntMap: {"565": {
-        isec_id: 565,
-        isec_lat: 42.334088,
-        isec_lng: -83.034682,
-        veh_lane_id: 1,
-        lane_info: [
-          {
-            lane_id: 1,
-            connect_dirs: ["left", "straight"]
-          },
-          {
-            lane_id: 2,
-            connect_dirs: ["right", "straight"]
-          },
-          {
-            lane_id: 3,
-            connect_dirs: ["left", "right"]
-          },
-          {
-            lane_id: 4,
-            connect_dirs: ["left", "right"]
-          }
-        ]
-      },
-
-      "575": {
-        isec_id: 575,
-        isec_lat: 42.334188,
-        isec_lng: -83.034692,
-        no_of_lanes: 3,
-        veh_lane_id: 2,
-        lane_info: [
-          {
-            lane_id: 1,
-            connect_dirs: ["left", "straight"]
-          },
-          {
-            lane_id: 2,
-            connect_dirs: ["right", "straight", "left"]
-          },
-          {
-            lane_id: 4,
-            connect_dirs: ["right", "straight", "left"]
-          },
-          {
-            lane_id: 3,
-            connect_dirs: ["left", "straight", "right"]
-          },
-
-          {
-            lane_id: 4,
-            connect_dirs: ["left", "straight", "right"]
-          }
-
-        ]
-      }
-     }
+      signalToIntMap: {}
     };
 
     this.updateIntersections = this.updateIntersections.bind(this);
@@ -79,8 +23,6 @@ export class InterMarkers extends Component {
     //webSocket.on("mapData", self.displayMapData);
     // webSocket.on("mockMap", self.updateIntersections);
     webSocket.on('map', self.updateIntersections)
-    //TO DO: Remove once proper MAP data is produced.
-    this.props.signalpanel.intersectionToSignalMap(this.state.signalToIntMap);
 
   }
 
@@ -92,7 +34,7 @@ export class InterMarkers extends Component {
     let data = JSON.parse(mapData);
     console.log("MAP DATA JSON =>", data);
     let oldSignalToIntMap = this.state.signalToIntMap;
-    oldSignalToIntMap[data.id] = data;
+    oldSignalToIntMap[data.isec_id] = data;
     this.setState({signalToIntMap: oldSignalToIntMap});
     this.props.signalpanel.intersectionToSignalMap(this.state.signalToIntMap);
 

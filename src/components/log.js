@@ -20,7 +20,7 @@ export const LogComponent = (props) => {
             logsElement = currentLogs.map((log, index) => {
                 return (
                     <div className="text-content" key={"log_" + index}>
-                        <div className={log.className}> <div className="main-timestamp"> {log.timestamp}  </div> <label> - {log.label} </label> <div className="log-inner-content">{log.content}</div> </div>
+                        <div className={log.className}> <div className="main-timestamp"> {new Date(log.timestamp).toLocaleString()}  </div> <label> - {log.label} </label> <div className="log-inner-content">{log.content}</div> </div>
                     </div>
                 );
             });

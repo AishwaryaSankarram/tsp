@@ -4,9 +4,10 @@
     width: 100%;
     text-align: left;
     padding: 12px 46px 12px 18px;
-    margin: 15px 0px;
+	margin: 15px 0px;
+	margin-bottom: 0px;
 	border-radius: 6px;
-	height: 1060px;
+	height: 1000px;
 	overflow: auto;
 	position: relative;
 }

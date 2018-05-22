@@ -5,9 +5,6 @@ export class LogDataComponent extends Component {
     render() {
         let data = this.props.data;
         let content;
-
-        console.log("DATA ", data);
-
         if(data && data.hasOwnProperty('Request_id')){
             content = (
                 <div className="srm-log-content">
@@ -39,7 +36,7 @@ export class LogDataComponent extends Component {
                                 Intersection ID
                             </td>
                             <td>
-                                {data.Msg_type === "SRM" ?  data.Msg_Data.srm_list[0].Signal_Request.IntersectionId : data.Msg_Data.ssm_list[0].IntersectionId }
+                                {data.Msg_type === "SRM" ?  data.Msg_Data.srm_list[0].Signal_Request.IntersectionId : data.IntersectionId }
                             </td>
                         </tr>
                         <tr>

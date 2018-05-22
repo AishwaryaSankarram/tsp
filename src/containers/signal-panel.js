@@ -5,7 +5,6 @@ import {Checkbox} from "react-bootstrap";
 import Popover from "material-ui/Popover";
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import '../css/signal-panel.css';
-import { Divider } from 'material-ui';
 
 
 export class SignalPanel extends Component {
@@ -14,37 +13,20 @@ export class SignalPanel extends Component {
     super(props);
 
     this.intervalTimer = null;
-    this.state = { signals: {565: {
-      "intersection_id": 565,
-        "vehicle_id": 2222,
-          "intersection_lat": 42.334088,
-            "intersection_lng": -83.034682,
-              "timestamp": 1342939205123,
-                "connecting_dirs": ["left", "straight"],
-                  "color": "yellow",
-                    "timer": 43
-                  }},
-                  activeSignal: {
-                    "intersection_id": 565,
-                    "vehicle_id": 2222,
-                    "intersection_lat": 42.334088,
-                    "intersection_lng": -83.034682,
-                    "timestamp": 1342939205123,
-                    "connecting_dirs": ["left", "straight"],
-                    "color": "yellow",
-                    "timer": 43
-                  },
-                  intToSignalMap: {},
-                  showAllSignals: false,
-                  isPopoverOpen: false,
-                  anchorElement: null,
-                  selIntersection: null,
-                  laneData: null
-                };
+    this.state = { 
+      signals: {},
+      activeSignal: {},
+      intToSignalMap: {},
+      showAllSignals: false,
+      isPopoverOpen: false,
+      anchorElement: null,
+      selIntersection: null,
+      laneData: null
+    };
 
     this.renderSignals = this.renderSignals.bind(this);
     this.intersectionToSignalMap = this.intersectionToSignalMap.bind(this);
-    this.displaySPAT = this.displaySPAT.bind(this);
+    this.processSPAT = this.processSPAT.bind(this);
     this.openPopover = this.openPopover.bind(this);
   }
 
@@ -53,29 +35,19 @@ export class SignalPanel extends Component {
     this.props.onSignalPanelMount(this);
     let webSocket = window.socket
     // webSocket.on('signal', self.renderSignals);
-    webSocket.on('spat', self.displaySPAT);
-    self.processSPAT({});
+    webSocket.on('spat', self.processSPAT);
+    // self.processSPAT({});
   }
 
   displaySPAT(data){
-    //console.info("SPAT Info received in event", "spat", data);
+    console.info("SPAT Info received in event", "spat", data);
   }
 
-  processSPAT(data){
-    // let data = JSON.parse(data);
-    data = {
-      "intersection_id": 575,
-      "vehicle_id": 2222,
-      "intersection_lat": 42.334088,
-      "intersection_lng": -83.034682,
-      "timestamp": 1342939205123,
-      "connecting_dirs": ["right", "straight"],
-      "color": "green",
-      "timer": 13
-    }
-    //console.info("SPAT Info received in event", "spat", data);
+  processSPAT(d){
+    console.info("SPAT Info received in event", "spat", d);
     let self = this;
-    let signals = this.state.signals;
+    let data = JSON.parse(d);
+    let signals = self.state.signals;
     let activeSignal = data;
     signals[data.intersection_id] = data;
     clearInterval(self.intervalTimer);
@@ -139,23 +111,8 @@ export class SignalPanel extends Component {
 
 
   render() {
-    // let currentSocketValues = Object.values(this.state.signals);
-
-    // let self = this;
-
-    // let signals = currentSocketValues.map((data, index) => {
-    //     if(index < 5){
-    //       return (
-    //         <li title={self.state.intToSignalMap[Object.keys(self.state.signals)[index]]} className="signal" key={"signal-li_" + index}>
-    //           <button><i className="fa fa-plus"></i></button>
-    //           <Signal key={index} data={data} />
-    //         </li>
-    //       );
-    //     }
-    // });
-
-// This code is added for icon testing
       let signals=<div></div>;
+      console.log("sgnals-------------", Object.keys(this.state.signals).length, this.state.signals);
       if(Object.keys(this.state.signals).length > 0){
       if(!this.state.showAllSignals || (this.state.showAllSignals && Object.keys(this.state.signals).length === 1)) {
         signals = <span title={this.state.activeSignal.intersection_id} className="signal" style={{marginTop: "-50px"}} key={"signal-li_" + 0} onClick={(event) => this.openPopover(event, this.state.activeSignal.intersection_id)}>

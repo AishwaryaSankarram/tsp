@@ -11,8 +11,7 @@ export class SSMMarkers extends Component {
     super(props);
 
     this.state = {
-      ssmInfo: {"789" :{ Current_Lat: 42.3416928, Current_Lon: -83.0790249, color: color_codes[1], deviceType: 0, timestamp: 1526869831000, Request_id: 789, Msg_Data: {ssm_list: [{IntersectionId: 6}]}},
-        "100": { Current_Lat: 42.3350748, Current_Lon: -83.0494584, deviceType: 1, color:color_codes[0], timestamp: 1526869831000, Request_id: 100, Msg_Data: {ssm_list: [{IntersectionId: 6}] }} }
+      ssmInfo: []
     };
 
     this.processSSM = this.processSSM.bind(this);
@@ -24,7 +23,6 @@ export class SSMMarkers extends Component {
   componentDidMount(){
     this.props.onMount(this);
     let webSocket = window.socket;
-    // webSocket.on('ssm', this.processSSM);
     webSocket.on('ssm', this.processSSM);
   }
 

@@ -69,13 +69,14 @@ export class Vehicles extends React.Component {
                 currentCar.lng = data.Longitude;
                 currentCar.speed = data.Speed;
                 currentCar.timestamp = data.timestamp;
+                currentCar.laneId = data.Lane_Id;
                 let p = currentCar.path; //Never use Array#push here. It'll work incorrectly with PolyLine due to state mutation
                 currentCar.path = p.concat([({ lat: data.Latitude, lng: data.Longitude })]);
             }
         } else {
             currentCar = {
                 useAsEv: data.Direction === 'TX' ? true : false,
-                carId: data.Vehicle_id, rotation: data.Heading, speed: data.Speed, lat: data.Latitude, lng: data.Longitude, timestamp: data.timestamp,
+                carId: data.Vehicle_id, rotation: data.Heading, speed: data.Speed, lat: data.Latitude, lng: data.Longitude, timestamp: data.timestamp, laneId: data.Lane_Id,
                 path: [{lat: data.Latitude, lng: data.Longitude}]
             }
         }
