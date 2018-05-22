@@ -43,8 +43,8 @@ export class SSMMarkers extends Component {
     console.log("SSm Data arrived----", data, typeof data);
     let parsedData = JSON.parse(data);
     let currentSsmInfo = this.state.ssmInfo;
-    currentSsmInfo[data.Request_id] = data;
-    currentSsmInfo[data.Request_id].color = color_codes[count % 10];
+    currentSsmInfo[parsedData.Request_id] = parsedData;
+    currentSsmInfo[parsedData.Request_id].color = color_codes[count % 10];
     this.setState({ssmInfo: currentSsmInfo});
     let content =  " with request ID " +  parsedData.Request_id + " sent by RSU at " + parsedData.Current_Lat + ", " + parsedData.Current_Lon ;
     let logInfo = {className: "ssm-text", timestamp: parsedData.timestamp, label: "SSM", content: content};

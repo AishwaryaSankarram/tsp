@@ -9,6 +9,7 @@ div.gm-style-iw  + div {
 }
 .main-page{
   width: 100%;
+  height: calc(100% - 61px);
 }
 .left-panel{
   width: 75%;
@@ -17,4 +18,12 @@ div.gm-style-iw  + div {
 .right-panel{
   width: 25%;
   float: right;
+}
+
+.top-panel {
+  height: 30%;
+}
+
+.bottom-panel {
+  height: 70%;
 }
