@@ -8,6 +8,7 @@
 	margin-bottom: 0px;
 	border-radius: 6px;
 	min-height: 718px;
+	max-height: 718px;
 	overflow: auto;
 	position: relative;
 }

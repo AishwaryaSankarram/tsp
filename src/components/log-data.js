@@ -41,6 +41,22 @@ export class LogDataComponent extends Component {
                         </tr>
                         <tr>
                             <td>
+                                ETA_min_of_year
+                            </td>
+                            <td>
+                                {data.eta_min_of_year}
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                ETA_seconds
+                            </td>
+                            <td>
+                                {data.eta_seconds}
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
                                 Sent At
                             </td>
                             <td>
