@@ -13,7 +13,7 @@ export class SignalPanel extends Component {
     super(props);
 
     this.intervalTimer = null;
-    this.state = { 
+    this.state = {
       signals: {},
       activeSignal: {},
       intToSignalMap: {},
@@ -115,15 +115,16 @@ export class SignalPanel extends Component {
       console.log("sgnals-------------", Object.keys(this.state.signals).length, this.state.signals);
       if(Object.keys(this.state.signals).length > 0){
       if(!this.state.showAllSignals || (this.state.showAllSignals && Object.keys(this.state.signals).length === 1)) {
-        signals = <span title={this.state.activeSignal.intersection_id} className="signal" style={{marginTop: "-50px"}} key={"signal-li_" + 0} onClick={(event) => this.openPopover(event, this.state.activeSignal.intersection_id)}>
-        <Signal key={0} data={this.state.activeSignal} />
+        signals = <span title={this.state.activeSignal.intersection_id} className="signal" style={{marginTop: "-50px"}} key={"signal-li_" + 0} >
+        <Signal key={0} data={this.state.activeSignal} clicksignal={(event) => this.openPopover(event, this.state.activeSignal.intersection_id)}/>
             </span>;
         } else {
           let signalObjects = Object.values(this.state.signals);
           signals = [];
           signalObjects.forEach((signal, index) => {
-            signals.push(<span title={signal.intersection_id} className="multi-signal" key={"signal-li_" + index} onClick={(event) => this.openPopover(event, signal.intersection_id)}>
-            <Signal key={0} data={signal} />
+            signals.push(<span title={signal.intersection_id} className="multi-signal" key={"signal-li_" + index} >
+            <Signal key={0} data={signal}
+            clicksignal={(event) => this.openPopover(event, signal.intersection_id)}/>
                 </span>);
           });
         }
@@ -147,7 +148,7 @@ export class SignalPanel extends Component {
                 style={{width: this.state.intToSignalMap[this.state.selIntersection].lane_info.length * 60}}
                 canAutoPosition={true}
                 anchorOrigin={{horizontal: 'middle', vertical: 'bottom'}}
-                targetOrigin={{horizontal: 'middle', vertical: 'bottom'}}
+                targetOrigin={{horizontal: 'middle', vertical: 'top'}}
                 onRequestClose={this.handlePopoverClose.bind(this)}>
                   <LaneData data={this.state.intToSignalMap[this.state.selIntersection]}/>
                 </Popover> }

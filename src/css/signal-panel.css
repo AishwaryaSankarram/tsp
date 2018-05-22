@@ -40,7 +40,7 @@
   width: 30%;
   height: 53px;
   margin: 4px;
-  margin-top: -50px;
+  margin-top: -40px;
   /*padding: 4px 6px;
   padding-left: 20px;*/
   position: relative;
@@ -66,8 +66,8 @@
 }
 
 .menu_header{
-  top: 255px !important;
-  /* left: 394px !important; */
+  /*top: 255px !important;
+  left: 394px !important; */
   width: 180px;
   height: 112px;
 }

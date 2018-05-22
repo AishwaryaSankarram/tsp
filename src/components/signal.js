@@ -17,7 +17,8 @@ export class Signal extends Component {
       colorProps = ["#DCDCDC", "#DCDCDC", colors.green];
       timerProps = ["", "", data.timer];
     }
-    
-    return <SignalImage colors={colorProps} timers={timerProps} label={data.intersection_id} connectingDirs={data.connecting_dirs}/>
+
+    return <SignalImage colors={colorProps} timers={timerProps} label={data.intersection_id} clicksignal={this.props.clicksignal}
+    connectingDirs={data.connecting_dirs}/>
    }
 }
