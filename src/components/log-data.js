@@ -11,7 +11,7 @@ export class LogDataComponent extends Component {
                 <table>
                     <thead>
                         <tr>
-                            <th colSpan="2"> {data.Msg_type || "SSM"} Details - {data.Request_id}</th>
+                            <th style={{color: data.color}} colSpan="2"> {data.Msg_type || "SSM"} Details - {data.Request_id}</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -50,7 +50,7 @@ export class LogDataComponent extends Component {
                     </tbody>
                 </table>
                 <div className="message-content">
-                    <label> Message Data</label>
+                    <label style={{color: data.color}}> Message Data</label>
                         <div> <pre> {JSON.stringify(data.Msg_Data, undefined, 2)} </pre> </div>
                 </div>
             </div>
