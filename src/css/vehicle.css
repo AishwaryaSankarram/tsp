@@ -1,6 +1,8 @@
 .bus-container{
     width: 25%;
     /*height: 255px;*/
+    min-height: 224px;
+    max-height: 224px;
     float: left;
     background: #fff;
     text-align: left;
@@ -21,5 +23,5 @@
 	margin: 0;
 }
 .bus-container table tr td{
-    padding: 8px;
+    padding: 5px;
 }

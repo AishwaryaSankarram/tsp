@@ -1,6 +1,7 @@
 .signal-panel{
     width: 68%;
     min-height: 224px;
+    max-height: 224px;
     background: #fff;
     float: left;
     text-align: left;

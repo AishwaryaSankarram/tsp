@@ -31,11 +31,11 @@ export class SignalImage extends Component {
 
     render(){
     return (
-     <svg xmlns="http://www.w3.org/2000/svg" width="70%" height="300px" viewBox="0 0 480 700" version="1.1">
+     <svg xmlns="http://www.w3.org/2000/svg" width="70%" height="272px" viewBox="0 0 480 700" version="1.1">
      <g id="Page-1" stroke="none" strokeWidth="1" fill="none" fillRule="evenodd">
         <g id="signal-details-(1)" transform="translate(0,125)">
            <g id="signal-label" transform="translate(205, -151)">
-              <g id="A" transform="translate(0.00, -35)" fill="#3B3B3B" fontFamily="Arial" fontSize="35">
+              <g id="A" transform="translate(3.00, -35)" fill="#3B3B3B" fontFamily="Arial" fontSize="35">
                  <text>
                     <tspan x="0" y="136">{this.props.label}</tspan>
                  </text>
