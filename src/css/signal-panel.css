@@ -12,6 +12,10 @@
 
 }
 
+.signal-header{
+  margin-bottom: 15px;
+}
+
 .signal-panel ul {
   list-style-type: none;
   margin: 0;
@@ -65,5 +69,5 @@
   top: 255px !important;
   /* left: 394px !important; */
   width: 180px;
-  height: 110px;
+  height: 112px;
 }
