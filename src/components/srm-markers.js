@@ -41,7 +41,7 @@ export class SRMMarkers extends Component {
 
   clearData() {
     //console.log("CLEARING FROM SRM MARKERS COMPONENT");
-    this.setState({srmData: []});
+    this.setState({srmData: {}});
   }
 
   processSRM(data) {

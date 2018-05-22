@@ -11,7 +11,7 @@ export class SSMMarkers extends Component {
     super(props);
 
     this.state = {
-      ssmInfo: []
+      ssmInfo: {}
     };
 
     this.processSSM = this.processSSM.bind(this);
@@ -36,7 +36,7 @@ export class SSMMarkers extends Component {
 
   clearData() {
     //console.log("CLEARING FROM SSM MARKERS COMPONENT");
-    this.setState({ssmInfo: []});
+    this.setState({ssmInfo: {}});
   }
 
   processSSM(data) {
