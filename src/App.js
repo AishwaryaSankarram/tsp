@@ -2,14 +2,10 @@ import React, { Component } from 'react';
 import {Header} from './layouts/header';
 import {MainPage} from './containers/main-page';
 import 'font-awesome/css/font-awesome.min.css';
-import Popover from 'material-ui/Popover';
-import {SettingsPopover} from './components/settings-popover';
-import {Checkbox} from "react-bootstrap";
-import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 
 import openSocket from 'socket.io-client';
 
-window.socket = openSocket("http://192.168.1.5:8089", { transports: ['websocket']});
+window.socket = openSocket("http:/localhost:8089", { transports: ['websocket']});
 
 class App extends Component {
   constructor(props) {
