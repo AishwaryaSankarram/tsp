@@ -48,7 +48,7 @@ export class LaneData extends Component {
       let color;
       let ArrowElement;
         if(i<numberOfLanes) {
-          console.log(laneInfo[i]);
+          // console.log(laneInfo[i]);
           let connect_dirs = laneInfo[i].connect_dirs;
 
           if(connect_dirs.includes("left")){

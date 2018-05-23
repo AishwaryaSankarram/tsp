@@ -32,7 +32,7 @@ export class InterMarkers extends Component {
 
   updateIntersections(mapData) {
     let data = JSON.parse(mapData);
-    console.log("MAP DATA JSON =>", data);
+    // console.log("MAP DATA JSON =>", data);
     let oldSignalToIntMap = this.state.signalToIntMap;
     oldSignalToIntMap[data.isec_id] = data;
     let content =  "MAP data with intersection ID " +  data.isec_id + " sent by RSU at " + data.isec_lat + ", " + data.isec_lng + " for vehicle ID " + data.vehicle_id;

@@ -27,7 +27,7 @@ export class ActionButtons extends Component {
   let socketCommand;
   event.target.checked ? socketCommand = "enable" : socketCommand = "disable";
   let webSocket = window.socket;
-  console.log("Sending signal priority...");
+  // console.log("Sending signal priority...");
   webSocket.emit("priorities",JSON.stringify({command:socketCommand}));
 	this.setState({
 	  [item]: event.target.checked
@@ -38,7 +38,7 @@ export class ActionButtons extends Component {
    let isPlaying = this.state.isPlaying;
    let isStarted = this.state.isStarted;
    let socket = window.socket;
-   console.log("openSocket------", socket);
+   // console.log("openSocket------", socket);
    if(!this.state.isPlaying){ //In Stop state; So start playing now
      socket.emit("start", "Resume sending events-------");
    }

@@ -40,11 +40,11 @@ export class SignalPanel extends Component {
   }
 
   displaySPAT(data){
-    console.info("SPAT Info received in event", "spat", data);
+    // console.info("SPAT Info received in event", "spat", data);
   }
 
   processSPAT(d){
-    console.info("SPAT Info received in event", "spat", d);
+    // console.info("SPAT Info received in event", "spat", d);
     let self = this;
     let data = JSON.parse(d);
     let signals = self.state.signals;

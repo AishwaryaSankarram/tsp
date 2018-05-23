@@ -42,12 +42,12 @@ export class SSMMarkers extends Component {
   }
 
   enable(state) {
-    console.log("CURRENT SSM STATE =>", state);
+    // console.log("CURRENT SSM STATE =>", state);
     this.setState({enabled: state});
   }
 
   processSSM(data) {
-    console.log("SSM Data arrived----", data, typeof data);
+    // console.log("SSM Data arrived----", data, typeof data);
     let parsedData = JSON.parse(data);
     let currentSsmInfo = this.state.ssmInfo;
     currentSsmInfo[parsedData.Request_id] = parsedData;
@@ -60,14 +60,14 @@ export class SSMMarkers extends Component {
   }
 
   handleClick(data){
-    console.log("On click SSM------", data);
+    // console.log("On click SSM------", data);
     this.props.fetchSRM(data);
   }
 
   render() {
     let currentMarkers = Object.values(this.state.ssmInfo);
-    console.log("SSM MARKERS =>", currentMarkers);
-    console.log("COLOR CODES ", color_codes);
+    // console.log("SSM MARKERS =>", currentMarkers);
+    // console.log("COLOR CODES ", color_codes);
     let markers = currentMarkers.map((pos, index) => {
       let ssmFlag = ssmIcon.replace(/fillColor/g, pos.color);
       let icon = {

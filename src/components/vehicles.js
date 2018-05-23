@@ -26,21 +26,21 @@ export class Vehicles extends React.Component {
         //Mouli's socket Starts--------------------------
         // setTimeout(function(){
         let socket = window.socket;
-        console.log("openSocket------", socket);
+        // console.log("openSocket------", socket);
         socket.emit("carDetails", "hello---"); //Trigger Car Details Event
         socket.on("carDetails", self.placeCars);
         socket.on("connect_error", function(e) {
-            console.log("Errror ", e);
+            // console.log("Errror ", e);
         });
         socket.on('disconnect', function() {
-            console.log("Connection has been disconnected");
+            // console.log("Connection has been disconnected");
         });
         // },250);
         //Mouli's socket Ends--------------------------
     }
 
     componentDidMount() {
-        console.log("Marker comp did Mount------------");
+        // console.log("Marker comp did Mount------------");
         this.props.onMount(this);
         // this.startSocket();
         // window.socket.on("bsm", this.displayBSM);

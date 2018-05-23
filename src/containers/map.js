@@ -4,7 +4,7 @@ import '../css/map.css';
 export class MapContainer extends Component{
 
 	render(){
-		console.log("Rendering MapContainer-----", this.props)
+		// console.log("Rendering MapContainer-----", this.props)
 		return (
 			<div className="map-container">
 			<MapComponent loadingElement={<div style={{ height: `100%` }} />}

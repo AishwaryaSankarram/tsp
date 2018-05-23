@@ -36,12 +36,12 @@ export class SRMMarkers extends Component {
   }
 
   enable(state) {
-    console.log("CURRENT SRM STATE =>", state);
+    // console.log("CURRENT SRM STATE =>", state);
     this.setState({enabled: state});
   }
 
   displaySRM(data){
-    console.info("SRM Info received in event", "srm", data);
+    // console.info("SRM Info received in event", "srm", data);
 
     this.processSRM(JSON.parse(data));
   }
@@ -64,7 +64,7 @@ export class SRMMarkers extends Component {
 
 
   handleClick(data){
-    console.log("Click on SRM --", data);
+    // console.log("Click on SRM --", data);
     this.props.fetchSSM(data);
   }
 

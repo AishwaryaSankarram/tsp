@@ -19,14 +19,14 @@ export class VehicleContainer extends Component{
 	}
 
 	componentDidMount() {
-        console.log("Vehicle Card Did Mount------------");
+        // console.log("Vehicle Card Did Mount------------");
         this.props.onVehicleMount(this);
     }
 
     componentWillUnmount(){
     	this.props.onVehicleMount(null);
 	}
-	
+
 	clearData(){
 		this.setState({
 			carId: "",
@@ -60,7 +60,7 @@ export class VehicleContainer extends Component{
 						<tr>
 							<th colSpan="2">Vehicle Details</th>
 						</tr>
-					</thead>	
+					</thead>
 					<tbody>
 						<tr>
 							<td>ID</td>

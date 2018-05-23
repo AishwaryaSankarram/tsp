@@ -19,7 +19,7 @@ export class MainPage extends Component{
 	}
 
 	clearData() {
-		console.log("CLEARING FROM MAINPAGE COMPONENT");
+		// console.log("CLEARING FROM MAINPAGE COMPONENT");
 		this.state.vehicle.clearData();
 		this.state.logs.clearLogs();
 		this.vehicles.clearData();
@@ -63,7 +63,7 @@ export class MainPage extends Component{
 		if(!ssm){
 			ssm = {};
 		}
-		console.log("SRMINFO ", srmInfo);
+		// console.log("SRMINFO ", srmInfo);
 		this.state.logs.openTabs("srm", srmInfo, ssm);
 	}
 
@@ -79,7 +79,7 @@ export class MainPage extends Component{
 		if(!srm){
 			srm = {};
 		}
-		console.log("SSMINFO ", ssmInfo);
+		// console.log("SSMINFO ", ssmInfo);
 		this.state.logs.openTabs("ssm", srm, ssmInfo);
 	}
 

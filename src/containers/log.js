@@ -50,7 +50,7 @@ export class LogContainer extends Component {
     }
 
     clearLogs() {
-      console.log("CLEARING FROM LOGS COMPONENT");
+      // console.log("CLEARING FROM LOGS COMPONENT");
         this.setState({
             logs: []
         });

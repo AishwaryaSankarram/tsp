@@ -16,7 +16,7 @@ export const MapComponent = compose(
            if (!ref) {
              return;
            }
-           console.log("setzooom===>" + refs.map);
+           // console.log("setzooom===>" + refs.map);
            this.setState({ mapObj: refs.map});
          } });
      }
