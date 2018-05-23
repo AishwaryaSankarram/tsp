@@ -1,108 +1,117 @@
 .log-container {
-	background: #ffffff;
-	float: left;
+    background: #ffffff;
+    float: left;
     width: 100%;
     text-align: left;
     padding: 12px 46px 12px 18px;
-	margin: 15px 0px;
-	margin-bottom: 0px;
-	border-radius: 6px;
-	min-height: 625px;
-	max-height: 625px;
-	overflow: auto;
-	position: relative;
+    margin: 15px 0px;
+    margin-bottom: 0px;
+    border-radius: 6px;
+    min-height: 625px;
+    max-height: 625px;
+    overflow: auto;
+    position: relative;
 }
-.logs-header{
-	margin-bottom: 0px;
+
+.logs-header {
+    margin-bottom: 0px;
 }
 
 .logs-header button {
-	background: rgb(0, 188, 212);
-	outline: none;
-	border: 1px solid #fff;
-	padding: 6px;
-	color: #fff;
-	text-align: right;
+    background: rgb(0, 188, 212);
+    outline: none;
+    border: 1px solid #fff;
+    padding: 6px;
+    color: #fff;
+    text-align: right;
 }
 
 .logs-header button:hover {
-	color: #000;
+    color: #000;
 }
 
 .clear-logs {
-	float: right;
+    float: right;
     color: #03A9F4 !important;
-	text-decoration: underline;
-	cursor: pointer;
-	margin: 0 !important;
-	margin-right: 20px !important;
+    text-decoration: underline;
+    cursor: pointer;
+    margin: 0 !important;
+    margin-right: 20px !important;
 }
 
-.message-content{
-	word-break: break-word;
+.message-content {
+    word-break: break-word;
 }
 
-.log-container hr{
-	margin: 0;
+.log-container hr {
+    margin: 0;
 }
+
 
 /* Define CSS for individual logs */
 
-.log-content .text-content{
-	border-bottom: 1px solid #292929;
+.log-content .text-content {
+    border-bottom: 1px solid #292929;
     padding: 6px;
     margin: 5px 0px;
 }
+
 .main-timestamp {
-	color: #03A9F4;
+    color: #03A9F4;
     font-weight: bold;
     display: inline-block;
 }
-.log-content label{
-	display: inline-block;
+
+.log-content label {
+    display: inline-block;
     font-weight: bold;
     color: #31a536;
 }
-.log-inner-content{
-	color: #292929;
+
+.log-inner-content {
+    color: #292929;
 }
-.srm-log-content table{
-	width: 100%;
-	margin-bottom: 20px;
-	margin-top: 15px;
+
+.srm-log-content table {
+    width: 100%;
+    margin-bottom: 20px;
+    margin-top: 15px;
 }
-.srm-log-content table thead th{
+
+.srm-log-content table thead th {
     color: #31a536;
 }
 
-.srm-log-content table thead tr{
-   border: none;
+.srm-log-content table thead tr {
+    border: none;
 }
-
 
 .srm-log-content table tr {
-	border-bottom: 1px solid #292929;
+    border-bottom: 1px solid #292929;
 }
-.srm-log-content table tr td{
-	padding: 8px;
-}
-.srm-log-content .message-content pre {
-	border: none;
-	padding: 5px;
-	margin: 5px;
-	background: #ffffff;
-	font-family: sans-serif;
-	font-size: 14px;
-}
-.logs_expand{
-	position: absolute;
-	right: 10px;
-	top: 12px;
-	padding: 13px 8px 12px 8px;
-	border: 1.5px solid #52bed5;
-	font-size: 20px !important;
-	font-weight: bold !important;
-	cursor: pointer;
-	color: #3c3c3c;
 
+.srm-log-content table tr td {
+    padding: 8px;
+}
+
+.srm-log-content .message-content pre {
+    border: none;
+    padding: 5px;
+    margin: 5px;
+    background: #ffffff;
+    font-family: sans-serif;
+    font-size: 14px;
+}
+
+.logs_expand {
+    position: absolute;
+    right: 10px;
+    top: 12px;
+    padding: 13px 8px 12px 8px;
+    border: 1.5px solid #52bed5;
+    font-size: 20px !important;
+    font-weight: bold !important;
+    cursor: pointer;
+    color: #ffffff;
+    background-color: rgb(0, 188, 212);
 }

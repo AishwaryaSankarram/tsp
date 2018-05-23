@@ -95,7 +95,7 @@ export class MainPage extends Component{
 				</div>
 				<div className={this.state.isLogsExpanded ? "full-right" : "right-panel"}>
 					<div className="side-panel">
-						<LogContainer onLogsMount={this.handleLogsMount.bind(this)} />
+						<LogContainer onLogsMount={this.handleLogsMount.bind(this)} toggleLogs={this.toggleLogView.bind(this)} isExpanded={this.state.isLogsExpanded}/>
 					</div>
 				</div>
   			</div>
