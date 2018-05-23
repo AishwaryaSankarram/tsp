@@ -39,14 +39,15 @@ export class ActionButtons extends Component {
    let isStarted = this.state.isStarted;
    let socket = window.socket;
    console.log("openSocket------", socket);
-   if(!this.state.isStarted){ //Play for first time
+/*    if(!this.state.isStarted){ //Play for first time
      socket.emit("play", "Start sending events-------");
      isStarted = true;
-   }else if(!this.state.isPlaying){ //In Pause state; So resume now
-     socket.emit("resume", "Resume sending events-------");
+   }else  */
+   if(!this.state.isPlaying){ //In Stop state; So start playing now
+     socket.emit("start", "Resume sending events-------");
    }
-   else{ //already started so pause now
-     socket.emit("pause", "Pause sending events-------");
+   else{ //already started so stop now
+     socket.emit("stop", "Pause sending events-------");
    }
    this.setState({isPlaying: !isPlaying, isStarted: isStarted});
  }
@@ -63,18 +64,17 @@ export class ActionButtons extends Component {
 
  handleReset(){
    let self = this;
-   let socket = window.socket;
-   let isStarted = this.state.isStarted;
-   if (isStarted) { //Bus is in transit; So issue a reset now
+  //  let socket = window.socket;
+  //  let isStarted = this.state.isStarted;
+  //  if (isStarted) { //Bus is in transit; So issue a reset now
      self.setState({isPlaying: true, isLoading: true});
      self.props.clearData();
-     socket.emit("restart", "Restart all events-------");
      setTimeout(function() {
           self.setState({isLoading: false});
       }, 2000);
-   } else {  //Reset has been when not started; So do nothing
+/*    } else {  //Reset has been when not started; So do nothing
      console.log("Invalid action");
-   }
+   } */
  }
 
  handleSettingsClick(event) {
@@ -100,6 +100,7 @@ export class ActionButtons extends Component {
             </button>
           </div>
           <MuiThemeProvider >
+              <div>
               {this.state.settingsPopoverOpen && <Popover
                 className='settings-popover'
                 open={this.state.settingsPopoverOpen}
@@ -109,15 +110,16 @@ export class ActionButtons extends Component {
                 onRequestClose={this.handleSettingsPopoverClose.bind(this)}>
                 <SettingsPopover srmenable={this.state.srmEnabled} ssmenable={this.state.ssmEnabled} srmenableaction={this.srmEnable} ssmenableaction={this.ssmEnable} />
                 </Popover> }
+              </div>
             </MuiThemeProvider>
-          <div className="action-button-container" title={this.state.isPlaying ? "Pause" : this.state.isStarted ? "Resume": "Play"} onClick={this.togglePlay.bind(this)}>
+          <div className="action-button-container" title={this.state.isPlaying ? "Stop" : "Play"} onClick={this.togglePlay.bind(this)}>
             <button>
-              <i className={"fa " + (this.state.isPlaying ? "fa-pause" : "fa-play") }></i>
+              <i className={"fa " + (this.state.isPlaying ? "fa-stop" : "fa-play") }></i>
             </button>
           </div>
-        <div className="action-button-container" title="Restart"  onClick={this.handleReset.bind(this)}>
-          <button disabled={!this.state.isStarted}>
-                <i className={this.state.isLoading? "fa fa-undo fa-spin fa-fw" : "fa fa-undo" } ></i>
+        <div className="action-button-container" title="Clear Data"  onClick={this.handleReset.bind(this)}>
+          <button>
+                <i className={this.state.isLoading? "fa fa-trash fa-spin fa-fw" : "fa fa-trash" } ></i>
             </button>
           </div>
         </div>

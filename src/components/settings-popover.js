@@ -12,9 +12,9 @@ export class SettingsPopover extends Component {
 
   handleChange(event, eventName) {
 
-    if(eventName == "SRM") {
+    if(eventName === "SRM") {
       this.props.srmenableaction(event.target.checked);
-    } else if(eventName = "SSM") {
+    } else if(eventName === "SSM") {
       this.props.ssmenableaction(event.target.checked);
     }
 
