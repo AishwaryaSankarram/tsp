@@ -101,10 +101,11 @@ export class ActionButtons extends Component {
           </div>
           <MuiThemeProvider >
               {this.state.settingsPopoverOpen && <Popover
+                className='settings-popover'
                 open={this.state.settingsPopoverOpen}
                 anchorEl={this.state.settingsPopoverEl}
-                anchorOrigin={{horizontal: 'left', vertical: 'top'}}
-                targetOrigin={{horizontal: 'right', vertical: 'bottom'}}
+                anchorOrigin={{horizontal: 'right', vertical: 'top'}}
+                targetOrigin={{horizontal: 'middle', vertical: 'bottom'}}
                 onRequestClose={this.handleSettingsPopoverClose.bind(this)}>
                 <SettingsPopover srmenable={this.state.srmEnabled} ssmenable={this.state.ssmEnabled} srmenableaction={this.srmEnable} ssmenableaction={this.ssmEnable} />
                 </Popover> }

@@ -2,17 +2,6 @@
   text-align: center;
 }
 
-.checkbox-list {
-  list-style-type: none;
-  width: 200px;
-  text-align: center;
-}
-
-.checkbox-list li {
-  display:table;
-  margin:0px auto 0px 0px;
-}
-
 .header-part {
     -moz-transition: 0.4s ease-in-out all;
     -webkit-transition: 0.4s ease-in-out all;

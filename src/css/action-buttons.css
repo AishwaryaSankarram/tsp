@@ -24,3 +24,20 @@
     float: right;
     word-wrap: break-word;
 }
+
+/*For popover*/
+
+.settings-popover {
+  top: 61px !important;
+}
+
+.checkbox-list {
+  list-style-type: none;
+  width: 200px;
+  text-align: center;
+}
+
+.checkbox-list li {
+  display:table;
+  margin:0px auto 0px 0px;
+}
