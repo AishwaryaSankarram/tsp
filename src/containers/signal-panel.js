@@ -51,6 +51,12 @@ export class SignalPanel extends Component {
     let activeSignal = data;
     signals[data.intersection_id] = data;
     clearInterval(self.intervalTimer);
+    for(let sig in signals){
+      if(sig !== data.intersection_id.toString()){
+        signals[sig].color = "";
+        signals[sig].timer = "";
+      }
+    }
     self.setState({ signals: signals, activeSignal: data });
     let currentState = data;
     if (parseInt(currentState.timer, 10) >= 0){
@@ -62,6 +68,9 @@ export class SignalPanel extends Component {
           if(parseInt(currentState.timer,10) > 0){
             self.setState({ activeSignal: activeSignal, signals: signals });
           }else{
+            currentState.timer="";
+            currentState.color="";
+            self.setState({ activeSignal: activeSignal, signals: signals });
             clearInterval(self.intervalTimer);
           }
 
@@ -115,7 +124,7 @@ export class SignalPanel extends Component {
       console.log("sgnals-------------", Object.keys(this.state.signals).length, this.state.signals);
       if(Object.keys(this.state.signals).length > 0){
       if(!this.state.showAllSignals || (this.state.showAllSignals && Object.keys(this.state.signals).length === 1)) {
-        signals = <span title={this.state.activeSignal.intersection_id} className="signal" style={{marginTop: "-50px"}} key={"signal-li_" + 0} >
+        signals = <span title={this.state.activeSignal.intersection_id} className="signal" style={{marginTop: "-66px"}} key={"signal-li_" + 0} >
         <Signal key={0} data={this.state.activeSignal} clicksignal={(event) => this.openPopover(event, this.state.activeSignal.intersection_id)}/>
             </span>;
         } else {

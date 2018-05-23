@@ -11,7 +11,8 @@ export class MainPage extends Component{
 		this.state = {
 			vehicle: 0,
 			logs: null,
-			signalPanel: null
+			signalPanel: null,
+			isLogsExpanded: false
 		};
 		this.clearData = this.clearData.bind(this);
 		this.addLogs = this.addLogs.bind(this);
@@ -80,12 +81,16 @@ export class MainPage extends Component{
 		this.state.logs.openTabs("ssm", srm, ssmInfo);
 	}
 
+	toggleLogView(){
+		this.setState({isLogsExpanded: !this.state.isLogsExpanded})
+	}
+
 
 
 	render(){
 		return (
 			<div className="main-page">
-				<div className="left-panel">
+				<div className={this.state.isLogsExpanded ? "hide" : "left-panel"}>
 					<div  className="top-panel">
 						<SignalPanel onSignalPanelMount={this.handleSignalPanelMount.bind(this)} />
 						<VehicleContainer onVehicleMount={this.handleVehicleMount.bind(this)} />
@@ -96,9 +101,9 @@ export class MainPage extends Component{
 						onSrmMount={ref => (this.srm = ref)} onSsmMount={ref => (this.ssm = ref)} vehicle={this.state.vehicle} />
 					</div>
 				</div>
-				<div className="right-panel">
+				<div className={this.state.isLogsExpanded ? "full-right" : "right-panel"}>
 					<div className="side-panel">
-						<LogContainer onLogsMount={this.handleLogsMount.bind(this)} />
+						<LogContainer onLogsMount={this.handleLogsMount.bind(this)} toggleLogs={this.toggleLogView.bind(this)} isExpanded={this.state.isLogsExpanded}/>
 					</div>
 				</div>
   			</div>

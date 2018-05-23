@@ -70,7 +70,7 @@ export class LogContainer extends Component {
        return (
            <MuiThemeProvider>
             <div className="log-container">
-              <div className="fa fa-expand logs_expand" title="Log Expand view"></div>  
+                   <div className={this.props.isExpanded ? "fa fa-compress logs_expand" : "fa fa-expand logs_expand"} title={this.props.isExpanded ? "Collapse logs to original view" : "Show logs in expanded view"} onClick={this.props.toggleLogs}></div>
                <Tabs
                    value={this.state.activeTab}
                    onChange={this.handleChange}

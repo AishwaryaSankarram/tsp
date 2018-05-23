@@ -1,7 +1,7 @@
 .signal-panel{
     width: 68%;
-    min-height: 224px;
-    max-height: 224px;
+    min-height: 210px;
+    max-height: 210px;
     background: #fff;
     float: left;
     text-align: left;
@@ -29,7 +29,7 @@
   width: 80%;
   /* border:1px solid #ccc; */
   margin: 4px;
-  margin-top: -30px;
+  margin-top: -64px;
   padding: 4px 6px;
   padding-left: 180px;
   position: relative;
