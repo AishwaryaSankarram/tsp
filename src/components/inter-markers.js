@@ -35,7 +35,7 @@ export class InterMarkers extends Component {
     console.log("MAP DATA JSON =>", data);
     let oldSignalToIntMap = this.state.signalToIntMap;
     oldSignalToIntMap[data.isec_id] = data;
-    let content =  "MAP data with intersection ID " +  data.isec_id + " sent by RSU at " + data.isec_lat + ", " + data.isec_lng ;
+    let content =  "MAP data with intersection ID " +  data.isec_id + " sent by RSU at " + data.isec_lat + ", " + data.isec_lng + " for vehicle ID " + data.vehicle_id;
     let logInfo = {className: "map-text", timestamp: data.timestamp, label: "MAP", content: content };
     this.props.addLogs(logInfo);
     this.setState({signalToIntMap: oldSignalToIntMap});
