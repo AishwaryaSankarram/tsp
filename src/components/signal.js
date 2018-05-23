@@ -13,9 +13,12 @@ export class Signal extends Component {
     }else if(data.color === "yellow"){
       colorProps = ["#DCDCDC", colors.yellow, "#DCDCDC"];
       timerProps = ["", data.timer, ""];
-    }else{
+    }else if (data.color === "green"){
       colorProps = ["#DCDCDC", "#DCDCDC", colors.green];
       timerProps = ["", "", data.timer];
+    }else{
+      colorProps = ["#DCDCDC", "#DCDCDC", "#DCDCDC"];
+      timerProps = ["", "", ""];
     }
 
     return <SignalImage colors={colorProps} timers={timerProps} label={data.intersection_id} clicksignal={this.props.clicksignal}

@@ -51,6 +51,12 @@ export class SignalPanel extends Component {
     let activeSignal = data;
     signals[data.intersection_id] = data;
     clearInterval(self.intervalTimer);
+    for(let sig in signals){
+      if(sig !== data.intersection_id.toString()){
+        signals[sig].color = "";
+        signals[sig].timer = "";
+      }
+    }
     self.setState({ signals: signals, activeSignal: data });
     let currentState = data;
     if (parseInt(currentState.timer, 10) > 0){
@@ -62,6 +68,9 @@ export class SignalPanel extends Component {
           if(parseInt(currentState.timer,10) > 0){
             self.setState({ activeSignal: activeSignal, signals: signals });
           }else{
+            currentState.timer="";
+            currentState.color="";
+            self.setState({ activeSignal: activeSignal, signals: signals });
             clearInterval(self.intervalTimer);
           }
 

@@ -55,7 +55,7 @@ export class InterMarkers extends Component {
                        /*anchor: new window.google.maps.Point(0,0)*/
                       };
         return (
-          <Marker key={"i-marker_" + index} position={pos} title={pos.title} icon={icon} />
+          <Marker key={"i-marker_" + index} position={pos} title={pos.title.toString()} icon={icon} />
         );
     });
 
