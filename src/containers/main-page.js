@@ -24,6 +24,14 @@ export class MainPage extends Component{
 		this.ssm.clearData();
 	}
 
+	srmEnable(state) {
+		this.srm.enable(state);
+	}
+
+	ssmEnable(state) {
+		this.ssm.enable(state);
+	}
+
 	componentDidMount() {
 		this.props.handleMount(this);
 	}

@@ -57,6 +57,10 @@ export class ActionButtons extends Component {
    }
  }
 
+ handleSettings(event) {
+   this.props.settingsClick(event);
+ }
+
  render() {
     return (
         <div className="header-icons">
@@ -73,6 +77,12 @@ export class ActionButtons extends Component {
                 <i className={this.state.isLoading? "fa fa-undo fa-spin fa-fw" : "fa fa-undo" } ></i>
             </button>
           </div>
+
+          <div className="action-button-container" title="Settings"  onClick={this.handleSettings.bind(this)}>
+            <button>
+                  <i className="fa fa-cog" ></i>
+            </button>
+            </div>
         </div>
     );
   }

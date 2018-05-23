@@ -11,13 +11,15 @@ export class SSMMarkers extends Component {
     super(props);
 
     this.state = {
-      ssmInfo: {}
+      ssmInfo: {},
+      enabled: false
     };
 
     this.processSSM = this.processSSM.bind(this);
     this.handleClick = this.handleClick.bind(this);
     this.displaySSM = this.displaySSM.bind(this);
     this.clearData = this.clearData.bind(this);
+    this.enable = this.enable.bind(this);
   }
 
   componentDidMount(){
@@ -39,8 +41,13 @@ export class SSMMarkers extends Component {
     this.setState({ssmInfo: {}});
   }
 
+  enable(state) {
+    console.log("CURRENT SSM STATE =>", state);
+    this.setState({enabled: state});
+  }
+
   processSSM(data) {
-    console.log("SSm Data arrived----", data, typeof data);
+    console.log("SSM Data arrived----", data, typeof data);
     let parsedData = JSON.parse(data);
     let currentSsmInfo = this.state.ssmInfo;
     currentSsmInfo[parsedData.Request_id] = parsedData;
@@ -74,9 +81,17 @@ export class SSMMarkers extends Component {
         );
     });
 
-    return (
-      <div>{markers}</div>
-    );
+    if(this.state.enabled) {
+      return (
+        <div>{markers}</div>
+      );
+    } else {
+      return (
+        <div></div>
+      );
+    }
+
+
 
   }
 }

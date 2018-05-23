@@ -13,13 +13,15 @@ export class SRMMarkers extends Component {
     super(props);
 
     this.state = {
-      srmData: {}
+      srmData: {},
+      enabled: false
     };
 
     this.displaySRM = this.displaySRM.bind(this);
     this.processSRM = this.processSRM.bind(this);
     this.handleClick = this.handleClick.bind(this);
     this.clearData = this.clearData.bind(this);
+    this.enable = this.enable.bind(this);
   }
 
   componentDidMount(){
@@ -31,6 +33,11 @@ export class SRMMarkers extends Component {
 
   componentWillUnmount() {
     this.props.onMount(null);
+  }
+
+  enable(state) {
+    console.log("CURRENT SRM STATE =>", state);
+    this.setState({enabled: state});
   }
 
   displaySRM(data){
@@ -77,9 +84,15 @@ export class SRMMarkers extends Component {
       );
     });
 
-    return (
-      <div>{markers}</div>
-    );
+    if(this.state.enabled) {
+      return (
+        <div>{markers}</div>
+      );
+    } else {
+      return (
+        <div></div>
+      );
+    }
 
   }
 }
