@@ -17,6 +17,7 @@ export class MapContainer extends Component{
 			   addLogs={this.props.addLogs}
 			   onSrmMount={this.props.onSrmMount}
 			   onSsmMount={this.props.onSsmMount}
+			   onBusMount={this.props.onBusMount}
   			/>
   			</div>
 		);

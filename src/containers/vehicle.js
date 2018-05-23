@@ -15,6 +15,7 @@ export class VehicleContainer extends Component{
 			laneId: null
 		};
 		this.updateData = this.updateData.bind(this);
+		this.clearData = this.clearData.bind(this);
 	}
 
 	componentDidMount() {
@@ -24,7 +25,19 @@ export class VehicleContainer extends Component{
 
     componentWillUnmount(){
     	this.props.onVehicleMount(null);
-    }
+	}
+	
+	clearData(){
+		this.setState({
+			carId: "",
+			latitude: "",
+			longitude: "",
+			speed: "",
+			heading: "",
+			distance: "",
+			laneId: null
+		});
+	}
 
     updateData(obj){
     	if(obj.carId){

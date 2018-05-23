@@ -121,7 +121,6 @@ export class SignalPanel extends Component {
 
   render() {
       let signals=<div></div>;
-      console.log("sgnals-------------", Object.keys(this.state.signals).length, this.state.signals);
       if(Object.keys(this.state.signals).length > 0){
       if(!this.state.showAllSignals || (this.state.showAllSignals && Object.keys(this.state.signals).length === 1)) {
         signals = <span title={this.state.activeSignal.intersection_id} className="signal" style={{marginTop: "-66px"}} key={"signal-li_" + 0} >
@@ -139,7 +138,6 @@ export class SignalPanel extends Component {
         }
       }
 
-        // console.log("SIGNALS ->", signals);
     return (
 
         <div className="signal-panel">

@@ -17,7 +17,7 @@ export class Vehicles extends React.Component {
         this.processBSM = this.processBSM.bind(this);
         this.placeCars = this.placeCars.bind(this);
         this.checkForExistingBounds = this.checkForExistingBounds.bind(this);
-        this.displayBSM = this.displayBSM.bind(this);
+        this.clearData = this.clearData.bind(this);
     }
 
 
@@ -41,13 +41,18 @@ export class Vehicles extends React.Component {
 
     componentDidMount() {
         console.log("Marker comp did Mount------------");
+        this.props.onMount(this);
         // this.startSocket();
         // window.socket.on("bsm", this.displayBSM);
         window.socket.on("bsm", this.processBSM);
     }
 
-    displayBSM(data){
-        // console.info("BSM Info received in event", "bsm", data);
+    componentWillUnmount() {
+       this.props.onMount(null);
+    }
+
+    clearData(data){
+       this.setState({markers: {}});
     }
 
     processBSM(d) {
@@ -174,7 +179,7 @@ export class Vehicles extends React.Component {
                        anchor: new google.maps.Point(50, 50)
                       };
           let icon = marker.useAsEv ? bIcon : cIcon;
-          m.push(<div key={"vehicle_div_" + marker.carId}><Marker  key={marker.carId} position={{lat: marker.lat, lng: marker.lng}}
+          m.push(<div key={"vehicle_div_" + marker.carId}><Marker key={marker.carId} position={{lat: marker.lat, lng: marker.lng}} title={marker.carId.toString()}
                           icon={icon} />
                   <Polyline key={'poly_' + marker.carId} path={marker.path} options={lineOptions} />
                 </div>

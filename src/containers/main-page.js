@@ -20,7 +20,9 @@ export class MainPage extends Component{
 
 	clearData() {
 		console.log("CLEARING FROM MAINPAGE COMPONENT");
+		this.state.vehicle.clearData();
 		this.state.logs.clearLogs();
+		this.vehicles.clearData();
 		this.srm.clearData();
 		this.ssm.clearData();
 	}
@@ -97,7 +99,7 @@ export class MainPage extends Component{
 					</div>
 					<div className="bottom-panel">
 						<MapContainer signalpanel={this.state.signalPanel} fetchSSM={this.fetchSSMandUpdateLogs.bind(this)}
-						fetchSRM={this.fetchSRMandUpdateLogs.bind(this)} addLogs={this.addLogs}
+						fetchSRM={this.fetchSRMandUpdateLogs.bind(this)} addLogs={this.addLogs} onBusMount={ref => (this.vehicles = ref)}
 						onSrmMount={ref => (this.srm = ref)} onSsmMount={ref => (this.ssm = ref)} vehicle={this.state.vehicle} />
 					</div>
 				</div>

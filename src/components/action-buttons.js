@@ -39,10 +39,6 @@ export class ActionButtons extends Component {
    let isStarted = this.state.isStarted;
    let socket = window.socket;
    console.log("openSocket------", socket);
-/*    if(!this.state.isStarted){ //Play for first time
-     socket.emit("play", "Start sending events-------");
-     isStarted = true;
-   }else  */
    if(!this.state.isPlaying){ //In Stop state; So start playing now
      socket.emit("start", "Resume sending events-------");
    }
@@ -63,18 +59,12 @@ export class ActionButtons extends Component {
  }
 
  handleReset(){
-   let self = this;
-  //  let socket = window.socket;
-  //  let isStarted = this.state.isStarted;
-  //  if (isStarted) { //Bus is in transit; So issue a reset now
-     self.setState({isPlaying: true, isLoading: true});
-     self.props.clearData();
-     setTimeout(function() {
-          self.setState({isLoading: false});
-      }, 2000);
-/*    } else {  //Reset has been when not started; So do nothing
-     console.log("Invalid action");
-   } */
+    let self = this;
+    self.setState({isLoading: true});
+    self.props.clearData();
+    setTimeout(function() {
+        self.setState({isLoading: false});
+    }, 1000);
  }
 
  handleSettingsClick(event) {
