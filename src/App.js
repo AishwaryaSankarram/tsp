@@ -16,10 +16,6 @@ class App extends Component {
     super(props);
     this.state = {
       mainPage: null,
-      settingsPopoverOpen: false,
-      settingsPopoverEl: null,
-      srmEnabled: false,
-      ssmEnabled: false
     }
 
     this.mainPageMount = this.mainPageMount.bind(this);
@@ -44,12 +40,10 @@ class App extends Component {
   }
 
   srmEnable(state) {
-    this.setState({srmEnabled: state});
     this.state.mainPage.srmEnable(state);
   }
 
   ssmEnable(state) {
-    this.setState({ssmEnabled: state});
     this.state.mainPage.ssmEnable(state);
   }
 
@@ -60,18 +54,8 @@ class App extends Component {
   render() {
     return (
      <div className="App">
-        <Header settingsClick={this.settingsClick.bind(this)} clearData={this.clearData}>
+        <Header srmenable={this.srmEnable} ssmenable={this.ssmEnable} settingsClick={this.settingsClick.bind(this)} clearData={this.clearData}>
         </Header>
-        <MuiThemeProvider >
-            {this.state.settingsPopoverOpen && <Popover
-              open={this.state.settingsPopoverOpen}
-              anchorEl={this.state.settingsPopoverEl}
-              anchorOrigin={{horizontal: 'left', vertical: 'top'}}
-              targetOrigin={{horizontal: 'right', vertical: 'bottom'}}
-              onRequestClose={this.handleSettingsPopoverClose.bind(this)}>
-              <SettingsPopover srmenable={this.state.srmEnabled} ssmenable={this.state.ssmEnabled} srmenableaction={this.srmEnable} ssmenableaction={this.ssmEnable} />
-              </Popover> }
-          </MuiThemeProvider>
         <MainPage handleMount={this.mainPageMount}/>
       </div>
     );

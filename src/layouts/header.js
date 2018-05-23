@@ -15,10 +15,10 @@ export class Header extends Component {
                 </figure>
               </div>
               <div className="header-title">Transit Signal Priority</div>
-              <ActionButtons settingsClick={this.props.settingsClick} clearData={this.props.clearData}/>
+              <ActionButtons srmenable={this.props.srmenable} ssmenable={this.props.ssmenable} clearData={this.props.clearData}/>
             </div>
         </header>
-        
+
     );
   }
 }

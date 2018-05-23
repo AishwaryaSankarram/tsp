@@ -57,9 +57,9 @@ export class SignalPanel extends Component {
       self.intervalTimer = setInterval(function () {
           currentState.timer = parseInt(currentState.timer, 10) - 1;
           signals[data.intersection_id] = currentState;
-          if (parseInt(currentState.timer,10) >= 0 && parseInt(currentState.timer, 10) < 10)
+          if (parseInt(currentState.timer,10) > 0 && parseInt(currentState.timer, 10) < 10)
               currentState.timer = "0" + currentState.timer;
-          if(parseInt(currentState.timer,10) >= 0){
+          if(parseInt(currentState.timer,10) > 0){
             self.setState({ activeSignal: activeSignal, signals: signals });
           }else{
             clearInterval(self.intervalTimer);
