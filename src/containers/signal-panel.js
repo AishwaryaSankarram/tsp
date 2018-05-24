@@ -160,7 +160,7 @@ export class SignalPanel extends Component {
                 anchorOrigin={{horizontal: 'middle', vertical: 'bottom'}}
                 targetOrigin={{horizontal: 'middle', vertical: 'top'}}
                 onRequestClose={this.handlePopoverClose.bind(this)}>
-                  <LaneData data={this.state.intToSignalMap[this.state.selIntersection]}/>
+                  {this.state.intToSignalMap[this.state.selIntersection] && <LaneData data={this.state.intToSignalMap[this.state.selIntersection]}/>}
                 </Popover> }
               </div>
             </MuiThemeProvider>

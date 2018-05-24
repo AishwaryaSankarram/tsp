@@ -68,10 +68,9 @@ export class SignalImage extends Component {
                  </text>
               </g>
            </g>
-           <g id="signal-direction" transform="translate(25.000000, 325)" fillRule="nonzero">
+             {this.getDirection() && <g id="signal-direction" transform="translate(25.000000, 325)" fillRule="nonzero">
               <circle id="center-d" fill="#E5E5E5" cx="215.5" cy="71.5" r="71.5"/>
-              {this.getDirection()}
-           </g>
+                this.getDirection()</g>}
         </g>
      </g>
   </svg>

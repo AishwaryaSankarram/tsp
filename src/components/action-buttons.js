@@ -10,7 +10,7 @@ export class ActionButtons extends Component {
  constructor(props){
  	super(props);
  	this.state = {
-    enablePriority: true,
+    enablePriority: false,
     isStarted: false,
     isPlaying: false,
     isLoading: false,
@@ -25,10 +25,10 @@ export class ActionButtons extends Component {
 
  handleChange = (event, item) => {
   let socketCommand;
-  event.target.checked ? socketCommand = "enable" : socketCommand = "disable";
+  event.target.checked ? socketCommand = "true" : socketCommand = "false";
   let webSocket = window.socket;
   // console.log("Sending signal priority...");
-  webSocket.emit("priorities",JSON.stringify({command:socketCommand}));
+  webSocket.emit("priorities",JSON.stringify({tsp_enable:socketCommand}));
 	this.setState({
 	  [item]: event.target.checked
 	});
