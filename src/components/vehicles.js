@@ -56,9 +56,9 @@ export class Vehicles extends React.Component {
         // console.info("BSM Info received in event", "bsm", data);
         // { 1: { carId: "1", lat: 13.181953, lng: 79.608065 } }
         let cars = self.state.markers;
-        //{"Speed":0.59,"Heading":26.96,"Msg_type":"BSM","Device_Type":"OBU","Latitude":13.048968833,"Vehicle_id":90,
+        //{"Speed":0.59,"Heading":26.96,"Msg_type":"BSM","Device_Type":"OBU","Latitude":13.048968833,"vehicle_id":90,
         // "Direction":"TX","Longitude":80.252762667,"timestamp":1526469989603}
-        let currentCar = cars[data.Vehicle_id];
+        let currentCar = cars[data.vehicle_id];
         let flag = true;
         if (currentCar) {
             if(currentCar.lat === data.Latitude && currentCar.lng === data.Longitude){
@@ -76,7 +76,7 @@ export class Vehicles extends React.Component {
         } else {
             currentCar = {
                 useAsEv: data.Direction === 'TX' ? true : false,
-                carId: data.Vehicle_id, rotation: data.Heading, speed: data.Speed, lat: data.Latitude, lng: data.Longitude, timestamp: data.timestamp, laneId: data.Lane_Id,
+                carId: data.vehicle_id, rotation: data.Heading, speed: data.Speed, lat: data.Latitude, lng: data.Longitude, timestamp: data.timestamp, laneId: data.Lane_Id,
                 path: [{lat: data.Latitude, lng: data.Longitude}]
             }
         }
@@ -86,7 +86,7 @@ export class Vehicles extends React.Component {
                 self.checkForExistingBounds(latLng);
                 self.props.vehicle.updateData(currentCar);
             }
-            cars[data.Vehicle_id] = currentCar;
+            cars[data.vehicle_id] = currentCar;
             self.setState({ markers: cars });
         }
     }

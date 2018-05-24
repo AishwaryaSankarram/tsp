@@ -84,7 +84,7 @@ export class MainPage extends Component{
 			<div className="main-page">
 				<div className={this.state.isLogsExpanded ? "hide" : "left-panel"}>
 					<div  className="top-panel">
-						<SignalPanel onSignalPanelMount={this.handleSignalPanelMount.bind(this)} />
+						<SignalPanel onSignalPanelMount={this.handleSignalPanelMount.bind(this)} addLogs={this.addLogs} />
 						<VehicleContainer onVehicleMount={this.handleVehicleMount.bind(this)} />
 					</div>
 					<div className="bottom-panel">
