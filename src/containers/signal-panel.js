@@ -60,7 +60,9 @@ export class SignalPanel extends Component {
         signals[sig].timer = "";
       }
     }
-    self.setState({ signals: signals, activeSignal: data });
+    let notification = "Current signal state of intersection " + data.isec_id + " is " + data.color + " and the timer reads " + data.timer + " seconds.";
+    this.props.showNotifications(notification);
+    self.setState({ signals: signals, activeSignal: data, isPopoverOpen: false, selIntersection: null });
     let currentState = data;
     if (parseInt(currentState.timer, 10) >= 0){
       self.intervalTimer = setInterval(function () {
@@ -121,7 +123,7 @@ export class SignalPanel extends Component {
 
   getConnectDirs(id) {
     let selectedInt = this.state.intToSignalMap[id];
-    let connect_dirs = selectedInt.lane_info.filter((lane) => lane.lane_id == selectedInt.veh_lane_id)[0].connect_dirs;
+    let connect_dirs = selectedInt.lane_info.filter((lane) => lane.lane_id === selectedInt.veh_lane_id)[0].connect_dirs;
     return connect_dirs;
   }
 

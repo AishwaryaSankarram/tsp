@@ -71,6 +71,10 @@ export class MainPage extends Component{
 		this.state.logs.updateData(message);
 	}
 
+	addNotifications(message){
+		this.state.logs.addNotifications(message);
+	}
+
 	fetchSRMandUpdateLogs(ssmInfo) {
 		let srmData = this.srm.state.srmData;
 		// console.log("srmData=========", srmData, ssmInfo);
@@ -94,13 +98,13 @@ export class MainPage extends Component{
 			<div className="main-page">
 				<div className={this.state.isLogsExpanded ? "hide" : "left-panel"}>
 					<div  className="top-panel">
-						<SignalPanel onSignalPanelMount={this.handleSignalPanelMount.bind(this)} addLogs={this.addLogs} />
+						<SignalPanel onSignalPanelMount={this.handleSignalPanelMount.bind(this)} addLogs={this.addLogs} showNotifications={this.addNotifications.bind(this)}/>
 						<VehicleContainer onVehicleMount={this.handleVehicleMount.bind(this)} />
 					</div>
 					<div className="bottom-panel">
 						<MapContainer signalpanel={this.state.signalPanel} fetchSSM={this.fetchSSMandUpdateLogs.bind(this)}
 						fetchSRM={this.fetchSRMandUpdateLogs.bind(this)} addLogs={this.addLogs} onBusMount={ref => (this.vehicles = ref)}
-						onSrmMount={ref => (this.srm = ref)} onSsmMount={ref => (this.ssm = ref)} vehicle={this.state.vehicle} />
+							onSrmMount={ref => (this.srm = ref)} onSsmMount={ref => (this.ssm = ref)} vehicle={this.state.vehicle} showNotifications={this.addNotifications.bind(this)}/>
 					</div>
 				</div>
 				<div className={this.state.isLogsExpanded ? "full-right" : "right-panel"}>

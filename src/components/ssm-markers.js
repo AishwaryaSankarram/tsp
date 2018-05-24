@@ -57,6 +57,8 @@ export class SSMMarkers extends Component {
     let logInfo = {className: "ssm-text", timestamp: parsedData.timestamp, label: "SSM", content: content};
     count += 1;
     this.props.addLogs(logInfo);
+    let notification = "Signal Access Request for " + parsedData.Request_id + " has been granted by RSU for" + parsedData.Vehicle_Id + ".";
+    this.props.showNotifications(notification);
   }
 
   handleClick(data){

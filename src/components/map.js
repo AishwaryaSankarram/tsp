@@ -31,13 +31,13 @@ export const MapComponent = compose(
          scaleControl: true,
        }}
        defaultZoom={20}
-       mapTypeId="roadmap"
+       mapTypeId="satellite"
        defaultCenter={{lat: 42.331280891921075, lng: -83.0733836184375}}
       // defaultCenter={{ lat: 13.178227, lng: 79.611750 }}
      >
         <Vehicles mapObj={props.mapObj} vehicle={props.vehicle} onMount={props.onBusMount}/>
-        <InterMarkers mapObj={props.mapObj} signalpanel={props.signalpanel} addLogs={props.addLogs}/>
-        <SRMMarkers mapObj={props.mapObj} fetchSSM={props.fetchSSM} onMount={props.onSrmMount} addLogs={props.addLogs}/>
-        <SSMMarkers mapObj={props.mapObj} fetchSRM={props.fetchSRM} onMount={props.onSsmMount} addLogs={props.addLogs}/>
+        <InterMarkers mapObj={props.mapObj} signalpanel={props.signalpanel} addLogs={props.addLogs} showNotifications={props.showNotifications}/>
+        <SRMMarkers mapObj={props.mapObj} fetchSSM={props.fetchSSM} onMount={props.onSrmMount} addLogs={props.addLogs} showNotifications={props.showNotifications}/>
+        <SSMMarkers mapObj={props.mapObj} fetchSRM={props.fetchSRM} onMount={props.onSsmMount} addLogs={props.addLogs} showNotifications={props.showNotifications}/>
     </GoogleMap>
 ));

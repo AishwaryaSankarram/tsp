@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Tabs, Tab } from 'material-ui/Tabs';
 import { LogComponent } from "../components/log";
 import { LogDataComponent } from "../components/log-data";
+import { NotificationComponent } from "../components/notifications";
 import '../css/logs.css';
 import { MuiThemeProvider } from 'material-ui/styles';
 import DownloadLink from "react-download-link";
@@ -14,10 +15,12 @@ export class LogContainer extends Component {
             srmInfo: null,
             ssmInfo: null,
             showTabs: false,
-            activeTab: "logs"
+            notifications: [],
+            activeTab: "notifications"
 
         };
         this.updateData = this.updateData.bind(this);
+        this.addNotifications = this.addNotifications.bind(this);
         this.openTabs = this.openTabs.bind(this);
     }
 
@@ -33,6 +36,12 @@ export class LogContainer extends Component {
         let logs = this.state.logs;
         logs.unshift(obj);
         this.setState({logs: logs});
+    }
+
+    addNotifications(obj){
+        let notifications = this.state.notifications;
+        notifications.unshift(obj);
+        this.setState({ notifications: notifications });
     }
 
     handleChange = (value) => {
@@ -88,6 +97,10 @@ export class LogContainer extends Component {
                         </div>
                         <br/>
                         <LogComponent logs={this.state.logs}/>
+                   </Tab>
+                    
+                   <Tab label="Notifications" value="notifications" className="logs-header">
+                        <NotificationComponent data={this.state.notifications}/>
                    </Tab>
 
                    <Tab label="SRM" value="srm-tab" className="logs-header">
