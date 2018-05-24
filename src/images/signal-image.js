@@ -15,7 +15,7 @@ const directionToArrowMap = {
 export class SignalImage extends Component {
 
     getDirection() {
-      let connecting_dirs = this.props.connectingDirs;
+      let connecting_dirs = this.props.connect_dirs;
       let arrowString = "";
       if (connecting_dirs.includes("left")) {
         arrowString += "left"
