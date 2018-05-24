@@ -70,7 +70,7 @@ export class ActionButtons extends Component {
  handleSettingsClick(event) {
    this.setState({
      settingsPopoverOpen: true,
-     settingsPopoverEl: event.target
+     settingsPopoverEl: document.getElementsByClassName("settings-btn")[0]
    });
  }
 
@@ -85,7 +85,7 @@ export class ActionButtons extends Component {
       	  	Enable Signal Priority
       	  </Checkbox>
           <div className="action-button-container" title="View Settings">
-            <button onClick={this.handleSettingsClick.bind(this)}>
+            <button className="settings-btn" onClick={this.handleSettingsClick.bind(this)}>
                   <i className="fa fa-eye" ></i>
             </button>
           </div>
