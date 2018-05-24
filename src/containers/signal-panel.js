@@ -47,12 +47,15 @@ export class SignalPanel extends Component {
     // console.info("SPAT Info received in event", "spat", d);
     let self = this;
     let data = JSON.parse(d);
+    let content =  " data with intersection ID " +  data.isec_id + " sent by RSU"
+    let logInfo = {className: "spat-text", timestamp: data.timestamp, label: "SPAT", content: content };
+    this.props.addLogs(logInfo);
     let signals = self.state.signals;
     let activeSignal = data;
-    signals[data.intersection_id] = data;
+    signals[data.isec_id] = data;
     clearInterval(self.intervalTimer);
     for(let sig in signals){
-      if(sig !== data.intersection_id.toString()){
+      if(sig !== data.isec_id.toString()){
         signals[sig].color = "";
         signals[sig].timer = "";
       }
@@ -62,7 +65,7 @@ export class SignalPanel extends Component {
     if (parseInt(currentState.timer, 10) >= 0){
       self.intervalTimer = setInterval(function () {
           currentState.timer = parseInt(currentState.timer, 10) - 1;
-          signals[data.intersection_id] = currentState;
+          signals[data.isec_id] = currentState;
           if (parseInt(currentState.timer,10) > 0 && parseInt(currentState.timer, 10) < 10)
               currentState.timer = "0" + currentState.timer;
           if(parseInt(currentState.timer,10) > 0){
@@ -123,16 +126,16 @@ export class SignalPanel extends Component {
       let signals=<div></div>;
       if(Object.keys(this.state.signals).length > 0){
       if(!this.state.showAllSignals || (this.state.showAllSignals && Object.keys(this.state.signals).length === 1)) {
-        signals = <span title={this.state.activeSignal.intersection_id} className="signal" style={{marginTop: "-66px"}} key={"signal-li_" + 0} >
-        <Signal key={0} data={this.state.activeSignal} clicksignal={(event) => this.openPopover(event, this.state.activeSignal.intersection_id)}/>
+        signals = <span title={this.state.activeSignal.isec_id} className="signal" style={{marginTop: "-66px"}} key={"signal-li_" + 0} >
+        <Signal key={0} data={this.state.activeSignal} clicksignal={(event) => this.openPopover(event, this.state.activeSignal.isec_id)}/>
             </span>;
         } else {
           let signalObjects = Object.values(this.state.signals);
           signals = [];
           signalObjects.forEach((signal, index) => {
-            signals.push(<span title={signal.intersection_id} className="multi-signal" key={"signal-li_" + index} >
+            signals.push(<span title={signal.isec_id} className="multi-signal" key={"signal-li_" + index} >
             <Signal key={0} data={signal}
-            clicksignal={(event) => this.openPopover(event, signal.intersection_id)}/>
+            clicksignal={(event) => this.openPopover(event, signal.isec_id)}/>
                 </span>);
           });
         }
