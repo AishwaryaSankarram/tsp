@@ -96,7 +96,7 @@ export class ActionButtons extends Component {
                 open={this.state.settingsPopoverOpen}
                 anchorEl={this.state.settingsPopoverEl}
                 anchorOrigin={{horizontal: 'left', vertical: 'bottom'}}
-                targetOrigin={{horizontal: 'left', vertical: 'middle'}}
+                targetOrigin={{horizontal: 'left', vertical: 'center'}}
                 onRequestClose={this.handleSettingsPopoverClose.bind(this)}>
                 <SettingsPopover srmenable={this.state.srmEnabled} ssmenable={this.state.ssmEnabled} srmenableaction={this.srmEnable} ssmenableaction={this.ssmEnable} />
                 </Popover> }
