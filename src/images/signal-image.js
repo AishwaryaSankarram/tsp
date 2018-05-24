@@ -15,7 +15,7 @@ const directionToArrowMap = {
 export class SignalImage extends Component {
 
     getDirection() {
-      let connecting_dirs = this.props.connect_dirs;
+      let connecting_dirs = this.props.connectDirs;
       let arrowString = "";
       if (connecting_dirs.includes("left")) {
         arrowString += "left"
@@ -32,6 +32,7 @@ export class SignalImage extends Component {
     render(){
     return (
      <svg xmlns="http://www.w3.org/2000/svg" width="70%" height="236px" viewBox="0 0 480 700" version="1.1" >
+     <title>{this.props.label}</title>
      <g id="Page-1" stroke="none" strokeWidth="1" fill="none" fillRule="evenodd" onClick={this.props.clicksignal}>
         <g id="signal-details-(1)" transform="translate(0,125)">
            <g id="signal-label" transform="translate(205, -151)">
