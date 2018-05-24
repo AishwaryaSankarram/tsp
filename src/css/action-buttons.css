@@ -21,6 +21,7 @@
 
 .priority-checkbox{
     margin-top: 15px;
+    margin-right: 20px;
     float: right;
     word-wrap: break-word;
 }
@@ -28,17 +29,20 @@
 /*For popover*/
 
 .settings-popover {
-  top: 61px !important;
-  left: 84% !important;
+    top: 40px !important;
+    left: 88% !important;
 }
 
 .checkbox-list {
-  list-style-type: none;
-  width: 200px;
-  text-align: center;
+    list-style-type: none;
+    width: 150px;
 }
 
 .checkbox-list li {
-  display:table;
-  margin:0px auto 0px 0px;
+    display:table;
+    margin:0px auto 0px 0px;
+}
+
+.checkbox-list li label{
+    padding-left: 0px;
 }

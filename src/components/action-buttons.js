@@ -84,9 +84,9 @@ export class ActionButtons extends Component {
           <Checkbox className="priority-checkbox" checked={this.state.enablePriority} onChange={(event) => this.handleChange(event, "enablePriority")}>
       	  	Enable Signal Priority
       	  </Checkbox>
-          <div className="action-button-container" title="Settings">
+          <div className="action-button-container" title="View Settings">
             <button onClick={this.handleSettingsClick.bind(this)}>
-                  <i className="fa fa-cog" ></i>
+                  <i className="fa fa-eye" ></i>
             </button>
           </div>
           <MuiThemeProvider >
@@ -95,8 +95,8 @@ export class ActionButtons extends Component {
                 className='settings-popover'
                 open={this.state.settingsPopoverOpen}
                 anchorEl={this.state.settingsPopoverEl}
-                anchorOrigin={{horizontal: 'right', vertical: 'bottom'}}
-                targetOrigin={{horizontal: 'left', vertical: 'top'}}
+                anchorOrigin={{horizontal: 'left', vertical: 'bottom'}}
+                targetOrigin={{horizontal: 'left', vertical: 'middle'}}
                 onRequestClose={this.handleSettingsPopoverClose.bind(this)}>
                 <SettingsPopover srmenable={this.state.srmEnabled} ssmenable={this.state.ssmEnabled} srmenableaction={this.srmEnable} ssmenableaction={this.ssmEnable} />
                 </Popover> }
