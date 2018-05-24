@@ -84,35 +84,9 @@ export class LogContainer extends Component {
                    value={this.state.activeTab}
                    onChange={this.handleChange}
                >
-                   <Tab label="Logs" value="logs" className="logs-header">
-                        <div className="logs-header">
-                            <div className="clear-logs" onClick={this.clearLogs.bind(this)}>Clear</div>
-                               <DownloadLink
-                                   className="clear-logs"
-                                   tagName="div"
-                                   filename={"device_logs_" + new Date().getTime() + ".txt"}
-                                   exportFile={this.getFileContent.bind(this)}>
-                                   Save
-                                </DownloadLink>
-                        </div>
-                        <br/>
-                        <LogComponent logs={this.state.logs}/>
-                   </Tab>
-                    
+
                    <Tab label="Notifications" value="notifications" className="logs-header">
                         <NotificationComponent data={this.state.notifications}/>
-                   </Tab>
-
-                   <Tab label="SRM" value="srm-tab" className="logs-header">
-                       <div>
-                          <LogDataComponent data={this.state.srmInfo}/>
-                       </div>
-                   </Tab>
-
-                   <Tab label="SSM" value="ssm-tab" className="logs-header">
-                       <div>
-                               <LogDataComponent data={this.state.ssmInfo} />
-                       </div>
                    </Tab>
 
                </Tabs>

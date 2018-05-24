@@ -16,6 +16,7 @@ export class MainPage extends Component{
 		};
 		this.clearData = this.clearData.bind(this);
 		this.addLogs = this.addLogs.bind(this);
+		this.srmSent = this.srmSent.bind(this);
 	}
 
 	clearData() {
@@ -91,6 +92,10 @@ export class MainPage extends Component{
 		this.setState({isLogsExpanded: !this.state.isLogsExpanded})
 	}
 
+	srmSent(id) {
+		this.state.signalPanel.highlightSignal(id);
+	}
+
 
 
 	render(){
@@ -102,7 +107,9 @@ export class MainPage extends Component{
 						<VehicleContainer onVehicleMount={this.handleVehicleMount.bind(this)} />
 					</div>
 					<div className="bottom-panel">
-						<MapContainer signalpanel={this.state.signalPanel} fetchSSM={this.fetchSSMandUpdateLogs.bind(this)}
+						<MapContainer signalpanel={this.state.signalPanel}
+						srmSent={this.srmSent}
+					 fetchSSM={this.fetchSSMandUpdateLogs.bind(this)}
 						fetchSRM={this.fetchSRMandUpdateLogs.bind(this)} addLogs={this.addLogs} onBusMount={ref => (this.vehicles = ref)}
 							onSrmMount={ref => (this.srm = ref)} onSsmMount={ref => (this.ssm = ref)} vehicle={this.state.vehicle} showNotifications={this.addNotifications.bind(this)}/>
 					</div>

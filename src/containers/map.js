@@ -12,6 +12,7 @@ export class MapContainer extends Component{
   			   mapElement={<div style={{ height: `100%` }} />}
   			   vehicle={this.props.vehicle}
 			   signalpanel={this.props.signalpanel}
+				 srmSent={this.props.srmSent}
 			   fetchSSM={this.props.fetchSSM}
 			   fetchSRM={this.props.fetchSRM}
 			   addLogs={this.props.addLogs}

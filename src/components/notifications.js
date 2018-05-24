@@ -28,4 +28,3 @@ export const NotificationComponent = (props) => {
         </div>
     );
 }
-

@@ -55,6 +55,7 @@ export class SRMMarkers extends Component {
     let currentSrmData = this.state.srmData;
     currentSrmData[data.Request_id] = data;
     currentSrmData[data.Request_id].color = color_codes[count % 10];
+    this.props.srmSent(data.Request_id);
     this.setState({srmData: currentSrmData});
     let content =  " with request ID " +  data.Request_id + " sent by " + data.Vehicle_Id + " at " + data.Current_Lat + ", " + data.Current_Lon ;
     let logInfo = {className: "srm-text", timestamp: data.timestamp, label: "SRM", content: content }

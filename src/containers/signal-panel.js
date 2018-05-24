@@ -123,8 +123,13 @@ export class SignalPanel extends Component {
 
   getConnectDirs(id) {
     let selectedInt = this.state.intToSignalMap[id];
-    let connect_dirs = selectedInt.lane_info.filter((lane) => lane.lane_id === selectedInt.veh_lane_id)[0].connect_dirs;
-    return connect_dirs;
+    let connect_dirs;
+    if(selectedInt) {
+      let connect_dirs = selectedInt.lane_info.filter((lane) => lane.lane_id === selectedInt.veh_lane_id)[0].connect_dirs;
+      return connect_dirs;
+    }
+
+    return null;
   }
 
 

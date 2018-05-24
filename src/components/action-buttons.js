@@ -16,8 +16,8 @@ export class ActionButtons extends Component {
     isLoading: false,
     settingsPopoverOpen: false,
     settingsPopoverEl: null,
-    srmEnabled: false,
-    ssmEnabled: false
+    srmEnabled: true,
+    ssmEnabled: true
  	}
   this.srmEnable = this.srmEnable.bind(this);
   this.ssmEnable = this.ssmEnable.bind(this);
