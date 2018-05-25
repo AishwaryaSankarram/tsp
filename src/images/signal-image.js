@@ -16,7 +16,7 @@ export class SignalImage extends Component {
 
     getDirection() {
       let connecting_dirs = this.props.connectDirs;
-      console.log("CONNECTING DIRS ->", connecting_dirs);
+      // console.log("CONNECTING DIRS ->", connecting_dirs);
       let arrowString = "";
       if (connecting_dirs.includes("left")) {
         arrowString += "left"

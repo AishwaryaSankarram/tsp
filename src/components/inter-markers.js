@@ -32,7 +32,7 @@ export class InterMarkers extends Component {
 
   updateIntersections(mapData) {
     let data = JSON.parse(mapData);
-    console.log("MAP DATA JSON =>", data);
+    // console.log("MAP DATA JSON =>", data);
     let oldSignalToIntMap = this.state.signalToIntMap;
     if (!oldSignalToIntMap[data.isec_id] || oldSignalToIntMap[data.isec_id].veh_lane_id !== data.veh_lane_id) { //Show Notifications only in case of a lane change/ intersection change;
       let notification = "Vehicle is at lane " + data.veh_lane_id + " and entered MAP zone for intersection " + data.isec_id + " with approach having " + data.no_of_lanes + " lane(s).";
@@ -55,8 +55,8 @@ export class InterMarkers extends Component {
         let iconImg = SignalInterIcon;
         let zoneArray = mapData.zone_array;
         let laneArray = mapData.lane_array;
-        console.log("ZONE_ARRAY =>", zoneArray);
-        console.log("LANE_ARRAY =>", laneArray);
+        // console.log("ZONE_ARRAY =>", zoneArray);
+        // console.log("LANE_ARRAY =>", laneArray);
         let mapZoneOptions = {fillColor: "#0000FF", fillOpacity: 0.2, strokeWeight: 0.5};
         let laneZoneOptions = {fillColor:"#FAFAD2", fillOpacity: 0.5, strokeWeight: 1};
         let pos = {lat: mapData.isec_lat, lng: mapData.isec_lng, title: mapData.isec_id};

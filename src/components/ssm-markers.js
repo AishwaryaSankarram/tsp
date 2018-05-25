@@ -47,7 +47,7 @@ export class SSMMarkers extends Component {
   }
 
   processSSM(data) {
-    console.log("SSM Data arrived----", data);
+    // console.log("SSM Data arrived----", data);
     let parsedData = JSON.parse(data);
     let currentSsmInfo = this.state.ssmInfo;
     currentSsmInfo[parsedData.Request_id] = parsedData;

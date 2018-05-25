@@ -29,6 +29,7 @@ export const MapComponent = compose(
        }}
        options={{
          scaleControl: true,
+         maxZoom: 21
        }}
        defaultZoom={20}
        mapTypeId="roadmap"
