@@ -140,7 +140,7 @@ export class SignalPanel extends Component {
   render() {
       let signals=<div></div>;
       if(Object.keys(this.state.signals).length === 0) {
-        signals = <span title="dummy_signal" className="signal" style={{marginTop: "-66px"}} >
+        signals = <span className="signal" style={{marginTop: "-66px"}} >
         <Signal key={0} connectDirs={["straight"]} data={this.state.activeSignal} />
             </span>;
       }

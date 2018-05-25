@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import { Marker } from "react-google-maps";
 import ssmIcon from "../images/ssm-flag";
-import { color_codes } from '../constants';
+import { color_codes, enableSSM } from '../constants';
 
 let count = 0;
 
@@ -12,7 +12,7 @@ export class SSMMarkers extends Component {
 
     this.state = {
       ssmInfo: {},
-      enabled: true
+      enabled: enableSSM
     };
 
     this.processSSM = this.processSSM.bind(this);

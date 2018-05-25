@@ -34,10 +34,10 @@ export class InterMarkers extends Component {
     let data = JSON.parse(mapData);
     console.log("MAP DATA JSON =>", data);
     let oldSignalToIntMap = this.state.signalToIntMap;
-    // if (!oldSignalToIntMap[data.isec_id] || oldSignalToIntMap[data.isec_id].veh_lane_id !== data.veh_lane_id) { //Show Notifications only in case of a lane change/ intersection change;
-    //   let notification = "Vehicle is at lane " + data.veh_lane_id + " and entered MAP zone for intersection " + data.isec_id + " with approach having " + data.no_of_lanes + " lane(s).";
-    //   this.props.showNotifications(notification);
-    // }
+    if (!oldSignalToIntMap[data.isec_id] || oldSignalToIntMap[data.isec_id].veh_lane_id !== data.veh_lane_id) { //Show Notifications only in case of a lane change/ intersection change;
+      let notification = "Vehicle is at lane " + data.veh_lane_id + " and entered MAP zone for intersection " + data.isec_id + " with approach having " + data.no_of_lanes + " lane(s).";
+      this.props.showNotifications(notification);
+    }
     oldSignalToIntMap[data.isec_id] = data;
     let content =  "MAP data with intersection ID " +  data.isec_id + " sent by RSU at " + data.isec_lat + ", " + data.isec_lng + " for vehicle ID " + data.vehicle_id;
     let logInfo = {className: "map-text", timestamp: data.timestamp, label: "MAP", content: content };

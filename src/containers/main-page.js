@@ -4,6 +4,8 @@ import {VehicleContainer} from './vehicle';
 import {LogContainer} from './log';
 import { SignalPanel } from './signal-panel';
 
+import { enableNotifications, isLogsExpanded} from '../constants.js';
+
 
 export class MainPage extends Component{
 	constructor(props){
@@ -12,8 +14,8 @@ export class MainPage extends Component{
 			vehicle: 0,
 			logs: null,
 			signalPanel: null,
-			isLogsExpanded: false,
-			enableNotifications: false
+			isLogsExpanded: isLogsExpanded,
+			enableNotifications: enableNotifications
 		};
 		this.clearData = this.clearData.bind(this);
 		this.addLogs = this.addLogs.bind(this);

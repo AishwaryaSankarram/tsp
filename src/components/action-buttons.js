@@ -5,19 +5,20 @@ import Popover from 'material-ui/Popover';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import {SettingsPopover} from './settings-popover';
 
+import { enableSRM, enableSSM, enableNotifications, isLogsExpanded, enablePriority} from '../constants.js';
 
 export class ActionButtons extends Component {
  constructor(props){
  	super(props);
  	this.state = {
-    enablePriority: false,
+    enablePriority: enablePriority,
     isStarted: false,
     isPlaying: false,
     isLoading: false,
     settingsPopoverOpen: false,
-    srmEnabled: true,
-    ssmEnabled: true,
-    enableNotifications: false
+    srmEnabled: enableSRM,
+    ssmEnabled: enableSSM,
+    enableNotifications: enableNotifications
  	}
   this.srmEnable = this.srmEnable.bind(this);
   this.ssmEnable = this.ssmEnable.bind(this);

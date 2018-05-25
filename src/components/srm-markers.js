@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import { Marker } from "react-google-maps";
 import srmIcon from "../images/srm-flag";
-import { color_codes } from '../constants';
+import { color_codes, enableSRM } from '../constants';
 
 // let google = window.google;
 
@@ -14,7 +14,7 @@ export class SRMMarkers extends Component {
 
     this.state = {
       srmData: {},
-      enabled: true
+      enabled: enableSRM
     };
 
     this.displaySRM = this.displaySRM.bind(this);
