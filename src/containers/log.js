@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
 import { Tabs, Tab } from 'material-ui/Tabs';
-import { LogComponent } from "../components/log";
-import { LogDataComponent } from "../components/log-data";
+// import { LogComponent } from "../components/log";/
+// import { LogDataComponent } from "../components/log-data";
 import { NotificationComponent } from "../components/notifications";
 import '../css/logs.css';
 import { MuiThemeProvider } from 'material-ui/styles';
-import DownloadLink from "react-download-link";
+// import DownloadLink from "react-download-link";
 
 export class LogContainer extends Component {
     constructor(props) {

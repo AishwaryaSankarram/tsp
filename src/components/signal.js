@@ -22,6 +22,6 @@ export class Signal extends Component {
     }
 
     return <SignalImage colors={colorProps} timers={timerProps} label={data.isec_id} clicksignal={this.props.clicksignal}
-    connectDirs={this.props.connectDirs}/>
+    connectDirs={(data.color && data.color.length > 0) ? this.props.connectDirs : null}/>
    }
 }

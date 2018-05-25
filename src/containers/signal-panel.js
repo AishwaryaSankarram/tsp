@@ -127,7 +127,6 @@ export class SignalPanel extends Component {
 
   getConnectDirs(id) {
     let selectedInt = this.state.intToSignalMap[id];
-    let connect_dirs;
     if(selectedInt) {
       let connect_dirs = selectedInt.lane_info.filter((lane) => lane.lane_id === selectedInt.veh_lane_id)[0].connect_dirs;
       return connect_dirs;
@@ -140,7 +139,7 @@ export class SignalPanel extends Component {
 
   render() {
       let signals=<div></div>;
-      if(Object.keys(this.state.signals).length == 0) {
+      if(Object.keys(this.state.signals).length === 0) {
         signals = <span title="dummy_signal" className="signal" style={{marginTop: "-66px"}} >
         <Signal key={0} connectDirs={["straight"]} data={this.state.activeSignal} />
             </span>;
@@ -167,7 +166,7 @@ export class SignalPanel extends Component {
         <div className="signal-panel">
           <div className="signal-header">
             <label> Intersection Details </label>
-            <Checkbox className="signals-checkbox" checked={this.state.showAllSignals} onChange={(event) => this.handleChange(event)}>
+          <Checkbox className="signals-checkbox" checked={this.state.showAllSignals} disabled={Object.keys(this.state.signals).length <= 1} onChange={(event) => this.handleChange(event)}>
               Show All Signals
             </Checkbox>
           </div>
