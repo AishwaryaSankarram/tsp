@@ -23,18 +23,7 @@ class App extends Component {
   mainPageMount(obj) {
     this.setState({mainPage: obj});
   }
-
-  settingsClick(event) {
-    this.setState({
-      settingsPopoverOpen: true,
-      settingsPopoverEl: event.target
-    });
-  }
-
-  handleSettingsPopoverClose() {
-    this.setState({settingsPopoverOpen: false});
-  }
-
+  
   srmEnable(state) {
     this.state.mainPage.srmEnable(state);
   }
@@ -47,10 +36,14 @@ class App extends Component {
     this.state.mainPage.clearData();
   }
 
+  toggleLogView(state){
+    this.state.mainPage.toggleNotifications(state);
+  }
+
   render() {
     return (
      <div className="App">
-        <Header srmenable={this.srmEnable} ssmenable={this.ssmEnable} settingsClick={this.settingsClick.bind(this)} clearData={this.clearData}>
+        <Header srmenable={this.srmEnable} ssmenable={this.ssmEnable} clearData={this.clearData} toggleNotifications={this.toggleLogView.bind(this)}>
         </Header>
         <MainPage handleMount={this.mainPageMount}/>
       </div>

@@ -15,9 +15,9 @@ export class ActionButtons extends Component {
     isPlaying: false,
     isLoading: false,
     settingsPopoverOpen: false,
-    settingsPopoverEl: null,
     srmEnabled: true,
-    ssmEnabled: true
+    ssmEnabled: true,
+    enableNotifications: false
  	}
   this.srmEnable = this.srmEnable.bind(this);
   this.ssmEnable = this.ssmEnable.bind(this);
@@ -58,6 +58,11 @@ export class ActionButtons extends Component {
    this.props.ssmenable(state);
  }
 
+ toggleNotifications(state){
+   this.setState({ enableNotifications: state });
+   this.props.toggleNotifications(state);
+ }
+
  handleReset(){
     let self = this;
     self.setState({isLoading: true});
@@ -69,8 +74,7 @@ export class ActionButtons extends Component {
 
  handleSettingsClick(event) {
    this.setState({
-     settingsPopoverOpen: true,
-     settingsPopoverEl: document.getElementsByClassName("settings-btn")[0]
+     settingsPopoverOpen: true
    });
  }
 
@@ -94,11 +98,12 @@ export class ActionButtons extends Component {
               {this.state.settingsPopoverOpen && <Popover
                 className='settings-popover'
                 open={this.state.settingsPopoverOpen}
-                anchorEl={this.state.settingsPopoverEl}
+                anchorEl={document.getElementsByClassName("settings-btn")[0]}
                 anchorOrigin={{horizontal: 'left', vertical: 'bottom'}}
                 targetOrigin={{horizontal: 'left', vertical: 'center'}}
                 onRequestClose={this.handleSettingsPopoverClose.bind(this)}>
-                <SettingsPopover srmenable={this.state.srmEnabled} ssmenable={this.state.ssmEnabled} srmenableaction={this.srmEnable} ssmenableaction={this.ssmEnable} />
+                <SettingsPopover srmenable={this.state.srmEnabled} ssmenable={this.state.ssmEnabled} srmenableaction={this.srmEnable} ssmenableaction={this.ssmEnable} 
+                toggleNotifications={this.toggleNotifications.bind(this)} enableNotifications={this.state.enableNotifications}/>
                 </Popover> }
               </div>
             </MuiThemeProvider>

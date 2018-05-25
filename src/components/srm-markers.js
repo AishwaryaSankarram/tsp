@@ -57,10 +57,10 @@ export class SRMMarkers extends Component {
     currentSrmData[data.Request_id].color = color_codes[count % 10];
     this.props.srmSent(data.Request_id);
     this.setState({srmData: currentSrmData});
-    let content =  " with request ID " +  data.Request_id + " sent by " + data.Vehicle_Id + " at " + data.Current_Lat + ", " + data.Current_Lon ;
+    let content =  " with request ID " +  data.Request_id + " sent by " + data.vehicle_id + " at " + data.Current_Lat + ", " + data.Current_Lon ;
     let logInfo = {className: "srm-text", timestamp: data.timestamp, label: "SRM", content: content }
     count += 1;
-    let notification = "Signal Access Request with ID " + data.Request_id + " has been sent by vehicle " + data.Vehicle_Id + ".";
+    let notification = "Signal Access Request with ID " + data.Request_id + " has been sent by vehicle " + data.vehicle_id + ".";
     this.props.showNotifications(notification);
     this.props.addLogs(logInfo);
   }

@@ -8,11 +8,11 @@ export class MapContainer extends Component{
 		return (
 			<div className="map-container">
 			<MapComponent loadingElement={<div style={{ height: `100%` }} />}
-  			   containerElement={<div style={{ height: `380px`}} />}
+  			   containerElement={<div style={{ height: `430px`}} />}
   			   mapElement={<div style={{ height: `100%` }} />}
   			   vehicle={this.props.vehicle}
 			   signalpanel={this.props.signalpanel}
-				 srmSent={this.props.srmSent}
+			   srmSent={this.props.srmSent}
 			   fetchSSM={this.props.fetchSSM}
 			   fetchSRM={this.props.fetchSRM}
 			   addLogs={this.props.addLogs}

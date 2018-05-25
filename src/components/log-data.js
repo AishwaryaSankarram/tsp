@@ -36,7 +36,7 @@ export class LogDataComponent extends Component {
                                 Intersection ID
                             </td>
                             <td>
-                                {data.Msg_type === "SRM" ?  data.Msg_Data.srm_list[0].Signal_Request.IntersectionId : data.IntersectionId }
+                                {data.Msg_type === "SRM" ?  data.isec_id : data.IntersectionId }
                             </td>
                         </tr>
                         <tr>

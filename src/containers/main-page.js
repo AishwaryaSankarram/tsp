@@ -12,7 +12,8 @@ export class MainPage extends Component{
 			vehicle: 0,
 			logs: null,
 			signalPanel: null,
-			isLogsExpanded: false
+			isLogsExpanded: false,
+			enableNotifications: false
 		};
 		this.clearData = this.clearData.bind(this);
 		this.addLogs = this.addLogs.bind(this);
@@ -92,6 +93,14 @@ export class MainPage extends Component{
 		this.setState({isLogsExpanded: !this.state.isLogsExpanded})
 	}
 
+	toggleNotifications(state){
+		let isLogsExpanded = this.state.isLogsExpanded;
+		if (!state) {//On disabling notifications, bring back logs to normal mode
+			isLogsExpanded = false;
+		}
+		this.setState({ enableNotifications: state, isLogsExpanded: isLogsExpanded });
+	}
+
 	srmSent(id) {
 		this.state.signalPanel.highlightSignal(id);
 	}
@@ -101,7 +110,7 @@ export class MainPage extends Component{
 	render(){
 		return (
 			<div className="main-page">
-				<div className={this.state.isLogsExpanded ? "hide" : "left-panel"}>
+				<div className={this.state.isLogsExpanded ? "hide" : this.state.enableNotifications ? "left-panel" : "full-left"}>
 					<div  className="top-panel">
 						<SignalPanel onSignalPanelMount={this.handleSignalPanelMount.bind(this)} addLogs={this.addLogs} showNotifications={this.addNotifications.bind(this)}/>
 						<VehicleContainer onVehicleMount={this.handleVehicleMount.bind(this)} />
@@ -109,12 +118,12 @@ export class MainPage extends Component{
 					<div className="bottom-panel">
 						<MapContainer signalpanel={this.state.signalPanel}
 						srmSent={this.srmSent}
-					 fetchSSM={this.fetchSSMandUpdateLogs.bind(this)}
+					 	fetchSSM={this.fetchSSMandUpdateLogs.bind(this)}
 						fetchSRM={this.fetchSRMandUpdateLogs.bind(this)} addLogs={this.addLogs} onBusMount={ref => (this.vehicles = ref)}
-							onSrmMount={ref => (this.srm = ref)} onSsmMount={ref => (this.ssm = ref)} vehicle={this.state.vehicle} showNotifications={this.addNotifications.bind(this)}/>
+						onSrmMount={ref => (this.srm = ref)} onSsmMount={ref => (this.ssm = ref)} vehicle={this.state.vehicle} showNotifications={this.addNotifications.bind(this)}/>
 					</div>
 				</div>
-				<div className={this.state.isLogsExpanded ? "full-right" : "right-panel"}>
+				<div className={this.state.enableNotifications ? (this.state.isLogsExpanded ? "full-right" : "right-panel") : "hide"}>
 					<div className="side-panel">
 						<LogContainer onLogsMount={this.handleLogsMount.bind(this)} toggleLogs={this.toggleLogView.bind(this)} isExpanded={this.state.isLogsExpanded}/>
 					</div>
