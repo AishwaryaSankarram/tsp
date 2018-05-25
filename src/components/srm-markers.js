@@ -14,7 +14,7 @@ export class SRMMarkers extends Component {
 
     this.state = {
       srmData: {},
-      enabled: false
+      enabled: true
     };
 
     this.displaySRM = this.displaySRM.bind(this);
@@ -41,7 +41,7 @@ export class SRMMarkers extends Component {
   }
 
   displaySRM(data){
-    // console.info("SRM Info received in event", "srm", data);
+    console.info("SRM Info received in event", "srm", data);
 
     this.processSRM(JSON.parse(data));
   }

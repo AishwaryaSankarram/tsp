@@ -164,6 +164,7 @@ export class Vehicles extends React.Component {
         let m=[], markers = this.state.markers;
         for(let car in markers){
           let marker = markers[car];
+          console.log("MARKER PATH", JSON.stringify(marker.path));
           let cIcon = Object.assign({}, carIcon);
             let lineOptions = {
                 strokeColor: "#33D4FF",
