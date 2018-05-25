@@ -16,6 +16,7 @@ export class SignalImage extends Component {
 
     getDirection() {
       let connecting_dirs = this.props.connectDirs;
+      console.log("CONNECTING DIRS ->", connecting_dirs);
       let arrowString = "";
       if (connecting_dirs.includes("left")) {
         arrowString += "left"
@@ -69,9 +70,10 @@ export class SignalImage extends Component {
                  </text>
               </g>
            </g>
-             {this.props.connectDirs && <g id="signal-direction" transform="translate(25.000000, 325)" fillRule="nonzero">
+             <g id="signal-direction" transform="translate(25.000000, 325)" fillRule="nonzero">
               <circle id="center-d" fill="#E5E5E5" cx="215.5" cy="71.5" r="71.5"/>
-                this.getDirection()</g>}
+                {this.props.connectDirs && this.getDirection()}
+              </g>
         </g>
      </g>
   </svg>

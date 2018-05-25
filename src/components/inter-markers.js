@@ -61,7 +61,6 @@ export class InterMarkers extends Component {
                       };
         return (
           <Marker key={"i-marker_" + index} position={pos} title={pos.title.toString()} icon={icon} />
-          <Polygon path={mapData.zone_array} />
         );
     });
 

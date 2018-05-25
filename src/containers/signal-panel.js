@@ -30,6 +30,10 @@ export class SignalPanel extends Component {
     this.openPopover = this.openPopover.bind(this);
   }
 
+  highlightSignal() {
+
+  }
+
   componentDidMount() {
     let self = this;
     this.props.onSignalPanelMount(this);
@@ -136,6 +140,11 @@ export class SignalPanel extends Component {
 
   render() {
       let signals=<div></div>;
+      if(Object.keys(this.state.signals).length == 0) {
+        signals = <span title="dummy_signal" className="signal" style={{marginTop: "-66px"}} >
+        <Signal key={0} connectDirs={["straight"]} data={this.state.activeSignal} />
+            </span>;
+      }
       if(Object.keys(this.state.signals).length > 0){
       if(!this.state.showAllSignals || (this.state.showAllSignals && Object.keys(this.state.signals).length === 1)) {
         signals = <span title={this.state.activeSignal.isec_id} className="signal" style={{marginTop: "-66px"}} key={"signal-li_" + 0} >

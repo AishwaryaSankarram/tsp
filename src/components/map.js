@@ -1,5 +1,5 @@
 import React from 'react';
-import { withGoogleMap, GoogleMap} from "react-google-maps";
+import { withGoogleMap, GoogleMap,} from "react-google-maps";
 
 import { compose, lifecycle} from "recompose";
 import {Vehicles} from './vehicles';
@@ -31,7 +31,7 @@ export const MapComponent = compose(
          scaleControl: true,
        }}
        defaultZoom={20}
-       mapTypeId="satellite"
+       mapTypeId="roadmap"
        defaultCenter={{lat: 42.331280891921075, lng: -83.0733836184375}}
       // defaultCenter={{ lat: 13.178227, lng: 79.611750 }}
      >

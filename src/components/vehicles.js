@@ -179,7 +179,7 @@ export class Vehicles extends React.Component {
                        anchor: new google.maps.Point(50, 50)
                       };
           let icon = marker.useAsEv ? bIcon : cIcon;
-          m.push(<div key={"vehicle_div_" + marker.carId}><Marker key={marker.carId} position={{lat: marker.lat, lng: marker.lng}} title={marker.carId.toString()}
+          m.push(<div key={"vehicle_div_" + marker.carId}><Marker key={marker.carId} position={{lat: marker.lat, lng: marker.lng}} title={marker.carId}
                           icon={icon} />
                   <Polyline key={'poly_' + marker.carId} path={marker.path} options={lineOptions} />
                 </div>
