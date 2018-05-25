@@ -12,7 +12,7 @@ export class SSMMarkers extends Component {
 
     this.state = {
       ssmInfo: {},
-      enabled: false
+      enabled: true
     };
 
     this.processSSM = this.processSSM.bind(this);
