@@ -53,6 +53,10 @@ export class InterMarkers extends Component {
 
     let markers = mapDataValues.map( (mapData, index) => {
         let iconImg = SignalInterIcon;
+        let zoneArray = mapData.zone_array;
+        let laneArray = mapData.lane_array;
+        let mapZoneOptions = {fillColor: "#0000FF", fillOpacity: 0.2, strokeWeight: 0.5};
+        let laneZoneOptions = {fillColor:"#FAFAD2", fillOpacity: 0.5, strokeWeight: 1};
         let pos = {lat: mapData.isec_lat, lng: mapData.isec_lng, title: mapData.isec_id};
         iconImg = iconImg.replace(/label/g, pos.title);
         let icon = { url: 'data:image/svg+xml;charset=UTF-8,' + encodeURIComponent(iconImg),
@@ -60,7 +64,11 @@ export class InterMarkers extends Component {
                        /*anchor: new window.google.maps.Point(0,0)*/
                       };
         return (
+          <div>
           <Marker key={"i-marker_" + index} position={pos} title={pos.title.toString()} icon={icon} />
+          <Polygon path={zoneArray} options={mapZoneOptions}  />
+          <Polygon path={laneArray} options={laneZoneOptions}  />
+          </div>
         );
     });
 
