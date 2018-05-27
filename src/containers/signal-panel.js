@@ -5,6 +5,8 @@ import {Checkbox} from "react-bootstrap";
 import Popover from "material-ui/Popover";
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import '../css/signal-panel.css';
+import { ToastContainer, toast } from 'react-toastify';
+
 
 
 export class SignalPanel extends Component {
@@ -28,10 +30,8 @@ export class SignalPanel extends Component {
     this.intersectionToSignalMap = this.intersectionToSignalMap.bind(this);
     this.processSPAT = this.processSPAT.bind(this);
     this.openPopover = this.openPopover.bind(this);
-  }
-
-  highlightSignal() {
-
+    this.signalToastID = null;
+    this.intIDGroupID = null
   }
 
   componentDidMount() {
@@ -53,6 +53,48 @@ export class SignalPanel extends Component {
     let data = JSON.parse(d);
     let content =  " data with intersection ID " +  data.isec_id + " sent by RSU"
     let logInfo = {className: "spat-text", timestamp: data.timestamp, label: "SPAT", content: content };
+
+    if(!this.intIDGroupID || this.intIDGroupID[0] !== data.isec_id || this.intIDGroupID[1] !== data.signal_group_id) {
+
+      let string = "Signal timer for " + data.color.toUpperCase() + " is set to " + data.timer + " SECONDS."
+      if(data.color == "green") {
+        this.signalToastID = toast.success(string, {
+           position: toast.POSITION.TOP_CENTER,
+           autoClose: 10000
+         });
+
+      } else if (data.color == "yellow") {
+        this.signalToastID = toast.warn(string, {
+           position: toast.POSITION.TOP_CENTER,
+           autoClose: 10000
+         });
+
+       } else if (data.color == "red") {
+         this.signalToastID = toast.error(string, {
+            position: toast.POSITION.TOP_CENTER,
+            autoClose: 10000
+          });
+       }
+
+       this.intIDGroupID = [data.isec_id, data.signal_group_id];
+
+    } else {
+      let string = "Signal timer for " + data.color.toUpperCase() + " is set to " + data.timer + " SECONDS."
+      let toastType;
+      if (data.color == "green") {
+        toastType = toast.TYPE.SUCCESS;
+      } else if (data.color == "yellow") {
+        toastType = toast.TYPE.WARNING;
+      } else if (data.color == "red") {
+        toastType = toast.TYPE.ERROR;
+      }
+      toast.update(this.signalToastID, {
+        render: string,
+        type: toastType,
+        autoClose: 10000
+      });
+    }
+
     this.props.addLogs(logInfo);
     let signals = self.state.signals;
     let activeSignal = data;
@@ -114,8 +156,21 @@ export class SignalPanel extends Component {
     this.props.onSignalPanelMount(null);
   }
 
-  intersectionToSignalMap(obj) {
-    this.setState({intToSignalMap: obj});
+  intersectionToSignalMap(obj, newMap) {
+    if(newMap.isec_id !== this.state.activeSignal.isec_id) {
+      // console.log("MAKING NEW ISEC ID");
+      let newActiveSignal = {
+        isec_id: newMap.isec_id,
+        color: "",
+        timer: ""
+      }
+      let oldSignals = this.state.signals;
+      oldSignals[newMap.isec_id] = newActiveSignal;
+      this.setState({intToSignalMap: obj, signals: oldSignals, activeSignal: newActiveSignal});
+    } else {
+      this.setState({intToSignalMap: obj});
+    }
+
   }
 
   renderSignals(data) {
@@ -175,7 +230,7 @@ export class SignalPanel extends Component {
               {this.state.isPopoverOpen && <Popover className="menu_header"
                 open={this.state.isPopoverOpen}
                 anchorEl={this.state.anchorElement}
-                style={{width: this.state.intToSignalMap[this.state.selIntersection].lane_info.length * 60}}
+                style={{width: this.state.intToSignalMap[this.state.selIntersection].lane_info.length * 60, height: 94 + ((this.state.intToSignalMap[this.state.selIntersection].lane_info.length - 1)*9)}}
                 canAutoPosition={true}
                 anchorOrigin={{horizontal: 'middle', vertical: 'bottom'}}
                 targetOrigin={{horizontal: 'middle', vertical: 'top'}}

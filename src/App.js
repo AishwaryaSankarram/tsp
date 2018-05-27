@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import {Header} from './layouts/header';
 import {MainPage} from './containers/main-page';
 import 'font-awesome/css/font-awesome.min.css';
+import {enablePriority} from './constants.js'
+import { ToastContainer } from 'react-toastify';
 
 import openSocket from 'socket.io-client';
 
@@ -23,7 +25,13 @@ class App extends Component {
   mainPageMount(obj) {
     this.setState({mainPage: obj});
   }
-  
+
+  componentDidMount() {
+    let string;
+    enablePriority ? string = "true" : string = "false"
+    window.socket.emit("priorities",JSON.stringify({tsp_enable: string}));
+  }
+
   srmEnable(state) {
     this.state.mainPage.srmEnable(state);
   }
@@ -46,6 +54,7 @@ class App extends Component {
         <Header srmenable={this.srmEnable} ssmenable={this.ssmEnable} clearData={this.clearData} toggleNotifications={this.toggleLogView.bind(this)}>
         </Header>
         <MainPage handleMount={this.mainPageMount}/>
+        <ToastContainer style={{fontSize: "17px", fontWeight: "bold"}} />
       </div>
     );
   }

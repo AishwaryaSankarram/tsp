@@ -50,6 +50,7 @@ export class SSMMarkers extends Component {
     // console.log("SSM Data arrived----", data);
     let parsedData = JSON.parse(data);
     let currentSsmInfo = this.state.ssmInfo;
+    this.props.ssmsent(parsedData.Request_id, parsedData.status);
     currentSsmInfo[parsedData.Request_id] = parsedData;
     currentSsmInfo[parsedData.Request_id].color = color_codes[count % 10];
     this.setState({ssmInfo: currentSsmInfo});

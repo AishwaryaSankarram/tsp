@@ -4,10 +4,13 @@ import {Checkbox} from "react-bootstrap";
 import Popover from 'material-ui/Popover';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import {SettingsPopover} from './settings-popover';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 import { enableSRM, enableSSM, enableNotifications, isLogsExpanded, enablePriority} from '../constants.js';
 
 export class ActionButtons extends Component {
+  not
  constructor(props){
  	super(props);
  	this.state = {
@@ -103,7 +106,7 @@ export class ActionButtons extends Component {
                 anchorOrigin={{horizontal: 'left', vertical: 'bottom'}}
                 targetOrigin={{horizontal: 'left', vertical: 'center'}}
                 onRequestClose={this.handleSettingsPopoverClose.bind(this)}>
-                <SettingsPopover srmenable={this.state.srmEnabled} ssmenable={this.state.ssmEnabled} srmenableaction={this.srmEnable} ssmenableaction={this.ssmEnable} 
+                <SettingsPopover srmenable={this.state.srmEnabled} ssmenable={this.state.ssmEnabled} srmenableaction={this.srmEnable} ssmenableaction={this.ssmEnable}
                 toggleNotifications={this.toggleNotifications.bind(this)} enableNotifications={this.state.enableNotifications}/>
                 </Popover> }
               </div>

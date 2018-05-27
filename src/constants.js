@@ -38,6 +38,6 @@ export const enableSSM = true;
 
 export const enableNotifications = false;
 
-export const enablePriority = false;
+export const enablePriority = true;
 
 export const isLogsExpanded = false;

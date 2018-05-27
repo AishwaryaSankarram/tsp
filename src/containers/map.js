@@ -12,13 +12,16 @@ export class MapContainer extends Component{
   			   mapElement={<div style={{ height: `100%` }} />}
   			   vehicle={this.props.vehicle}
 			   signalpanel={this.props.signalpanel}
-			   srmSent={this.props.srmSent}
+			   srmsent={this.props.srmsent}
+				 updatesrm={this.props.updatesrm}
+				 ssmsent={this.props.ssmsent}
 			   fetchSSM={this.props.fetchSSM}
 			   fetchSRM={this.props.fetchSRM}
 			   addLogs={this.props.addLogs}
 			   onSrmMount={this.props.onSrmMount}
 			   onSsmMount={this.props.onSsmMount}
 			   onBusMount={this.props.onBusMount}
+				 onInterMarkerMount={this.props.onInterMarkerMount}
 			   showNotifications={this.props.showNotifications}
   			/>
   			</div>

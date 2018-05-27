@@ -4,7 +4,10 @@ import {VehicleContainer} from './vehicle';
 import {LogContainer} from './log';
 import { SignalPanel } from './signal-panel';
 
+import { ToastContainer, toast } from 'react-toastify';
+
 import { enableNotifications, isLogsExpanded} from '../constants.js';
+
 
 
 export class MainPage extends Component{
@@ -19,7 +22,7 @@ export class MainPage extends Component{
 		};
 		this.clearData = this.clearData.bind(this);
 		this.addLogs = this.addLogs.bind(this);
-		this.srmSent = this.srmSent.bind(this);
+		this.requestToToast = {};
 	}
 
 	clearData() {
@@ -29,7 +32,46 @@ export class MainPage extends Component{
 		this.vehicles.clearData();
 		this.srm.clearData();
 		this.ssm.clearData();
+		this.intermarker.clearData();
 	}
+
+
+	srmsent(toastID, requestID) {
+		// console.log("SRM SENT ID =>", toastID);
+		this.requestToToast[requestID] = toastID;
+		// console.log("REQUEST TO TOAST HASH", this.requestToToast);
+	 }
+
+	 updatesrm(requestID, string) {
+		 let toastID = this.requestToToast[requestID.toString()];
+		 toast.update(toastID, {
+			 render: string,
+			 autoClose: 10000
+		 })
+
+	 }
+
+	ssmsent(requestID, status) {
+			// console.log("SSM SENT TO MAIN PAGE");
+			// console.log("status =>", status);
+			let toastType;
+			let toastID = this.requestToToast[requestID.toString()];
+			// console.log("TOAST ID ->", toastID);
+			let string = "Signal Request " + status + "!"
+			if(status == "granted") {
+				toast.success(string, {
+	         position: toast.POSITION.TOP_CENTER,
+	         autoClose: 10000
+	       });
+			} else {
+				toast.error(string, {
+	         position: toast.POSITION.TOP_CENTER,
+	         autoClose: 10000
+	       });
+			}
+
+	}
+
 
 	srmEnable(state) {
 		this.srm.enable(state);
@@ -114,15 +156,21 @@ export class MainPage extends Component{
 			<div className="main-page">
 				<div className={this.state.isLogsExpanded ? "hide" : this.state.enableNotifications ? "left-panel" : "full-left"}>
 					<div  className="top-panel">
-						<SignalPanel onSignalPanelMount={this.handleSignalPanelMount.bind(this)} addLogs={this.addLogs} showNotifications={this.addNotifications.bind(this)}/>
+						<SignalPanel
+						 onSignalPanelMount={this.handleSignalPanelMount.bind(this)} addLogs={this.addLogs}
+						  showNotifications={this.addNotifications.bind(this)}/>
 						<VehicleContainer onVehicleMount={this.handleVehicleMount.bind(this)} />
 					</div>
 					<div className="bottom-panel">
 						<MapContainer signalpanel={this.state.signalPanel}
-						srmSent={this.srmSent}
+						srmsent={this.srmsent.bind(this)}
+						updatesrm={this.updatesrm.bind(this)}
+						ssmsent={this.ssmsent.bind(this)}
 					 	fetchSSM={this.fetchSSMandUpdateLogs.bind(this)}
 						fetchSRM={this.fetchSRMandUpdateLogs.bind(this)} addLogs={this.addLogs} onBusMount={ref => (this.vehicles = ref)}
-						onSrmMount={ref => (this.srm = ref)} onSsmMount={ref => (this.ssm = ref)} vehicle={this.state.vehicle} showNotifications={this.addNotifications.bind(this)}/>
+						onSrmMount={ref => (this.srm = ref)} onSsmMount={ref => (this.ssm = ref)}
+						onInterMarkerMount={ref => (this.intermarker = ref)}
+						 vehicle={this.state.vehicle} showNotifications={this.addNotifications.bind(this)}/>
 					</div>
 				</div>
 				<div className={this.state.enableNotifications ? (this.state.isLogsExpanded ? "full-right" : "right-panel") : "hide"}>
