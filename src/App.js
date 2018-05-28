@@ -4,6 +4,7 @@ import {MainPage} from './containers/main-page';
 import 'font-awesome/css/font-awesome.min.css';
 import {enablePriority} from './constants.js'
 import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 import openSocket from 'socket.io-client';
 
@@ -54,7 +55,7 @@ class App extends Component {
         <Header srmenable={this.srmEnable} ssmenable={this.ssmEnable} clearData={this.clearData} toggleNotifications={this.toggleLogView.bind(this)}>
         </Header>
         <MainPage handleMount={this.mainPageMount}/>
-        <ToastContainer style={{fontSize: "17px", fontWeight: "bold"}} />
+        <ToastContainer style={{fontSize: "16px"}} />
       </div>
     );
   }

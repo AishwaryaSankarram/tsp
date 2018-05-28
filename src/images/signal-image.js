@@ -39,7 +39,7 @@ export class SignalImage extends Component {
            <g id="signal-label" transform="translate(205, -151)">
               <g id="A" transform="translate(3.00, -35)" fill="#3B3B3B" fontFamily="Arial" fontSize="35">
                  <text>
-                    <tspan x="0" y="136">{this.props.label}</tspan>
+                    <tspan x="15" y="140" style={{fontWeight: "bold"}}>{this.props.label}</tspan>
                  </text>
               </g>
            </g>
@@ -52,19 +52,19 @@ export class SignalImage extends Component {
            </g>
            <g id="signal-timer" transform="translate(24.000000, 200.000000)">
               <rect id="Rectangle" fill="#E5E5E5" fillRule="nonzero" x="294" y="1" width="135" height="125"/>
-              <g id="28" transform="translate(296.000000, 0.000000)" fill="#3B3B3B" fontFamily="Arial" fontSize="120" fontWeight="">
+              <g id="28" transform="translate(296.000000, 0.000000)" fill="#3B3B3B" fontFamily="Arial" fontSize={this.props.timers[2].toString().length > 2 ? 82 : 120} fontWeight="">
                  <text id="greenSignalTimer">
                     <tspan x="0" y="109">{this.props.timers[2]}</tspan>
                  </text>
               </g>
               <rect id="Rectangle" fill="#E5E5E5" fillRule="nonzero" x="147" y="1" width="135" height="125"/>
-              <g id="28" transform="translate(149.000000, 0.000000)" fill="#3B3B3B" fontFamily="Arial" fontSize="120" fontWeight="">
+              <g id="28" transform="translate(149.000000, 0.000000)" fill="#3B3B3B" fontFamily="Arial" fontSize={this.props.timers[1].toString().length > 2 ? 82 : 120} fontWeight="">
                  <text id="yellowSignalTimer">
                   <tspan x="0" y="109">{this.props.timers[1]}</tspan>
                  </text>
               </g>
               <rect id="Rectangle" fill="#E5E5E5" fillRule="nonzero" x="0" y="1" width="135" height="125"/>
-              <g id="28" transform="translate(3.000000, 0.000000)" fill="#3B3B3B" fontFamily="Arial" fontSize="120" fontWeight="">
+              <g id="28" transform="translate(3.000000, 0.000000)" fill="#3B3B3B" fontFamily="Arial" fontSize={this.props.timers[0].toString().length > 2 ? 82 : 120} fontWeight="">
                  <text id="redSignalTimer">
                   <tspan x="0" y="109">{this.props.timers[0]}</tspan>
                  </text>

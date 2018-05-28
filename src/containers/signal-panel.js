@@ -60,19 +60,19 @@ export class SignalPanel extends Component {
       if(data.color === "green") {
         this.signalToastID = toast.success(string, {
            position: toast.POSITION.TOP_CENTER,
-           autoClose: 10000
+           autoClose: (data.timer + 1) * 1000
          });
 
       } else if (data.color === "yellow") {
         this.signalToastID = toast.warn(string, {
            position: toast.POSITION.TOP_CENTER,
-           autoClose: 10000
+           autoClose: (data.timer + 1) * 1000
          });
 
        } else if (data.color === "red") {
          this.signalToastID = toast.error(string, {
             position: toast.POSITION.TOP_CENTER,
-            autoClose: 10000
+            autoClose: (data.timer + 1) * 1000
           });
        }
 
@@ -91,7 +91,7 @@ export class SignalPanel extends Component {
       toast.update(this.signalToastID, {
         render: string,
         type: toastType,
-        autoClose: 10000
+        autoClose: (data.timer + 1) * 1000
       });
     }
 
@@ -99,6 +99,10 @@ export class SignalPanel extends Component {
     let signals = self.state.signals;
     let activeSignal = data;
     signals[data.isec_id] = data;
+    if(this.state.intToSignalMap[data.isec_id]) {
+      activeSignal.label = this.state.intToSignalMap[data.isec_id].label;
+      signals[data.isec_id].label = this.state.intToSignalMap[data.isec_id].label;
+    }
     if (parseInt(data.timer, 10) > 0 && parseInt(data.timer, 10) < 10)
       data.timer = "0" + data.timer;
     clearInterval(self.intervalTimer);
@@ -118,6 +122,7 @@ export class SignalPanel extends Component {
           signals[data.isec_id] = currentState;
           if (parseInt(currentState.timer,10) > 0 && parseInt(currentState.timer, 10) < 10)
               currentState.timer = "0" + currentState.timer;
+              signals[data.isec_id] = currentState;
           if(parseInt(currentState.timer,10) > 0){
             self.setState({ activeSignal: activeSignal, signals: signals });
           }else{
@@ -164,7 +169,9 @@ export class SignalPanel extends Component {
       let newActiveSignal = {
         isec_id: newMap.isec_id,
         color: "",
-        timer: ""
+        timer: "",
+        isPopoverOpen: false,
+        selIntersection: null
       }
       let oldSignals = this.state.signals;
       oldSignals[newMap.isec_id] = newActiveSignal;

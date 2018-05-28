@@ -45,6 +45,8 @@ export class InterMarkers extends Component {
 
     // console.log("MAP DATA JSON =>", data);
     let oldSignalToIntMap = this.state.signalToIntMap;
+    let noOfElements = Object.keys(oldSignalToIntMap).length;
+    let chr = String.fromCharCode(65+noOfElements);
     if (!oldSignalToIntMap[data.isec_id] || oldSignalToIntMap[data.isec_id].veh_lane_id !== data.veh_lane_id) {
 
        //Show Notifications only in case of a lane change/ intersection change;
@@ -57,7 +59,7 @@ export class InterMarkers extends Component {
       let notification = "Vehicle is at lane " + data.veh_lane_id + " and entered MAP zone for intersection " + data.isec_id + " with approach having " + data.no_of_lanes + " lane(s).";
       this.props.showNotifications(notification);
     }
-
+    oldSignalToIntMap[data.isec_id].label = chr;
     let content =  "MAP data with intersection ID " +  data.isec_id + " sent by RSU at " + data.isec_lat + ", " + data.isec_lng + " for vehicle ID " + data.vehicle_id;
     let logInfo = {className: "map-text", timestamp: data.timestamp, label: "MAP", content: content };
 
@@ -78,7 +80,7 @@ export class InterMarkers extends Component {
         // console.log("LANE_ARRAY =>", laneArray);
         let mapZoneOptions = {fillColor: "#8B0000", fillOpacity: 0.5, strokeWeight: 0.5};
         let laneZoneOptions = {fillColor:"#191970", fillOpacity: 1, strokeWeight: 1.5};
-        let pos = {lat: mapData.isec_lat, lng: mapData.isec_lng, title: mapData.isec_id};
+        let pos = {lat: mapData.isec_lat, lng: mapData.isec_lng, title: mapData.label};
         iconImg = iconImg.replace(/label/g, pos.title);
         let icon = { url: 'data:image/svg+xml;charset=UTF-8,' + encodeURIComponent(iconImg),
                        scaledSize: new window.google.maps.Size(100, 100),
