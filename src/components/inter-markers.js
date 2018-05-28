@@ -48,15 +48,16 @@ export class InterMarkers extends Component {
     if (!oldSignalToIntMap[data.isec_id] || oldSignalToIntMap[data.isec_id].veh_lane_id !== data.veh_lane_id) {
 
        //Show Notifications only in case of a lane change/ intersection change;
+       let toastID = toast.info("Entering Map Zone", {
+          position: toast.POSITION.TOP_CENTER,
+          autoClose: 10000
+        });
+       oldSignalToIntMap[data.isec_id] = data;
 
       let notification = "Vehicle is at lane " + data.veh_lane_id + " and entered MAP zone for intersection " + data.isec_id + " with approach having " + data.no_of_lanes + " lane(s).";
       this.props.showNotifications(notification);
     }
-    let toastID = toast.info("Entering Map Zone", {
-       position: toast.POSITION.TOP_CENTER,
-       autoClose: 10000
-     });
-    oldSignalToIntMap[data.isec_id] = data;
+
     let content =  "MAP data with intersection ID " +  data.isec_id + " sent by RSU at " + data.isec_lat + ", " + data.isec_lng + " for vehicle ID " + data.vehicle_id;
     let logInfo = {className: "map-text", timestamp: data.timestamp, label: "MAP", content: content };
 
