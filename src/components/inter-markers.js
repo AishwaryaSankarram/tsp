@@ -3,8 +3,12 @@ import { Marker, Polygon } from 'react-google-maps';
 // import InterIcon from '../images/intersection-icon';
 import SignalInterIcon from '../images/signal-intersection-icon'
 import { toast } from 'react-toastify';
+import '../css/inter-markers.css'
+import { css } from 'glamor';
 
 window.signalToInt = {};
+
+let signalColorsAndShadows = ["#2BBF60", "#3CCE6C", "#EAB42D", "#EDCB3B", "#EA4949", "#F25F5F"]
 
 export class InterMarkers extends Component {
 
@@ -32,6 +36,34 @@ export class InterMarkers extends Component {
     this.props.onMount(null);
   }
 
+  updateSignalData(color, isec_id) {
+    console.log("COLOR ->", color);
+    let signalToIntMap = this.state.signalToIntMap;
+    if(color == "red") {
+      signalToIntMap[isec_id].redShadow = signalColorsAndShadows[5];
+      signalToIntMap[isec_id].red = signalColorsAndShadows[4];
+      signalToIntMap[isec_id].yellowShadow = "#DCDCDC"
+      signalToIntMap[isec_id].yellow = "#DCDCDC"
+      signalToIntMap[isec_id].greenShadow = "#DCDCDC"
+      signalToIntMap[isec_id].green = "#DCDCDC"
+    } else if (color == "yellow") {
+      signalToIntMap[isec_id].yellowShadow = signalColorsAndShadows[3];
+      signalToIntMap[isec_id].yellow = signalColorsAndShadows[2];
+      signalToIntMap[isec_id].redShadow = "#DCDCDC"
+      signalToIntMap[isec_id].red = "#DCDCDC"
+      signalToIntMap[isec_id].greenShadow = "#DCDCDC"
+      signalToIntMap[isec_id].green = "#DCDCDC"
+    } else if (color == "green") {
+      signalToIntMap[isec_id].greenShadow = signalColorsAndShadows[1];
+      signalToIntMap[isec_id].green = signalColorsAndShadows[0];
+      signalToIntMap[isec_id].yellowShadow = "#DCDCDC"
+      signalToIntMap[isec_id].yellow = "#DCDCDC"
+      signalToIntMap[isec_id].redShadow = "#DCDCDC"
+      signalToIntMap[isec_id].red = "#DCDCDC"
+    }
+    this.setState({signalToIntMap: signalToIntMap});
+  }
+
   displayMapData(data){
     // console.info("mapData received in event", "mapData", data);
   }
@@ -50,12 +82,19 @@ export class InterMarkers extends Component {
     if (!oldSignalToIntMap[data.isec_id] || oldSignalToIntMap[data.isec_id].veh_lane_id !== data.veh_lane_id) {
 
        //Show Notifications only in case of a lane change/ intersection change;
-       toast.info("Entering Map Zone", {
-          position: toast.POSITION.TOP_CENTER,
+       toast('Entering Map Zone...', {
+          position: toast.POSITION.TOP_LEFT,
+          className: 'toastify-map',
+          bodyClassName: 'toastify-text',
           autoClose: 10000
         });
        oldSignalToIntMap[data.isec_id] = data;
-
+       oldSignalToIntMap[data.isec_id].red = "#DCDCDC"
+       oldSignalToIntMap[data.isec_id].redShadow = "#DCDCDC"
+       oldSignalToIntMap[data.isec_id].yellow = "#DCDCDC"
+       oldSignalToIntMap[data.isec_id].yellowShadow = "#DCDCDC"
+       oldSignalToIntMap[data.isec_id].green = "#DCDCDC"
+       oldSignalToIntMap[data.isec_id].greenShadow = "#DCDCDC"
       let notification = "Vehicle is at lane " + data.veh_lane_id + " and entered MAP zone for intersection " + data.isec_id + " with approach having " + data.no_of_lanes + " lane(s).";
       this.props.showNotifications(notification);
     }
@@ -78,10 +117,11 @@ export class InterMarkers extends Component {
         let laneArray = mapData.lane_array;
         // console.log("ZONE_ARRAY =>", zoneArray);
         // console.log("LANE_ARRAY =>", laneArray);
-        let mapZoneOptions = {fillColor: "#8B0000", fillOpacity: 0.5, strokeWeight: 0.5};
+        let mapZoneOptions = {fillColor: "#A0522D", fillOpacity: 0.5, strokeWeight: 0.5};
         let laneZoneOptions = {fillColor:"#191970", fillOpacity: 1, strokeWeight: 1.5};
         let pos = {lat: mapData.isec_lat, lng: mapData.isec_lng, title: mapData.label};
         iconImg = iconImg.replace(/label/g, pos.title);
+        iconImg = iconImg.replace(/redshadow/g, mapData.redShadow).replace(/red/g, mapData.red).replace(/yellowshadow/g, mapData.yellowShadow).replace(/yellow/g, mapData.yellow).replace(/greenshadow/g, mapData.greenShadow).replace(/green/g, mapData.green);
         let icon = { url: 'data:image/svg+xml;charset=UTF-8,' + encodeURIComponent(iconImg),
                        scaledSize: new window.google.maps.Size(100, 100),
                        /*anchor: new window.google.maps.Point(0,0)*/

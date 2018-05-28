@@ -59,7 +59,7 @@ export class SRMMarkers extends Component {
     if(!requestIDs.includes(data.Request_id.toString())) {
       // console.log("GENERATING REQUEST TOAST");
       let toastID = toast.info("Signal Request Sent to RSU", {
-         position: toast.POSITION.TOP_CENTER,
+         position: toast.POSITION.TOP_LEFT,
          autoClose: 10000
        });
        currentSrmData[data.Request_id] = data;
@@ -71,14 +71,13 @@ export class SRMMarkers extends Component {
       this.props.updatesrm(data.Request_id, string);
 
       // let toastID = toast.info(string, {
-      //    position: toast.POSITION.TOP_CENTER,
+      //    position: toast.POSITION.TOP_LEFT,
       //    autoClose: 3000
       //  });
        currentSrmData[data.Request_id] = data;
        currentSrmData[data.Request_id].count = count;
 
     }
-    currentSrmData[data.Request_id].color = color_codes[count % 10];
     this.setState({srmData: currentSrmData});
     let content =  " with request ID " +  data.Request_id + " sent by " + data.vehicle_id + " at " + data.Current_Lat + ", " + data.Current_Lon ;
     let logInfo = {className: "srm-text", timestamp: data.timestamp, label: "SRM", content: content }
@@ -99,11 +98,11 @@ export class SRMMarkers extends Component {
     let markers = currentMarkers.map((data, index) => {
       let pos = {lat: data.Current_Lat, lng: data.Current_Lon};
 
-      let srmFlag = srmIcon.replace(/fillColor/g, data.color);
+      let srmFlag = srmIcon.replace(/fillColor/g, data.color).replace(/count/g, data.count);
       let icon = {
         url: 'data:image/svg+xml;charset=UTF-8,' + encodeURIComponent(srmFlag),
-        scaledSize: new window.google.maps.Size(85, 85),
-        anchor: new window.google.maps.Point(0,85)
+        scaledSize: new window.google.maps.Size(50, 50),
+        anchor: new window.google.maps.Point(0,25)
       };
       return (
         <Marker key={"srm_" + index} position={pos} draggable={false} onClick={(id) => {this.handleClick(data)} } icon={icon} />

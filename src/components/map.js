@@ -31,7 +31,7 @@ export const MapComponent = compose(
          scaleControl: true,
          maxZoom: 21
        }}
-       defaultZoom={20}
+       defaultZoom={18}
        mapTypeId="roadmap"
        defaultCenter={{lat: 42.331280891921075, lng: -83.0733836184375}}
       // defaultCenter={{ lat: 13.178227, lng: 79.611750 }}

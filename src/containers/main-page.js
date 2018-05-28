@@ -55,12 +55,12 @@ export class MainPage extends Component{
 			let string = "Signal Request " + status + "!"
 			if(status === "granted") {
 				toast.success(string, {
-	         position: toast.POSITION.TOP_CENTER,
+	         position: toast.POSITION.TOP_LEFT,
 	         autoClose: 10000
 	       });
 			} else {
 				toast.error(string, {
-	         position: toast.POSITION.TOP_CENTER,
+	         position: toast.POSITION.TOP_LEFT,
 	         autoClose: 10000
 	       });
 			}
@@ -74,6 +74,10 @@ export class MainPage extends Component{
 
 	ssmEnable(state) {
 		this.ssm.enable(state);
+	}
+
+	sendToIntMarker(color, isec_id) {
+		this.intermarker.updateSignalData(color, isec_id);
 	}
 
 	componentDidMount() {
@@ -153,7 +157,7 @@ export class MainPage extends Component{
 					<div  className="top-panel">
 						<SignalPanel
 						 onSignalPanelMount={this.handleSignalPanelMount.bind(this)} addLogs={this.addLogs}
-						  showNotifications={this.addNotifications.bind(this)}/>
+						  showNotifications={this.addNotifications.bind(this)}sendToIntMarker={this.sendToIntMarker.bind(this)}/>
 						<VehicleContainer onVehicleMount={this.handleVehicleMount.bind(this)} />
 					</div>
 					<div className="bottom-panel">

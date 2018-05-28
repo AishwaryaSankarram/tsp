@@ -59,19 +59,19 @@ export class SignalPanel extends Component {
       let string = "Signal timer for " + data.color.toUpperCase() + " is set to " + data.timer + " SECONDS."
       if(data.color === "green") {
         this.signalToastID = toast.success(string, {
-           position: toast.POSITION.TOP_CENTER,
+           position: toast.POSITION.TOP_LEFT,
            autoClose: (data.timer + 1) * 1000
          });
 
       } else if (data.color === "yellow") {
         this.signalToastID = toast.warn(string, {
-           position: toast.POSITION.TOP_CENTER,
+           position: toast.POSITION.TOP_LEFT,
            autoClose: (data.timer + 1) * 1000
          });
 
        } else if (data.color === "red") {
          this.signalToastID = toast.error(string, {
-            position: toast.POSITION.TOP_CENTER,
+            position: toast.POSITION.TOP_LEFT,
             autoClose: (data.timer + 1) * 1000
           });
        }
@@ -94,6 +94,8 @@ export class SignalPanel extends Component {
         autoClose: (data.timer + 1) * 1000
       });
     }
+
+    this.props.sendToIntMarker(data.color, data.isec_id);
 
     this.props.addLogs(logInfo);
     let signals = self.state.signals;
@@ -230,8 +232,9 @@ export class SignalPanel extends Component {
         <div className="signal-panel">
           <div className="signal-header">
             <label> Intersection Details </label>
-          <Checkbox className="signals-checkbox" checked={this.state.showAllSignals} disabled={Object.keys(this.state.signals).length <= 1} onChange={(event) => this.handleChange(event)}>
-              Show All Signals
+          <Checkbox className="signals-checkbox" checked={this.state.showAllSignals}
+          onChange={(event) => this.handleChange(event)}>
+              Show All Intersections
             </Checkbox>
           </div>
           <MuiThemeProvider >

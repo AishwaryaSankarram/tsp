@@ -52,7 +52,7 @@ export class SSMMarkers extends Component {
     let currentSsmInfo = this.state.ssmInfo;
     this.props.ssmsent(parsedData.Request_id, parsedData.status);
     currentSsmInfo[parsedData.Request_id] = parsedData;
-    currentSsmInfo[parsedData.Request_id].color = color_codes[count % 10];
+    parsedData.status == "granted" ? currentSsmInfo[parsedData.Request_id].color = "green" :  currentSsmInfo[parsedData.Request_id].color = "red";
     this.setState({ssmInfo: currentSsmInfo});
     let content = " with request ID " + parsedData.Request_id + " sent by RSU at " + parsedData.Current_Lat + ", " + parsedData.Current_Lon + " to vehicle with ID " + parsedData.vehicle_id  ;
     let logInfo = {className: "ssm-text", timestamp: parsedData.timestamp, label: "SSM", content: content};
