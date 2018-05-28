@@ -99,6 +99,8 @@ export class SignalPanel extends Component {
     let signals = self.state.signals;
     let activeSignal = data;
     signals[data.isec_id] = data;
+    if (parseInt(data.timer, 10) > 0 && parseInt(data.timer, 10) < 10)
+      signals[data.isec_id].timer = "0" + data.timer;
     clearInterval(self.intervalTimer);
     for(let sig in signals){
       if(sig !== data.isec_id.toString()){
@@ -201,14 +203,14 @@ export class SignalPanel extends Component {
       }
       if(Object.keys(this.state.signals).length > 0){
       if(!this.state.showAllSignals || (this.state.showAllSignals && Object.keys(this.state.signals).length === 1)) {
-        signals = <span title={this.state.activeSignal.isec_id} className="signal" style={{marginTop: "-66px"}} key={"signal-li_" + 0} >
+        signals = <span className="signal" style={{marginTop: "-66px"}} key={"signal-li_" + 0} >
           <Signal key={0} connectDirs={this.getConnectDirs(this.state.activeSignal.isec_id)} data={this.state.activeSignal} clicksignal={(event) => this.openPopover(event, this.state.activeSignal.isec_id)}/>
             </span>;
         } else {
           let signalObjects = Object.values(this.state.signals);
           signals = [];
           signalObjects.forEach((signal, index) => {
-            signals.push(<span title={signal.isec_id} className="multi-signal" key={"signal-li_" + index} >
+            signals.push(<span className="multi-signal" key={"signal-li_" + index} >
             <Signal key={0} connectDirs={this.getConnectDirs(signal.isec_id)} data={signal}
             clicksignal={(event) => this.openPopover(event, signal.isec_id)}/>
                 </span>);
