@@ -8,6 +8,7 @@ import 'react-toastify/dist/ReactToastify.css';
 
 import openSocket from 'socket.io-client';
 
+
 window.socket = openSocket("http://localhost:8089", { transports: ['websocket']});
 
 class App extends Component {
@@ -55,7 +56,7 @@ class App extends Component {
         <Header srmenable={this.srmEnable} ssmenable={this.ssmEnable} clearData={this.clearData} toggleNotifications={this.toggleLogView.bind(this)}>
         </Header>
         <MainPage handleMount={this.mainPageMount}/>
-        <ToastContainer style={{fontSize: "16px"}} />
+        <ToastContainer style={{fontSize: "16px", marginTop:"20%", marginLeft: "5%"}} />
       </div>
     );
   }
