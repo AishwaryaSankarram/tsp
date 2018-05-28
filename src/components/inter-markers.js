@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Marker, Polygon } from 'react-google-maps';
 // import InterIcon from '../images/intersection-icon';
 import SignalInterIcon from '../images/signal-intersection-icon'
-import { ToastContainer, toast } from 'react-toastify';
+import { toast } from 'react-toastify';
 
 window.signalToInt = {};
 
@@ -48,7 +48,7 @@ export class InterMarkers extends Component {
     if (!oldSignalToIntMap[data.isec_id] || oldSignalToIntMap[data.isec_id].veh_lane_id !== data.veh_lane_id) {
 
        //Show Notifications only in case of a lane change/ intersection change;
-       let toastID = toast.info("Entering Map Zone", {
+       toast.info("Entering Map Zone", {
           position: toast.POSITION.TOP_CENTER,
           autoClose: 10000
         });

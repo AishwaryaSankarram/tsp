@@ -5,7 +5,7 @@ import {Checkbox} from "react-bootstrap";
 import Popover from "material-ui/Popover";
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import '../css/signal-panel.css';
-import { ToastContainer, toast } from 'react-toastify';
+import { toast } from 'react-toastify';
 
 
 
@@ -57,19 +57,19 @@ export class SignalPanel extends Component {
     if(!this.intIDGroupID || this.intIDGroupID[0] !== data.isec_id || this.intIDGroupID[1] !== data.signal_group_id) {
 
       let string = "Signal timer for " + data.color.toUpperCase() + " is set to " + data.timer + " SECONDS."
-      if(data.color == "green") {
+      if(data.color === "green") {
         this.signalToastID = toast.success(string, {
            position: toast.POSITION.TOP_CENTER,
            autoClose: 10000
          });
 
-      } else if (data.color == "yellow") {
+      } else if (data.color === "yellow") {
         this.signalToastID = toast.warn(string, {
            position: toast.POSITION.TOP_CENTER,
            autoClose: 10000
          });
 
-       } else if (data.color == "red") {
+       } else if (data.color === "red") {
          this.signalToastID = toast.error(string, {
             position: toast.POSITION.TOP_CENTER,
             autoClose: 10000
@@ -81,11 +81,11 @@ export class SignalPanel extends Component {
     } else {
       let string = "Signal timer for " + data.color.toUpperCase() + " is set to " + data.timer + " SECONDS."
       let toastType;
-      if (data.color == "green") {
+      if (data.color ==="green") {
         toastType = toast.TYPE.SUCCESS;
-      } else if (data.color == "yellow") {
+      } else if (data.color === "yellow") {
         toastType = toast.TYPE.WARNING;
-      } else if (data.color == "red") {
+      } else if (data.color === "red") {
         toastType = toast.TYPE.ERROR;
       }
       toast.update(this.signalToastID, {
@@ -100,7 +100,7 @@ export class SignalPanel extends Component {
     let activeSignal = data;
     signals[data.isec_id] = data;
     if (parseInt(data.timer, 10) > 0 && parseInt(data.timer, 10) < 10)
-      signals[data.isec_id].timer = "0" + data.timer;
+      data.timer = "0" + data.timer;
     clearInterval(self.intervalTimer);
     for(let sig in signals){
       if(sig !== data.isec_id.toString()){

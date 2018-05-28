@@ -4,7 +4,7 @@ import {VehicleContainer} from './vehicle';
 import {LogContainer} from './log';
 import { SignalPanel } from './signal-panel';
 
-import { ToastContainer, toast } from 'react-toastify';
+import { toast } from 'react-toastify';
 
 import { enableNotifications, isLogsExpanded} from '../constants.js';
 
@@ -52,13 +52,8 @@ export class MainPage extends Component{
 	 }
 
 	ssmsent(requestID, status) {
-			// console.log("SSM SENT TO MAIN PAGE");
-			// console.log("status =>", status);
-			let toastType;
-			let toastID = this.requestToToast[requestID.toString()];
-			// console.log("TOAST ID ->", toastID);
 			let string = "Signal Request " + status + "!"
-			if(status == "granted") {
+			if(status === "granted") {
 				toast.success(string, {
 	         position: toast.POSITION.TOP_CENTER,
 	         autoClose: 10000

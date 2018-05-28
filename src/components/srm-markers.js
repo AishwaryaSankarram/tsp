@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import { Marker } from "react-google-maps";
 import srmIcon from "../images/srm-flag";
 import { color_codes, enableSRM } from '../constants';
-import { ToastContainer, toast } from 'react-toastify';
+import { toast } from 'react-toastify';
 
 // let google = window.google;
 

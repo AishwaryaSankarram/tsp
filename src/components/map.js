@@ -1,5 +1,5 @@
 import React from 'react';
-import { withGoogleMap, GoogleMap, Polygon} from "react-google-maps";
+import { withGoogleMap, GoogleMap} from "react-google-maps";
 
 import { compose, lifecycle} from "recompose";
 import {Vehicles} from './vehicles';

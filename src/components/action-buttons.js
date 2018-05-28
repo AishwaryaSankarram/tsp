@@ -4,10 +4,8 @@ import {Checkbox} from "react-bootstrap";
 import Popover from 'material-ui/Popover';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import {SettingsPopover} from './settings-popover';
-import { ToastContainer, toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
 
-import { enableSRM, enableSSM, enableNotifications, isLogsExpanded, enablePriority} from '../constants.js';
+import { enableSRM, enableSSM, enableNotifications, enablePriority} from '../constants.js';
 
 export class ActionButtons extends Component {
   not
