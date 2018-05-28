@@ -53,7 +53,7 @@ export class VehicleContainer extends Component{
     }
 
 	render(){
-		let laneElt = (this.state.laneId && this.state.laneId > 0) ? <tr><td>Lane ID</td><td>{this.state.laneId}</td></tr> : "";
+		let laneElt = (this.state.laneId && this.state.laneId > 0) ?<tr><td>Lane ID</td><td>{this.state.laneId}</td></tr> : <tr colSpan="2"></tr>;
 		return (
 			<div className="bus-container">
 				<table>
