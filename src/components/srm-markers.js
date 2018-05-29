@@ -1,12 +1,11 @@
 import React, {Component} from 'react';
 import { Marker } from "react-google-maps";
 import srmIcon from "../images/srm-flag";
-import { color_codes, enableSRM } from '../constants';
+import { enableSRM } from '../constants';
 import { toast } from 'react-toastify';
 
 // let google = window.google;
 
-let count = 0;
 
 export class SRMMarkers extends Component {
 
@@ -81,7 +80,6 @@ export class SRMMarkers extends Component {
     this.setState({srmData: currentSrmData});
     let content =  " with request ID " +  data.Request_id + " sent by " + data.vehicle_id + " at " + data.Current_Lat + ", " + data.Current_Lon ;
     let logInfo = {className: "srm-text", timestamp: data.timestamp, label: "SRM", content: content }
-    count += 1;
     let notification = "Signal Access Request with ID " + data.Request_id + " has been sent by vehicle " + data.vehicle_id + ".";
     this.props.showNotifications(notification);
     this.props.addLogs(logInfo);
@@ -101,8 +99,7 @@ export class SRMMarkers extends Component {
       let srmFlag = srmIcon.replace(/fillColor/g, data.color).replace(/count/g, data.count);
       let icon = {
         url: 'data:image/svg+xml;charset=UTF-8,' + encodeURIComponent(srmFlag),
-        scaledSize: new window.google.maps.Size(50, 50),
-        anchor: new window.google.maps.Point(0,25)
+        scaledSize: new window.google.maps.Size(100, 100)
       };
       return (
         <Marker key={"srm_" + index} position={pos} draggable={false} onClick={(id) => {this.handleClick(data)} } icon={icon} />

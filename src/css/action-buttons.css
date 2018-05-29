@@ -20,10 +20,20 @@
 }
 
 .priority-checkbox{
-    margin-top: 15px;
-    margin-right: 20px;
+    margin-top: -5px;
     float: right;
+    margin-left: 0px;
     word-wrap: break-word;
+}
+
+.priority-checkbox .switch-label{
+    font-family: sans-serif;
+    font-size: 14px;
+    margin-left: -5px;
+}
+
+.CustomizedSwitch-iOSSwitchBase-1.CustomizedSwitch-iOSChecked-2 + .CustomizedSwitch-iOSBar-3 {
+    background-color: rgb(0, 188, 212) !important;
 }
 
 /*For popover*/

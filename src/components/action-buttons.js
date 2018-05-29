@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import '../css/action-buttons.css';
-import {Checkbox} from "react-bootstrap";
 import Popover from 'material-ui/Popover';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
+import CustomizedSwitch from './switch';
 import {SettingsPopover} from './settings-popover';
 
 import { enableSRM, enableSSM, enableNotifications, enablePriority} from '../constants.js';
@@ -87,9 +87,9 @@ export class ActionButtons extends Component {
  render() {
     return (
         <div className="header-icons">
-          <Checkbox className="priority-checkbox" checked={this.state.enablePriority} onChange={(event) => this.handleChange(event, "enablePriority")}>
-      	  	Enable Signal Priority
-      	  </Checkbox>
+          <div className="action-button-container">
+            <CustomizedSwitch checked={this.state.enablePriority} onChange={(event) => this.handleChange(event, "enablePriority")}/>
+          </div>  
           <div className="action-button-container" title="View Settings">
             <button className="settings-btn" onClick={this.handleSettingsClick.bind(this)}>
                   <i className="fa fa-eye" ></i>
