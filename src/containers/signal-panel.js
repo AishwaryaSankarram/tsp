@@ -130,6 +130,7 @@ export class SignalPanel extends Component {
           }else{
             currentState.timer="";
             currentState.color="";
+            self.props.clearAllInterSignals(data.isec_id);
             self.setState({ activeSignal: activeSignal, signals: signals });
             clearInterval(self.intervalTimer);
           }

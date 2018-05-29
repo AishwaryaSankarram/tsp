@@ -80,6 +80,10 @@ export class MainPage extends Component{
 		this.intermarker.updateSignalData(color, isec_id);
 	}
 
+	disableAllInterSignals(isec_id) {
+		this.intermarker.clearSignal(isec_id);
+	}
+
 	componentDidMount() {
 		this.props.handleMount(this);
 	}
@@ -157,7 +161,8 @@ export class MainPage extends Component{
 					<div  className="top-panel">
 						<SignalPanel
 						 onSignalPanelMount={this.handleSignalPanelMount.bind(this)} addLogs={this.addLogs}
-						  showNotifications={this.addNotifications.bind(this)}sendToIntMarker={this.sendToIntMarker.bind(this)}/>
+						  showNotifications={this.addNotifications.bind(this)}sendToIntMarker={this.sendToIntMarker.bind(this)}
+							clearAllInterSignals={this.disableAllInterSignals.bind(this)}/>
 						<VehicleContainer onVehicleMount={this.handleVehicleMount.bind(this)} />
 					</div>
 					<div className="bottom-panel">
