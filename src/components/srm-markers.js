@@ -99,11 +99,11 @@ export class SRMMarkers extends Component {
       let srmFlag = srmIcon.replace(/fillColor/g, data.color).replace(/count/g, data.count);
       let icon = {
         url: 'data:image/svg+xml;charset=UTF-8,' + encodeURIComponent(srmFlag),
-        scaledSize: new window.google.maps.Size(75, 75),
-        anchor: new window.google.maps.Point(0,75)
+        scaledSize: new window.google.maps.Size(100, 100),
+        anchor: new window.google.maps.Point(0,100)
       };
       return (
-        <Marker key={"srm_" + index} position={pos} draggable={false} icon={icon} />
+        <Marker key={"srm_" + index} title={"SRM - " + data.count.toString()} position={pos} draggable={false} icon={icon} />
       );
     });
 

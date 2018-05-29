@@ -73,12 +73,13 @@ export class Vehicles extends React.Component {
     checkForExistingBounds(latLng){
         let self = this;
         let map = self.props.mapObj;
+        map.panTo(latLng);
         // window.myMap = map;
         if (!map.getBounds().contains(latLng)) {
             // console.log("new lat lng not in bounds----");
             //latLngBounds.extend(latLng);
             //map.fitBounds(latLngBounds);
-            map.panTo(latLng);
+
         }
     }
 
