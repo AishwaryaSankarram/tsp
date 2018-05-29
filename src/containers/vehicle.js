@@ -1,6 +1,5 @@
 import React, {Component} from 'react';
 import '../css/vehicle.css';
-// import busIcon from '../images/bus-icon';
 
 export class VehicleContainer extends Component{
 	constructor(props){
@@ -19,7 +18,6 @@ export class VehicleContainer extends Component{
 	}
 
 	componentDidMount() {
-        // console.log("Vehicle Card Did Mount------------");
         this.props.onVehicleMount(this);
     }
 

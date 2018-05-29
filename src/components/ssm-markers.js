@@ -76,7 +76,7 @@ export class SSMMarkers extends Component {
       };
       let p = { lat: pos.Current_Lat, lng: pos.Current_Lon };
       return (
-        <Marker key={index} position={p} draggable={false} onClick={id => this.handleClick(pos)} icon={icon} />
+        <Marker key={index} position={p} draggable={false} icon={icon} />
         );
     });
 

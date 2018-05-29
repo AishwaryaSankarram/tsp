@@ -102,7 +102,7 @@ export class SRMMarkers extends Component {
         scaledSize: new window.google.maps.Size(100, 100)
       };
       return (
-        <Marker key={"srm_" + index} position={pos} draggable={false} onClick={(id) => {this.handleClick(data)} } icon={icon} />
+        <Marker key={"srm_" + index} position={pos} draggable={false} icon={icon} />
       );
     });
 

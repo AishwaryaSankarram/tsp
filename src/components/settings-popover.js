@@ -1,12 +1,10 @@
 import React, {Component} from 'react';
 import {Checkbox} from "react-bootstrap";
-import '../css/header.css';
 
 export class SettingsPopover extends Component {
 
   constructor(props) {
     super(props);
-
     this.handleChange = this.handleChange.bind(this);
   }
 
@@ -16,8 +14,7 @@ export class SettingsPopover extends Component {
       this.props.srmenableaction(event.target.checked);
     } else if(eventName === "SSM") {
       this.props.ssmenableaction(event.target.checked);
-    }
-    else if(eventName === "NOTIFICATIONS"){
+    } else if(eventName === "NOTIFICATIONS"){
       this.props.toggleNotifications(event.target.checked);
     }
 

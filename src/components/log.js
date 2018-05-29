@@ -1,19 +1,6 @@
 import React from 'react';
 
 export const LogComponent = (props) => {
-
-/*     let fakeLogs = (<div><div className="text-content"><div className="srm-text"> <div className="main-timestamp">  5/18/2018, 8:35:07 PM </div> - <label> SRM </label>   <div className="log-inner-content">  with request ID 100 sent by 1234 at 37.3522, -121.968483333 </div> </div></div>
-        <div className="text-content"><div className="srm-text"><div className="main-timestamp">  5/18/2018, 8:35:07 PM -</div> <label> SRM </label> <div className="log-inner-content"> with request ID 100 sent by 1234 at 37.3522, -121.968483333 </div></div></div>
-            <div className="text-content"><div className="srm-text"><div className="main-timestamp">  5/18/2018, 8:35:07 PM -</div> <label> SRM </label> <div className="log-inner-content">  with request ID 100 sent by 1234 at 37.3522, -121.968483333 </div></div></div>
-            <div className="text-content"><div className="srm-text"> <div className="main-timestamp"> 5/18/2018, 8:35:07 PM - </div><label> SRM </label>  <div className="log-inner-content">with request ID 100 sent by 1234 at 37.3522, -121.968483333 </div></div></div>
-            <div className="text-content"><div className="srm-text"> <div className="main-timestamp"> 5/18/2018, 8:35:07 PM - </div><label> SRM </label> <div className="log-inner-content"> with request ID 100 sent by 1234 at 37.3522, -121.968483333 </div></div></div>
-            <div className="text-content"><div className="srm-text"> <div className="main-timestamp"> 5/18/2018, 8:35:07 PM - </div><label> SRM </label> <div className="log-inner-content"> with request ID 100 sent by 1234 at 37.3522, -121.968483333</div></div></div>
-            <div className="text-content"><div className="srm-text"><div className="main-timestamp">  5/18/2018, 8:35:07 PM -</div> <label> SRM </label> <div className="log-inner-content"> with request ID 100 sent by 1234 at 37.3522, -121.968483333</div></div></div>
-            <div className="text-content"><div className="srm-text"><div className="main-timestamp">  5/18/2018, 8:35:07 PM -</div> <label> SRM </label> <div className="log-inner-content"> with request ID 100 sent by 1234 at 37.3522, -121.968483333 </div></div></div>
-            <div className="text-content"><div className="srm-text"><div className="main-timestamp">  5/18/2018, 8:35:07 PM -</div> <label> SRM </label> <div className="log-inner-content"> with request ID 100 sent by 1234 at 37.3522, -121.968483333 </div></div></div>
-    </div>); */
-
-
         let currentLogs = props.logs;
         let logsElement;
         if (currentLogs && currentLogs.length !== 0) {

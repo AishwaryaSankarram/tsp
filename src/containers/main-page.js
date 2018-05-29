@@ -106,13 +106,10 @@ export class MainPage extends Component{
 
 	fetchSSMandUpdateLogs(srmInfo){
 		let ssmData = this.ssm.state.ssmInfo;
-		// console.log("ssmData=========", ssmData, srmInfo);
 		let ssm = ssmData[srmInfo.Request_id];
-		// console.log("ssm aft=========", ssm);
 		if(!ssm){
 			ssm = {};
 		}
-		// console.log("SRMINFO ", srmInfo);
 		this.state.logs.openTabs("srm", srmInfo, ssm);
 	}
 
@@ -126,13 +123,10 @@ export class MainPage extends Component{
 
 	fetchSRMandUpdateLogs(ssmInfo) {
 		let srmData = this.srm.state.srmData;
-		// console.log("srmData=========", srmData, ssmInfo);
 		let srm = srmData[ssmInfo.Request_id];
-		// console.log("srm aft=========", srm);
 		if(!srm){
 			srm = {};
 		}
-		// console.log("SSMINFO ", ssmInfo);
 		this.state.logs.openTabs("ssm", srm, ssmInfo);
 	}
 

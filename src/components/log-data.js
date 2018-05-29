@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import '../css/logs.css';
 
+//In Debug mode for on click action of SRM/ SSM
 export class LogDataComponent extends Component {
     render() {
         let data = this.props.data;
