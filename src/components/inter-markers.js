@@ -7,7 +7,7 @@ import '../css/inter-markers.css';
 
 window.signalToInt = {};
 
-let signalColorsAndShadows = ["#2BBF60", "#3CCE6C", "#EAB42D", "#EDCB3B", "#EA4949", "#F25F5F"]
+let signalColorsAndShadows = ["#2BBF60", "#3CCE6C", "#EAB42D", "#EDCB3B", "#EA4949", "#F25F5F"];
 
 export class InterMarkers extends Component {
 
@@ -38,27 +38,29 @@ export class InterMarkers extends Component {
   updateSignalData(color, isec_id) {
     console.log("COLOR ->", color);
     let signalToIntMap = this.state.signalToIntMap;
-    if(color === "red") {
-      signalToIntMap[isec_id].redShadow = signalColorsAndShadows[5];
-      signalToIntMap[isec_id].red = signalColorsAndShadows[4];
-      signalToIntMap[isec_id].yellowShadow = "#DCDCDC"
-      signalToIntMap[isec_id].yellow = "#DCDCDC"
-      signalToIntMap[isec_id].greenShadow = "#DCDCDC"
-      signalToIntMap[isec_id].green = "#DCDCDC"
-    } else if (color === "yellow") {
-      signalToIntMap[isec_id].yellowShadow = signalColorsAndShadows[3];
-      signalToIntMap[isec_id].yellow = signalColorsAndShadows[2];
-      signalToIntMap[isec_id].redShadow = "#DCDCDC"
-      signalToIntMap[isec_id].red = "#DCDCDC"
-      signalToIntMap[isec_id].greenShadow = "#DCDCDC"
-      signalToIntMap[isec_id].green = "#DCDCDC"
-    } else if (color === "green") {
-      signalToIntMap[isec_id].greenShadow = signalColorsAndShadows[1];
-      signalToIntMap[isec_id].green = signalColorsAndShadows[0];
-      signalToIntMap[isec_id].yellowShadow = "#DCDCDC"
-      signalToIntMap[isec_id].yellow = "#DCDCDC"
-      signalToIntMap[isec_id].redShadow = "#DCDCDC"
-      signalToIntMap[isec_id].red = "#DCDCDC"
+    if(signalToIntMap[isec_id]) {
+      if(color === "red") {
+        signalToIntMap[isec_id].redShadow = signalColorsAndShadows[5];
+        signalToIntMap[isec_id].red = signalColorsAndShadows[4];
+        signalToIntMap[isec_id].yellowShadow = "#DCDCDC"
+        signalToIntMap[isec_id].yellow = "#DCDCDC"
+        signalToIntMap[isec_id].greenShadow = "#DCDCDC"
+        signalToIntMap[isec_id].green = "#DCDCDC"
+      } else if (color === "yellow") {
+        signalToIntMap[isec_id].yellowShadow = signalColorsAndShadows[3];
+        signalToIntMap[isec_id].yellow = signalColorsAndShadows[2];
+        signalToIntMap[isec_id].redShadow = "#DCDCDC"
+        signalToIntMap[isec_id].red = "#DCDCDC"
+        signalToIntMap[isec_id].greenShadow = "#DCDCDC"
+        signalToIntMap[isec_id].green = "#DCDCDC"
+      } else if (color === "green") {
+        signalToIntMap[isec_id].greenShadow = signalColorsAndShadows[1];
+        signalToIntMap[isec_id].green = signalColorsAndShadows[0];
+        signalToIntMap[isec_id].yellowShadow = "#DCDCDC"
+        signalToIntMap[isec_id].yellow = "#DCDCDC"
+        signalToIntMap[isec_id].redShadow = "#DCDCDC"
+        signalToIntMap[isec_id].red = "#DCDCDC"
+      }
     }
   }
 

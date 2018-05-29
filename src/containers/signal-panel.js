@@ -207,9 +207,10 @@ export class SignalPanel extends Component {
   render() {
       let signals=<div></div>;
       if(Object.keys(this.state.signals).length === 0) {
-        signals = <span className="signal" style={{marginTop: "-66px"}} >
-        <Signal key={0} connectDirs={["straight"]} data={this.state.activeSignal} />
+        signals = <span className="signal" style={{marginTop: "-66px"}} key={"signal-li_" + 0} >
+          <Signal key={0} connectDirs={["straight"]} data={this.state.activeSignal}/>
             </span>;
+
       }
       if(Object.keys(this.state.signals).length > 0){
       if(!this.state.showAllSignals || (this.state.showAllSignals && Object.keys(this.state.signals).length === 1)) {
@@ -221,7 +222,9 @@ export class SignalPanel extends Component {
           signals = [];
           signalObjects.forEach((signal, index) => {
             signals.push(<span className="multi-signal" key={"signal-li_" + index} >
-            <Signal key={0} connectDirs={this.getConnectDirs(signal.isec_id)} data={signal}
+            <Signal key={0}
+            activeSignal={signal.isec_id === this.state.activeSignal.isec_id}
+            connectDirs={this.getConnectDirs(signal.isec_id)} data={signal}
             clicksignal={(event) => this.openPopover(event, signal.isec_id)}/>
                 </span>);
           });
@@ -233,7 +236,7 @@ export class SignalPanel extends Component {
         <div className="signal-panel">
           <div className="signal-header">
             <label> Intersection Details </label>
-          <Checkbox className="signals-checkbox" checked={this.state.showAllSignals}
+          <Checkbox style={{zIndex: 100}} className="signals-checkbox" checked={this.state.showAllSignals}
           onChange={(event) => this.handleChange(event)}>
               Show All Intersections
             </Checkbox>

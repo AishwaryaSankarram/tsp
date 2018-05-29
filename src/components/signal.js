@@ -1,3 +1,4 @@
+
 import React, {Component} from 'react';
 import {SignalImage} from '../images/signal-image';
 
@@ -21,7 +22,7 @@ export class Signal extends Component {
       timerProps = ["", "", ""];
     }
 
-    return <SignalImage colors={colorProps} timers={timerProps} label={data.label} clicksignal={this.props.clicksignal}
+    return <SignalImage colors={colorProps} activeSignal={this.props.activeSignal} timers={timerProps} label={data.label} clicksignal={this.props.clicksignal}
       connectDirs={(data.color && ["red", "yellow", "green"].includes(data.color)) ? this.props.connectDirs : null}/>
    }
 }
