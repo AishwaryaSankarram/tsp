@@ -9,7 +9,7 @@ export class SSMMarkers extends Component {
     super(props);
 
     this.state = {
-      ssmInfo: {},
+      ssmInfo: [],
       enabled: enableSSM
     };
 
@@ -36,7 +36,7 @@ export class SSMMarkers extends Component {
 
   clearData() {
     //console.log("CLEARING FROM SSM MARKERS COMPONENT");
-    this.setState({ssmInfo: {}});
+    this.setState({ssmInfo: []});
   }
 
   enable(state) {
@@ -47,11 +47,12 @@ export class SSMMarkers extends Component {
   processSSM(data) {
     // console.log("SSM Data arrived----", data);
     let parsedData = JSON.parse(data);
-    let currentSsmInfo = this.state.ssmInfo;
+    let currentSsmInfo = parsedData;
+    let ssmInfo = this.state.ssmInfo;
     this.props.ssmsent(parsedData.Request_id, parsedData.status);
-    currentSsmInfo[parsedData.Request_id] = parsedData;
-    parsedData.status === "granted" ? currentSsmInfo[parsedData.Request_id].color = "green" :  currentSsmInfo[parsedData.Request_id].color = "red";
-    this.setState({ssmInfo: currentSsmInfo});
+    parsedData.status === "granted" ? currentSsmInfo.color = "green" :  currentSsmInfo.color = "red";
+    ssmInfo.push(parsedData);
+    this.setState({ssmInfo: ssmInfo});
     let content = " with request ID " + parsedData.Request_id + " sent by RSU at " + parsedData.Current_Lat + ", " + parsedData.Current_Lon + " to vehicle with ID " + parsedData.vehicle_id  ;
     let logInfo = {className: "ssm-text", timestamp: parsedData.timestamp, label: "SSM", content: content};
     this.props.addLogs(logInfo);
@@ -65,9 +66,8 @@ export class SSMMarkers extends Component {
   }
 
   render() {
-    let currentMarkers = Object.values(this.state.ssmInfo);
+    let currentMarkers = this.state.ssmInfo;
     // console.log("SSM MARKERS =>", currentMarkers);
-    // console.log("COLOR CODES ", color_codes);
     let markers = currentMarkers.map((pos, index) => {
       let ssmFlag = ssmIcon.replace(/fillColor/g, pos.color);
       let icon = {
