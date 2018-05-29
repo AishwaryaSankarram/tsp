@@ -3,8 +3,7 @@ import { Marker, Polygon } from 'react-google-maps';
 // import InterIcon from '../images/intersection-icon';
 import SignalInterIcon from '../images/signal-intersection-icon'
 import { toast } from 'react-toastify';
-import '../css/inter-markers.css'
-import { css } from 'glamor';
+import '../css/inter-markers.css';
 
 window.signalToInt = {};
 
@@ -39,21 +38,21 @@ export class InterMarkers extends Component {
   updateSignalData(color, isec_id) {
     console.log("COLOR ->", color);
     let signalToIntMap = this.state.signalToIntMap;
-    if(color == "red") {
+    if(color === "red") {
       signalToIntMap[isec_id].redShadow = signalColorsAndShadows[5];
       signalToIntMap[isec_id].red = signalColorsAndShadows[4];
       signalToIntMap[isec_id].yellowShadow = "#DCDCDC"
       signalToIntMap[isec_id].yellow = "#DCDCDC"
       signalToIntMap[isec_id].greenShadow = "#DCDCDC"
       signalToIntMap[isec_id].green = "#DCDCDC"
-    } else if (color == "yellow") {
+    } else if (color === "yellow") {
       signalToIntMap[isec_id].yellowShadow = signalColorsAndShadows[3];
       signalToIntMap[isec_id].yellow = signalColorsAndShadows[2];
       signalToIntMap[isec_id].redShadow = "#DCDCDC"
       signalToIntMap[isec_id].red = "#DCDCDC"
       signalToIntMap[isec_id].greenShadow = "#DCDCDC"
       signalToIntMap[isec_id].green = "#DCDCDC"
-    } else if (color == "green") {
+    } else if (color === "green") {
       signalToIntMap[isec_id].greenShadow = signalColorsAndShadows[1];
       signalToIntMap[isec_id].green = signalColorsAndShadows[0];
       signalToIntMap[isec_id].yellowShadow = "#DCDCDC"
@@ -127,7 +126,7 @@ export class InterMarkers extends Component {
                        /*anchor: new window.google.maps.Point(0,0)*/
                       };
         return (
-          <div>
+          <div key={"div-isec_" + index}>
           <Marker key={"i-marker_" + index} position={pos} title={pos.title.toString()} icon={icon} />
           <Polygon key={"poly-map_" + index} path={zoneArray} options={mapZoneOptions}  />
           <Polygon key={"poly-lane_" + index} path={laneArray} options={laneZoneOptions}  />

@@ -1,9 +1,7 @@
 import React, {Component} from 'react';
 import { Marker } from "react-google-maps";
 import ssmIcon from "../images/ssm-flag";
-import { color_codes, enableSSM } from '../constants';
-
-let count = 0;
+import { enableSSM } from '../constants';
 
 export class SSMMarkers extends Component {
 
@@ -52,11 +50,10 @@ export class SSMMarkers extends Component {
     let currentSsmInfo = this.state.ssmInfo;
     this.props.ssmsent(parsedData.Request_id, parsedData.status);
     currentSsmInfo[parsedData.Request_id] = parsedData;
-    parsedData.status == "granted" ? currentSsmInfo[parsedData.Request_id].color = "green" :  currentSsmInfo[parsedData.Request_id].color = "red";
+    parsedData.status === "granted" ? currentSsmInfo[parsedData.Request_id].color = "green" :  currentSsmInfo[parsedData.Request_id].color = "red";
     this.setState({ssmInfo: currentSsmInfo});
     let content = " with request ID " + parsedData.Request_id + " sent by RSU at " + parsedData.Current_Lat + ", " + parsedData.Current_Lon + " to vehicle with ID " + parsedData.vehicle_id  ;
     let logInfo = {className: "ssm-text", timestamp: parsedData.timestamp, label: "SSM", content: content};
-    count += 1;
     this.props.addLogs(logInfo);
     let notification = "Signal Access Request for " + parsedData.Request_id + " has been granted by RSU for " + parsedData.vehicle_id + ".";
     this.props.showNotifications(notification);
@@ -75,8 +72,7 @@ export class SSMMarkers extends Component {
       let ssmFlag = ssmIcon.replace(/fillColor/g, pos.color);
       let icon = {
         url: 'data:image/svg+xml;charset=UTF-8,' + encodeURIComponent(ssmFlag),
-        scaledSize: new window.google.maps.Size(50, 50),
-        anchor: new window.google.maps.Point(0,50)
+        scaledSize: new window.google.maps.Size(50, 50)
       };
       let p = { lat: pos.Current_Lat, lng: pos.Current_Lon };
       return (
