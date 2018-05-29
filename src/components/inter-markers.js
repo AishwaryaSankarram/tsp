@@ -19,6 +19,7 @@ export class InterMarkers extends Component {
 
     this.updateIntersections = this.updateIntersections.bind(this);
     this.displayMapData = this.displayMapData.bind(this);
+    this.isecIdToLabelMap = {}
   }
 
   componentDidMount() {
@@ -36,8 +37,9 @@ export class InterMarkers extends Component {
   }
 
   updateSignalData(color, isec_id) {
-    console.log("COLOR ->", color);
+    // console.log("COLOR ->", color);
     let signalToIntMap = this.state.signalToIntMap;
+    // console.log("SIGNAL TO INT MAP", signalToIntMap[isec_id]);
     if(signalToIntMap[isec_id]) {
       if(color === "red") {
         signalToIntMap[isec_id].redShadow = signalColorsAndShadows[5];
@@ -62,6 +64,7 @@ export class InterMarkers extends Component {
         signalToIntMap[isec_id].red = "#DCDCDC"
       }
     }
+    this.setState({signalToIntMap: signalToIntMap});
   }
 
   clearSignal(isec_id) {
@@ -80,7 +83,14 @@ export class InterMarkers extends Component {
   }
 
   clearData() {
-    this.setState({signalToIntMap: {} });
+    let signalToIntMap = this.state.signalToIntMap;
+    Object.values(signalToIntMap).forEach((mapData) => {
+      mapData.zone_array = [];
+      mapData.lane_array = [];
+      mapData.isec_lat = null;
+      mapData.isec_lng = null;
+    })
+    this.setState({signalToIntMap: signalToIntMap});
   }
 
   updateIntersections(mapData) {
@@ -88,18 +98,24 @@ export class InterMarkers extends Component {
 
     // console.log("MAP DATA JSON =>", data);
     let oldSignalToIntMap = this.state.signalToIntMap;
-    let noOfElements = Object.keys(oldSignalToIntMap).length;
-    let chr = String.fromCharCode(65+noOfElements);
-    if (!oldSignalToIntMap[data.isec_id] || oldSignalToIntMap[data.isec_id].veh_lane_id !== data.veh_lane_id) {
+
 
        //Show Notifications only in case of a lane change/ intersection change;
-       toast('Entering Map Zone...', {
+       toast.info('Entering Map Zone...', {
           position: toast.POSITION.TOP_LEFT,
           className: 'toastify-map',
           bodyClassName: 'toastify-text',
+          progressClassName: 'toastify-progress',
           autoClose: 10000
         });
+
+       if(!this.isecIdToLabelMap[data.isec_id]) {
+         let noOfElements = Object.keys(this.isecIdToLabelMap).length;
+         let chr = String.fromCharCode(65+noOfElements);
+         this.isecIdToLabelMap[data.isec_id] = chr;
+       }
        oldSignalToIntMap[data.isec_id] = data;
+       oldSignalToIntMap[data.isec_id].label = this.isecIdToLabelMap[data.isec_id];
        oldSignalToIntMap[data.isec_id].red = "#DCDCDC"
        oldSignalToIntMap[data.isec_id].redShadow = "#DCDCDC"
        oldSignalToIntMap[data.isec_id].yellow = "#DCDCDC"
@@ -108,8 +124,8 @@ export class InterMarkers extends Component {
        oldSignalToIntMap[data.isec_id].greenShadow = "#DCDCDC"
       let notification = "Vehicle is at lane " + data.veh_lane_id + " and entered MAP zone for intersection " + data.isec_id + " with approach having " + data.no_of_lanes + " lane(s).";
       this.props.showNotifications(notification);
-    }
-    oldSignalToIntMap[data.isec_id].label = chr;
+
+
     let content =  "MAP data with intersection ID " +  data.isec_id + " sent by RSU at " + data.isec_lat + ", " + data.isec_lng + " for vehicle ID " + data.vehicle_id;
     let logInfo = {className: "map-text", timestamp: data.timestamp, label: "MAP", content: content };
 
@@ -139,7 +155,7 @@ export class InterMarkers extends Component {
                       };
         return (
           <div key={"div-isec_" + index}>
-          <Marker key={"i-marker_" + index} position={pos} title={pos.title.toString()} icon={icon} />
+          {pos.lat && pos.lng && <Marker key={"i-marker_" + index} position={pos} title={pos.title.toString()} icon={icon} />}
           <Polygon key={"poly-map_" + index} path={zoneArray} options={mapZoneOptions}  />
           <Polygon key={"poly-lane_" + index} path={laneArray} options={laneZoneOptions}  />
           </div>

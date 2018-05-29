@@ -72,7 +72,8 @@ export class SSMMarkers extends Component {
       let ssmFlag = ssmIcon.replace(/fillColor/g, pos.color);
       let icon = {
         url: 'data:image/svg+xml;charset=UTF-8,' + encodeURIComponent(ssmFlag),
-        scaledSize: new window.google.maps.Size(50, 50)
+        scaledSize: new window.google.maps.Size(50, 50),
+        anchor: new window.google.maps.Point(0,50)
       };
       let p = { lat: pos.Current_Lat, lng: pos.Current_Lon };
       return (

@@ -60,19 +60,19 @@ export class SignalPanel extends Component {
       if(data.color === "green") {
         this.signalToastID = toast.success(string, {
            position: toast.POSITION.TOP_LEFT,
-           autoClose: (data.timer + 1) * 1000
+           autoClose: Math.min((data.timer + 1) * 1000, 15000)
          });
 
       } else if (data.color === "yellow") {
         this.signalToastID = toast.warn(string, {
            position: toast.POSITION.TOP_LEFT,
-           autoClose: (data.timer + 1) * 1000
+           autoClose: Math.min((data.timer + 1) * 1000, 15000)
          });
 
        } else if (data.color === "red") {
          this.signalToastID = toast.error(string, {
             position: toast.POSITION.TOP_LEFT,
-            autoClose: (data.timer + 1) * 1000
+            autoClose: Math.min((data.timer + 1) * 1000, 15000)
           });
        }
 
@@ -91,7 +91,7 @@ export class SignalPanel extends Component {
       toast.update(this.signalToastID, {
         render: string,
         type: toastType,
-        autoClose: (data.timer + 1) * 1000
+        autoClose: Math.min((data.timer + 1) * 1000, 15000)
       });
     }
 
@@ -100,6 +100,15 @@ export class SignalPanel extends Component {
     this.props.addLogs(logInfo);
     let signals = self.state.signals;
     let activeSignal = data;
+    if(Object.keys(signals).length === 4 && !signals[data.isec_id]) {
+      let values = Object.values(signals);
+      values.sort((a,b) => {
+        let c = a.label < b.label ? -1 : a.label > b.label ? 1 : 0;
+        return c;
+      });
+      let toDelete = values[0].isec_id
+      delete signals[toDelete];
+    }
     signals[data.isec_id] = data;
     if(this.state.intToSignalMap[data.isec_id]) {
       activeSignal.label = this.state.intToSignalMap[data.isec_id].label;
@@ -131,7 +140,7 @@ export class SignalPanel extends Component {
             currentState.timer="";
             currentState.color="";
             self.props.clearAllInterSignals(data.isec_id);
-            self.setState({ activeSignal: activeSignal, signals: signals });
+            self.setState({ activeSignal: activeSignal, signals: signals, isPopoverOpen: false });
             clearInterval(self.intervalTimer);
           }
 
@@ -167,23 +176,41 @@ export class SignalPanel extends Component {
   }
 
   intersectionToSignalMap(obj, newMap) {
-    if(newMap.isec_id !== this.state.activeSignal.isec_id) {
+    if(this.state.signals[newMap.isec_id]) {
+      clearInterval(this.intervalTimer);
+      for(let sig in this.state.signals) {
+        if(sig !== newMap.isec_id.toString()){
+          this.state.signals[sig].color = "";
+          this.state.signals[sig].timer = "";
+        }
+      }
+      this.setState({intToSignalMap: obj, activeSignal: this.state.signals[newMap.isec_id]});
+
+    } else if(newMap.isec_id !== this.state.activeSignal.isec_id) {
       // console.log("MAKING NEW ISEC ID");
       let newActiveSignal = {
         isec_id: newMap.isec_id,
         color: "",
         timer: "",
-        isPopoverOpen: false,
-        selIntersection: null
+        label: newMap.label
+      }
+      clearInterval(this.intervalTimer);
+      for(let sig in this.state.signals) {
+        if(sig !== newMap.isec_id.toString()){
+          this.state.signals[sig].color = "";
+          this.state.signals[sig].timer = "";
+        }
       }
       let oldSignals = this.state.signals;
       oldSignals[newMap.isec_id] = newActiveSignal;
       this.setState({intToSignalMap: obj, signals: oldSignals, activeSignal: newActiveSignal});
+
     } else {
       this.setState({intToSignalMap: obj});
     }
-
   }
+
+
 
   renderSignals(data) {
     let parsedData = JSON.parse(data);
@@ -211,24 +238,23 @@ export class SignalPanel extends Component {
           <Signal key={0} connectDirs={["straight"]} data={this.state.activeSignal}/>
             </span>;
 
-      }
-      if(Object.keys(this.state.signals).length > 0){
-      if(!this.state.showAllSignals || (this.state.showAllSignals && Object.keys(this.state.signals).length === 1)) {
+      } else if(Object.keys(this.state.signals).length === 1 || !this.state.showAllSignals) {
         signals = <span className="signal" style={{marginTop: "-66px"}} key={"signal-li_" + 0} >
           <Signal key={0} connectDirs={this.getConnectDirs(this.state.activeSignal.isec_id)} data={this.state.activeSignal} clicksignal={(event) => this.openPopover(event, this.state.activeSignal.isec_id)}/>
             </span>;
-        } else {
-          let signalObjects = Object.values(this.state.signals);
-          signals = [];
-          signalObjects.forEach((signal, index) => {
-            signals.push(<span className="multi-signal" key={"signal-li_" + index} >
-            <Signal key={0}
-            activeSignal={signal.isec_id === this.state.activeSignal.isec_id}
-            connectDirs={this.getConnectDirs(signal.isec_id)} data={signal}
-            clicksignal={(event) => this.openPopover(event, signal.isec_id)}/>
-                </span>);
-          });
-        }
+        //show one signal
+      } else {
+        let signalObjects = Object.values(this.state.signals);
+        signals = [];
+        signalObjects.forEach((signal, index) => {
+          signals.push(<span className="multi-signal" key={"signal-li_" + index} >
+          <Signal key={0}
+          activeSignal={signal.isec_id === this.state.activeSignal.isec_id }
+          connectDirs={this.getConnectDirs(signal.isec_id)} data={signal}
+          clicksignal={(event) => this.openPopover(event, signal.isec_id)}/>
+              </span>);
+        });
+
       }
 
     return (

@@ -75,7 +75,7 @@ export class VehicleContainer extends Component{
 						</tr>
 						<tr>
 							<td>Speed</td>
-							<td>{this.state.speed > 0 ? this.state.speed + ' mph' : ""}</td>
+							<td>{this.state.speed > 0 ? (this.state.speed * 2.23694) + ' mph' : ""}</td>
 						</tr>
 						<tr>
 							<td>Heading</td>

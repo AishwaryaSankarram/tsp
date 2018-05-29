@@ -77,7 +77,7 @@ export class SignalImage extends Component {
 
         </g>
         <g id="signal-box" fillRule="nonzero">
-          <path d="M 0 -70 L 480 -70 L 480 470 L 0 470 L 0 -70 L 0 470 Z" transform="translate(0,120)" fill="transparent" stroke={this.props.activeSignal ? "red" : "none"} strokeWidth="5"/>
+          <path d="M 0 -70 L 480 -70 L 480 470 L 0 470 L 0 -70 L 0 470 Z" transform="translate(0,120)" fill="transparent" stroke={this.props.activeSignal && this.props.connectDirs ? "red" : "none"} strokeWidth="5"/>
 
         </g>
      </g>
