@@ -176,12 +176,13 @@ export class SignalPanel extends Component {
   }
 
   intersectionToSignalMap(obj, newMap) {
+    let signals = this.state.signals;
     if(this.state.signals[newMap.isec_id]) {
       clearInterval(this.intervalTimer);
-      for(let sig in this.state.signals) {
+      for(let sig in signals) {
         if(sig !== newMap.isec_id.toString()){
-          this.state.signals[sig].color = "";
-          this.state.signals[sig].timer = "";
+          signals[sig].color = "";
+          signals[sig].timer = "";
         }
       }
       this.setState({intToSignalMap: obj, activeSignal: this.state.signals[newMap.isec_id]});
@@ -195,10 +196,10 @@ export class SignalPanel extends Component {
         label: newMap.label
       }
       clearInterval(this.intervalTimer);
-      for(let sig in this.state.signals) {
+      for(let sig in signals) {
         if(sig !== newMap.isec_id.toString()){
-          this.state.signals[sig].color = "";
-          this.state.signals[sig].timer = "";
+          signals[sig].color = "";
+          signals[sig].timer = "";
         }
       }
       let oldSignals = this.state.signals;
@@ -234,12 +235,12 @@ export class SignalPanel extends Component {
   render() {
       let signals=<div></div>;
       if(Object.keys(this.state.signals).length === 0) {
-        signals = <span className="signal" style={{marginTop: "-66px"}} key={"signal-li_" + 0} >
+        signals = <span className="signal" style={{marginTop: "-60px"}} key={"signal-li_" + 0} >
           <Signal key={0} connectDirs={["straight"]} data={this.state.activeSignal}/>
             </span>;
 
       } else if(Object.keys(this.state.signals).length === 1 || !this.state.showAllSignals) {
-        signals = <span className="signal" style={{marginTop: "-66px"}} key={"signal-li_" + 0} >
+        signals = <span className="signal" style={{marginTop: "-60px"}} key={"signal-li_" + 0} >
           <Signal key={0} connectDirs={this.getConnectDirs(this.state.activeSignal.isec_id)} data={this.state.activeSignal} clicksignal={(event) => this.openPopover(event, this.state.activeSignal.isec_id)}/>
             </span>;
         //show one signal

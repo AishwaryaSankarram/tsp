@@ -35,9 +35,9 @@ export class SignalImage extends Component {
      <svg id="signalSVG" xmlns="http://www.w3.org/2000/svg" width="70%" height="236px" viewBox="-10 10 550 700" version="1.1" >
      <title>{this.props.label}</title>
     <g id="Page-1" fill="none" fillRule="evenodd" onClick={this.props.clicksignal}>
-        <g id="signal-details-(1)" transform="translate(0,125)">
+        <g id="signal-details-(1)" transform="translate(0,140)">
            <g id="signal-label" stroke="none" transform="translate(205, -151)">
-              <g id="A" transform="translate(3.00, -35)" fill="#3B3B3B" fontFamily="Arial" fontSize="35">
+              <g id="A" transform="translate(3.00, -35)" fill="#3B3B3B" fontFamily="Arial" fontSize="60">
                  <text>
                     <tspan x="15" y="140" style={{fontWeight: "bold"}}>{this.props.label}</tspan>
                  </text>
@@ -77,7 +77,7 @@ export class SignalImage extends Component {
 
         </g>
         <g id="signal-box" fillRule="nonzero">
-          <path d="M 0 -70 L 480 -70 L 480 470 L 0 470 L 0 -70 L 0 470 Z" transform="translate(0,120)" fill="transparent" stroke={this.props.activeSignal && this.props.connectDirs ? "red" : "none"} strokeWidth="5"/>
+          <path d="M 0 -70 L 480 -70 L 480 490 L 0 490 L 0 -70 L 0 470 Z" transform="translate(0,120)" fill="transparent" stroke={this.props.activeSignal && this.props.connectDirs ? "red" : "none"} strokeWidth="5"/>
 
         </g>
      </g>
