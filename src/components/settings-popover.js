@@ -16,6 +16,8 @@ export class SettingsPopover extends Component {
       this.props.ssmenableaction(event.target.checked);
     } else if(eventName === "NOTIFICATIONS"){
       this.props.toggleNotifications(event.target.checked);
+    } else if (eventName === "BUS") {
+      this.props.toggleBus(event.target.checked);
     }
 
   }
@@ -28,6 +30,7 @@ export class SettingsPopover extends Component {
           <li><Checkbox checked={this.props.srmenable} onChange={(event) => this.handleChange(event, "SRM")} >View SRMs</Checkbox></li>
           <li><Checkbox checked={this.props.ssmenable} onChange={(event) => this.handleChange(event, "SSM")}>View SSMs</Checkbox></li>
           <li><Checkbox checked={this.props.enableNotifications} onChange={(event) => this.handleChange(event, "NOTIFICATIONS")}>View Notifications</Checkbox></li>
+          <li><Checkbox checked={this.props.centerBus} onChange={(event) => this.handleChange(event, "BUS")}>View Bus Centered</Checkbox></li>
         </ul>
       </div>
     );

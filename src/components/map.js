@@ -36,7 +36,7 @@ export const MapComponent = compose(
        defaultCenter={{lat: 42.331280891921075, lng: -83.0733836184375}}
       // defaultCenter={{ lat: 13.178227, lng: 79.611750 }}
      >
-        <Vehicles mapObj={props.mapObj} vehicle={props.vehicle} onMount={props.onBusMount}/>
+        <Vehicles mapObj={props.mapObj} vehicle={props.vehicle} onMount={props.onBusMount} focusBus={props.focusBus}/>
         <InterMarkers mapObj={props.mapObj} onMount={props.onInterMarkerMount} signalpanel={props.signalpanel} addLogs={props.addLogs} showNotifications={props.showNotifications}/>
         <SRMMarkers srmsent={props.srmsent} updatesrm={props.updatesrm} mapObj={props.mapObj} fetchSSM={props.fetchSSM} onMount={props.onSrmMount} addLogs={props.addLogs} showNotifications={props.showNotifications}/>
         <SSMMarkers mapObj={props.mapObj} ssmsent={props.ssmsent} fetchSRM={props.fetchSRM} onMount={props.onSsmMount} addLogs={props.addLogs} showNotifications={props.showNotifications}/>

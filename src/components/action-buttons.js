@@ -5,7 +5,7 @@ import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import CustomizedSwitch from './switch';
 import {SettingsPopover} from './settings-popover';
 
-import { enableSRM, enableSSM, enableNotifications, enablePriority} from '../constants.js';
+import { enableSRM, enableSSM, enableNotifications, enablePriority,  focusBus} from '../constants.js';
 
 export class ActionButtons extends Component {
   not
@@ -19,7 +19,8 @@ export class ActionButtons extends Component {
     settingsPopoverOpen: false,
     srmEnabled: enableSRM,
     ssmEnabled: enableSSM,
-    enableNotifications: enableNotifications
+    enableNotifications: enableNotifications, 
+    centerBus: focusBus
  	}
   this.srmEnable = this.srmEnable.bind(this);
   this.ssmEnable = this.ssmEnable.bind(this);
@@ -65,6 +66,11 @@ export class ActionButtons extends Component {
    this.props.toggleNotifications(state);
  }
 
+  toggleBus(state) {
+    this.setState({ centerBus: state });
+    this.props.toggleBus(state);
+  }
+
  handleReset(){
     let self = this;
     self.setState({isLoading: true});
@@ -105,7 +111,8 @@ export class ActionButtons extends Component {
                 targetOrigin={{horizontal: 'left', vertical: 'center'}}
                 onRequestClose={this.handleSettingsPopoverClose.bind(this)}>
                 <SettingsPopover srmenable={this.state.srmEnabled} ssmenable={this.state.ssmEnabled} srmenableaction={this.srmEnable} ssmenableaction={this.ssmEnable}
-                toggleNotifications={this.toggleNotifications.bind(this)} enableNotifications={this.state.enableNotifications}/>
+                toggleNotifications={this.toggleNotifications.bind(this)} enableNotifications={this.state.enableNotifications}
+                toggleBus={this.toggleBus.bind(this)} centerBus={this.state.centerBus}/>
                 </Popover> }
               </div>
             </MuiThemeProvider>

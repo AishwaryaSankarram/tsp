@@ -6,7 +6,7 @@ import { SignalPanel } from './signal-panel';
 
 import { toast } from 'react-toastify';
 
-import { enableNotifications, isLogsExpanded} from '../constants.js';
+import { enableNotifications, isLogsExpanded, focusBus} from '../constants.js';
 
 
 
@@ -18,7 +18,8 @@ export class MainPage extends Component{
 			logs: null,
 			signalPanel: null,
 			isLogsExpanded: isLogsExpanded,
-			enableNotifications: enableNotifications
+			enableNotifications: enableNotifications,
+			focusBus: focusBus
 		};
 		this.clearData = this.clearData.bind(this);
 		this.addLogs = this.addLogs.bind(this);
@@ -142,6 +143,10 @@ export class MainPage extends Component{
 		this.setState({ enableNotifications: state, isLogsExpanded: isLogsExpanded });
 	}
 
+	toggleBus(state){
+		this.setState({ focusBus: state })
+	}
+
 	srmSent(id) {
 		this.state.signalPanel.highlightSignal(id);
 	}
@@ -168,7 +173,8 @@ export class MainPage extends Component{
 						fetchSRM={this.fetchSRMandUpdateLogs.bind(this)} addLogs={this.addLogs} onBusMount={ref => (this.vehicles = ref)}
 						onSrmMount={ref => (this.srm = ref)} onSsmMount={ref => (this.ssm = ref)}
 						onInterMarkerMount={ref => (this.intermarker = ref)}
-						 vehicle={this.state.vehicle} showNotifications={this.addNotifications.bind(this)}/>
+						vehicle={this.state.vehicle} focusBus={this.state.focusBus}
+						showNotifications={this.addNotifications.bind(this)}/>
 					</div>
 				</div>
 				<div className={this.state.enableNotifications ? (this.state.isLogsExpanded ? "full-right" : "right-panel") : "hide"}>

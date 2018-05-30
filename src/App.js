@@ -50,10 +50,14 @@ class App extends Component {
     this.state.mainPage.toggleNotifications(state);
   }
 
+  toggleBus(state) {
+    this.state.mainPage.toggleBus(state);
+  }
+
   render() {
     return (
      <div className="App">
-        <Header srmenable={this.srmEnable} ssmenable={this.ssmEnable} clearData={this.clearData} toggleNotifications={this.toggleLogView.bind(this)}>
+        <Header srmenable={this.srmEnable} ssmenable={this.ssmEnable} clearData={this.clearData} toggleNotifications={this.toggleLogView.bind(this)} toggleBus={this.toggleBus.bind(this)}>
         </Header>
         <MainPage handleMount={this.mainPageMount}/>
         <ToastContainer style={{fontSize: "16px", marginTop:"20%", marginLeft: "5%"}} />

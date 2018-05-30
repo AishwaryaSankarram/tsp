@@ -15,7 +15,8 @@ export class Header extends Component {
                 </figure>
               </div>
               <div className="header-title">Transit Signal Priority</div>
-          <ActionButtons srmenable={this.props.srmenable} ssmenable={this.props.ssmenable} clearData={this.props.clearData} toggleNotifications={this.props.toggleNotifications}/>
+          <ActionButtons srmenable={this.props.srmenable} ssmenable={this.props.ssmenable} clearData={this.props.clearData} 
+          toggleNotifications={this.props.toggleNotifications} toggleBus={this.props.toggleBus}/>
             </div>
         </header>
 

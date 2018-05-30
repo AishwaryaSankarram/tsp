@@ -41,3 +41,5 @@ export const enableNotifications = false;
 export const enablePriority = true;
 
 export const isLogsExpanded = false;
+
+export const focusBus = false;

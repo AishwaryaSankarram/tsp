@@ -15,6 +15,7 @@ export class Vehicles extends React.Component {
         };
         this.processBSM = this.processBSM.bind(this);
         this.checkForExistingBounds = this.checkForExistingBounds.bind(this);
+        this.alwaysFocus = this.alwaysFocus.bind(this);
         this.clearData = this.clearData.bind(this);
     }
 
@@ -62,7 +63,11 @@ export class Vehicles extends React.Component {
         if(flag){
             if (currentCar.useAsEv) {
                 let latLng = new google.maps.LatLng(currentCar.lat, currentCar.lng);
-                self.checkForExistingBounds(latLng);
+                if(self.props.focusBus){
+                   self.alwaysFocus(latLng);
+                }else{
+                    self.checkForExistingBounds(latLng);
+                }
                 self.props.vehicle.updateData(currentCar);
             }
             cars[data.vehicle_id] = currentCar;
@@ -70,12 +75,19 @@ export class Vehicles extends React.Component {
         }
     }
 
+    alwaysFocus(latLng){
+        let self = this;
+        let map = self.props.mapObj;
+        map.panTo(latLng);   
+    }
+
+
     checkForExistingBounds(latLng){
         let self = this;
         let map = self.props.mapObj;
-        map.panTo(latLng);
         // window.myMap = map;
         if (!map.getBounds().contains(latLng)) {
+            map.panTo(latLng);
             // console.log("new lat lng not in bounds----");
             //latLngBounds.extend(latLng);
             //map.fitBounds(latLngBounds);

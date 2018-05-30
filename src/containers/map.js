@@ -21,8 +21,9 @@ export class MapContainer extends Component{
 			   onSrmMount={this.props.onSrmMount}
 			   onSsmMount={this.props.onSsmMount}
 			   onBusMount={this.props.onBusMount}
-				 onInterMarkerMount={this.props.onInterMarkerMount}
+			   onInterMarkerMount={this.props.onInterMarkerMount}
 			   showNotifications={this.props.showNotifications}
+			   focusBus={this.props.focusBus}
   			/>
   			</div>
 		);
