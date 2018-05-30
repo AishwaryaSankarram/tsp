@@ -30,6 +30,7 @@ export class SignalPanel extends Component {
     this.intersectionToSignalMap = this.intersectionToSignalMap.bind(this);
     this.processSPAT = this.processSPAT.bind(this);
     this.openPopover = this.openPopover.bind(this);
+    this.displaySPATFlash = this.displaySPATFlash.bind(this);
     this.signalToastID = null;
     this.intIDGroupID = null
   }
@@ -43,17 +44,7 @@ export class SignalPanel extends Component {
     // self.processSPAT({});
   }
 
-  displaySPAT(data){
-    // console.info("SPAT Info received in event", "spat", data);
-  }
-
-  processSPAT(d){
-    // console.info("SPAT Info received in event", "spat", d);
-    let self = this;
-    let data = JSON.parse(d);
-    let content =  " data with intersection ID " +  data.isec_id + " sent by RSU"
-    let logInfo = {className: "spat-text", timestamp: data.timestamp, label: "SPAT", content: content };
-
+  displaySPATFlash(data) {
     if(!this.intIDGroupID || this.intIDGroupID[0] !== data.isec_id || this.intIDGroupID[1] !== data.signal_group_id) {
 
       let string = "Signal timer for " + data.color.toUpperCase() + " is set to " + data.timer + " SECONDS."
@@ -94,7 +85,17 @@ export class SignalPanel extends Component {
         autoClose: Math.min((data.timer + 1) * 1000, 15000)
       });
     }
+  }
 
+  processSPAT(d){
+    // console.info("SPAT Info received in event", "spat", d);
+    let self = this;
+    let data = JSON.parse(d);
+    let content =  " data with intersection ID " +  data.isec_id + " sent by RSU"
+    let logInfo = {className: "spat-text", timestamp: data.timestamp, label: "SPAT", content: content };
+
+
+    this.displaySPATFlash(data);
     this.props.sendToIntMarker(data.color, data.isec_id);
 
     this.props.addLogs(logInfo);
