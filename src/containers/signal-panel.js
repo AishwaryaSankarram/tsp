@@ -191,9 +191,15 @@ export class SignalPanel extends Component {
    //Some MAP data flows in --- Show a disabled signal now in addition if the isec ID is new; 
   intersectionToSignalMap(obj, newMap) { //MAP comes bef SPAT
     let signals = this.state.signals;
-    if (this.state.signals[newMap.isec_id]) {
-        //Do nothing
-    } else {
+    let currentSignal = this.state.signals[newMap.isec_id];
+    if (currentSignal) {
+      if (!currentSignal.label) {
+        currentSignal.label = newMap.label;
+        currentSignal.veh_lane_id = newMap.veh_lane_id;
+        signals[newMap.isec_id] = currentSignal;
+        this.setState({ intToSignalMap: obj, signals: signals });
+      }
+    }else {
       signals[newMap.isec_id] = { "timer": "", "color": "", "isec_lat": newMap.isec_lat, "isec_id": newMap.isec_id, "isec_lng": newMap.isec_lng, veh_lane_id: newMap.veh_lane_id,
                     label: newMap.label}
       this.setState({ intToSignalMap: obj, signals: signals});
