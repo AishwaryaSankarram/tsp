@@ -95,8 +95,13 @@ export class SRMMarkers extends Component {
     let currentMarkers = Object.values(this.state.srmData);
     let markers = currentMarkers.map((data, index) => {
       let pos = {lat: data.Current_Lat, lng: data.Current_Lon};
-
-      let srmFlag = srmIcon.replace(/fillColor/g, data.color).replace(/count/g, data.count);
+      let countHtml='';
+      if(data.count > 10){
+        countHtml = '<text id="22" font-family="Poppins-Medium, Poppins" font-size="48" font-weight="700" fill="#FFFFFF"><tspan x="165" y="40">'  + data.count + '</tspan></text>';
+      }else{
+        countHtml = '<text id="22" font-family="Poppins-Medium, Poppins" font-size="60" font-weight="700" fill="#FFFFFF"><tspan x="175" y="50">' + data.count + '</tspan></text>';
+      }
+      let srmFlag = srmIcon.replace(/fillColor/g, data.color).replace(/count/g, countHtml);
       let icon = {
         url: 'data:image/svg+xml;charset=UTF-8,' + encodeURIComponent(srmFlag),
         scaledSize: new window.google.maps.Size(100, 100),

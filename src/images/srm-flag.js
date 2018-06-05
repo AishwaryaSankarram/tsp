@@ -8,9 +8,7 @@ const srmIcon = [
                         '<tspan x="34" y="107">SRM</tspan>',
                  '</text>',
                  '<ellipse id="Oval" fill="#C41C1C" cx="185.5" cy="30" rx="29.5" ry="30"/>',
-                 '<text id="22" font-family="Poppins-Medium, Poppins" font-size="60" font-weight="700" fill="#FFFFFF">',
-                        '<tspan x="175" y="50">count</tspan>',
-                 '</text>',
+                 'count',
              '</g>',
         '</g>',
     '</svg>'].join('\n');
