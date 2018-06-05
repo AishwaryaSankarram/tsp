@@ -14,7 +14,7 @@ export class SignalPanel extends Component {
   constructor(props) {
     super(props);
 
-    this.intervalTimer = null;
+    this.intervalTimer = {};
     this.state = {
       signals: {},
       activeSignal: {},
@@ -26,7 +26,6 @@ export class SignalPanel extends Component {
       laneData: null
     };
 
-    this.renderSignals = this.renderSignals.bind(this);
     this.intersectionToSignalMap = this.intersectionToSignalMap.bind(this);
     this.processSPAT = this.processSPAT.bind(this);
     this.openPopover = this.openPopover.bind(this);
@@ -91,62 +90,75 @@ export class SignalPanel extends Component {
     // console.info("SPAT Info received in event", "spat", d);
     let self = this;
     let data = JSON.parse(d);
-    let content =  " data with intersection ID " +  data.isec_id + " sent by RSU"
-    let logInfo = {className: "spat-text", timestamp: data.timestamp, label: "SPAT", content: content };
 
+    this.displaySPATFlash(data); //Send Flash notification
+    this.props.sendToIntMarker(data.color, data.isec_id); //Update the colour of Intersection markers
 
-    this.displaySPATFlash(data);
-    this.props.sendToIntMarker(data.color, data.isec_id);
-
+    //Add Logs
+    let content = " data with intersection ID " + data.isec_id + " sent by RSU";
+    let logInfo = { className: "spat-text", timestamp: data.timestamp, label: "SPAT", content: content };
     this.props.addLogs(logInfo);
+
+    //Add Notifications
+    let notification = "Current signal state of intersection " + data.isec_id + " is " + data.color + " and the timer reads " + data.timer + " seconds.";
+    this.props.showNotifications(notification);
+
     let signals = self.state.signals;
-    let activeSignal = data;
+    
+    //Popout the older signal when count > 4
     if(Object.keys(signals).length === 4 && !signals[data.isec_id]) {
       let values = Object.values(signals);
       values.sort((a,b) => {
         let c = a.label < b.label ? -1 : a.label > b.label ? 1 : 0;
         return c;
       });
-      let toDelete = values[0].isec_id
+      let toDelete = values[0].isec_id;
       delete signals[toDelete];
     }
+    //Set Basic Signal State with new SPAT
     signals[data.isec_id] = data;
-    if(this.state.intToSignalMap[data.isec_id]) {
-      activeSignal.label = this.state.intToSignalMap[data.isec_id].label;
-      signals[data.isec_id].label = this.state.intToSignalMap[data.isec_id].label;
+    clearInterval(self.intervalTimer[data.isec_id]); //Reset timer for current SPAT
+
+    let activeSignal = data.active ? data : self.state.activeSignal; //Determine active signal
+    // if(!activeSignal.isec_id){
+    //     activeSignal = data;
+    // }
+    if(this.state.intToSignalMap[data.isec_id]) { //Set Label from MAP
+      let label= this.state.intToSignalMap[data.isec_id].label;
+      signals[data.isec_id].label = label;
+      activeSignal.label = this.state.intToSignalMap[activeSignal.isec_id].label;
     }
+    //Prepend zero to single digit timers
     if (parseInt(data.timer, 10) > 0 && parseInt(data.timer, 10) < 10)
       data.timer = "0" + data.timer;
-    clearInterval(self.intervalTimer);
-    for(let sig in signals){
-      if(sig !== data.isec_id.toString()){
-        signals[sig].color = "";
-        signals[sig].timer = "";
-      }
-    }
-    let notification = "Current signal state of intersection " + data.isec_id + " is " + data.color + " and the timer reads " + data.timer + " seconds.";
-    this.props.showNotifications(notification);
-    self.setState({ signals: signals, activeSignal: data, isPopoverOpen: false, selIntersection: null });
+
+    //Set initial State  
+    self.setState({ signals: signals, activeSignal: activeSignal, isPopoverOpen: false, selIntersection: null });
+    
+    //CountDown timer begins
     let currentState = data;
     if (parseInt(currentState.timer, 10) >= 0){
-      self.intervalTimer = setInterval(function () {
+      self.intervalTimer[data.isec_id] = setInterval(function () {
           currentState.timer = parseInt(currentState.timer, 10) - 1;
           signals[data.isec_id] = currentState;
           if (parseInt(currentState.timer,10) > 0 && parseInt(currentState.timer, 10) < 10)
               currentState.timer = "0" + currentState.timer;
               signals[data.isec_id] = currentState;
           if(parseInt(currentState.timer,10) > 0){
-            self.setState({ activeSignal: activeSignal, signals: signals });
+            let toChange = {signals: signals};
+            self.setState(toChange);
           }else{
             currentState.timer="";
             currentState.color="";
-            self.props.clearAllInterSignals(data.isec_id);
-            self.setState({ activeSignal: activeSignal, signals: signals, isPopoverOpen: false });
-            clearInterval(self.intervalTimer);
+            self.props.clearAllInterSignals(currentState.isec_id);
+            signals[currentState.isec_id] = currentState;
+            let toChange = { signals: signals, isPopoverOpen: false };
+            self.setState(toChange);
+            clearInterval(self.intervalTimer[currentState.isec_id]);
           }
-
       }, 1000);
     }
+    //CountDown timer Ends
   }
 
   handleChange(event) {
@@ -176,50 +188,18 @@ export class SignalPanel extends Component {
     this.props.onSignalPanelMount(null);
   }
 
-  intersectionToSignalMap(obj, newMap) {
+   //Some MAP data flows in --- Show a disabled signal now in addition if the isec ID is new; 
+  intersectionToSignalMap(obj, newMap) { //MAP comes bef SPAT
     let signals = this.state.signals;
-    if(this.state.signals[newMap.isec_id]) {
-      clearInterval(this.intervalTimer);
-      for(let sig in signals) {
-        if(sig !== newMap.isec_id.toString()){
-          signals[sig].color = "";
-          signals[sig].timer = "";
-        }
-      }
-      this.setState({intToSignalMap: obj, activeSignal: this.state.signals[newMap.isec_id]});
-
-    } else if(newMap.isec_id !== this.state.activeSignal.isec_id) {
-      // console.log("MAKING NEW ISEC ID");
-      let newActiveSignal = {
-        isec_id: newMap.isec_id,
-        color: "",
-        timer: "",
-        label: newMap.label
-      }
-      clearInterval(this.intervalTimer);
-      for(let sig in signals) {
-        if(sig !== newMap.isec_id.toString()){
-          signals[sig].color = "";
-          signals[sig].timer = "";
-        }
-      }
-      let oldSignals = this.state.signals;
-      oldSignals[newMap.isec_id] = newActiveSignal;
-      this.setState({intToSignalMap: obj, signals: oldSignals, activeSignal: newActiveSignal});
-
+    if (this.state.signals[newMap.isec_id]) {
+        //Do nothing
     } else {
-      this.setState({intToSignalMap: obj});
+      signals[newMap.isec_id] = { "timer": "", "color": "", "isec_lat": newMap.isec_lat, "isec_id": newMap.isec_id, "isec_lng": newMap.isec_lng, veh_lane_id: newMap.veh_lane_id,
+                    label: newMap.label}
+      this.setState({ intToSignalMap: obj, signals: signals});
     }
   }
 
-
-
-  renderSignals(data) {
-    let parsedData = JSON.parse(data);
-    let oldsignals = this.state.signals;
-    oldsignals[parsedData.id] = parsedData.east;
-    this.setState({ signals: oldsignals });
-  }
 
   getConnectDirs(id) {
     let selectedInt = this.state.intToSignalMap[id];

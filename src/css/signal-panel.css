@@ -5,7 +5,7 @@
     background: #fff;
     float: left;
     text-align: left;
-    padding: 12px 18px;
+    /* padding: 12px 18px; */
     margin: 15px 28px 15px 15px;
     margin-bottom: 0px;
     border-radius: 6px;
@@ -14,6 +14,11 @@
 
 .signal-header{
   margin-bottom: 15px;
+  padding: 5px 18px;
+}
+
+.signal-panel .text-content{
+  padding: 0px 18px;
 }
 
 .signal-panel ul {
@@ -70,4 +75,17 @@
   left: 394px !important; */
   /*width: 180px;*/
   height: 94px;
+}
+
+/* Toast Styles */
+.signal-green{
+  background-color: #2BBF60;
+}
+
+.signal-red{
+  background-color: #EA4949;
+}
+
+.signal-yellow{
+  background-color: #EAB42D;
 }

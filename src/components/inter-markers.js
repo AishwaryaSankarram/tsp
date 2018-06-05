@@ -69,13 +69,15 @@ export class InterMarkers extends Component {
 
   clearSignal(isec_id) {
     let signalToIntMap = this.state.signalToIntMap;
-    signalToIntMap[isec_id].greenShadow = "#DCDCDC";
-    signalToIntMap[isec_id].green = "#DCDCDC";
-    signalToIntMap[isec_id].yellowShadow = "#DCDCDC";
-    signalToIntMap[isec_id].yellow = "#DCDCDC";
-    signalToIntMap[isec_id].redShadow = "#DCDCDC";
-    signalToIntMap[isec_id].red = "#DCDCDC";
-    this.setState({signalToIntMap: signalToIntMap});
+    if(signalToIntMap[isec_id]){
+      signalToIntMap[isec_id].greenShadow = "#DCDCDC";
+      signalToIntMap[isec_id].green = "#DCDCDC";
+      signalToIntMap[isec_id].yellowShadow = "#DCDCDC";
+      signalToIntMap[isec_id].yellow = "#DCDCDC";
+      signalToIntMap[isec_id].redShadow = "#DCDCDC";
+      signalToIntMap[isec_id].red = "#DCDCDC";
+      this.setState({signalToIntMap: signalToIntMap});
+    }
   }
 
   displayMapData(data){
@@ -114,14 +116,17 @@ export class InterMarkers extends Component {
          let chr = String.fromCharCode(65+noOfElements);
          this.isecIdToLabelMap[data.isec_id] = chr;
        }
-       oldSignalToIntMap[data.isec_id] = data;
-       oldSignalToIntMap[data.isec_id].label = this.isecIdToLabelMap[data.isec_id];
-       oldSignalToIntMap[data.isec_id].red = "#DCDCDC"
-       oldSignalToIntMap[data.isec_id].redShadow = "#DCDCDC"
-       oldSignalToIntMap[data.isec_id].yellow = "#DCDCDC"
-       oldSignalToIntMap[data.isec_id].yellowShadow = "#DCDCDC"
-       oldSignalToIntMap[data.isec_id].green = "#DCDCDC"
-       oldSignalToIntMap[data.isec_id].greenShadow = "#DCDCDC"
+      if(!oldSignalToIntMap[data.isec_id]){
+        oldSignalToIntMap[data.isec_id] = data;
+        oldSignalToIntMap[data.isec_id].label = this.isecIdToLabelMap[data.isec_id];
+        oldSignalToIntMap[data.isec_id].red = "#DCDCDC"
+        oldSignalToIntMap[data.isec_id].redShadow = "#DCDCDC"
+        oldSignalToIntMap[data.isec_id].yellow = "#DCDCDC"
+        oldSignalToIntMap[data.isec_id].yellowShadow = "#DCDCDC"
+        oldSignalToIntMap[data.isec_id].green = "#DCDCDC"
+        oldSignalToIntMap[data.isec_id].greenShadow = "#DCDCDC"
+      }
+       
       let notification = "Vehicle is at lane " + data.veh_lane_id + " and entered MAP zone for intersection " + data.isec_id + " with approach having " + data.no_of_lanes + " lane(s).";
       this.props.showNotifications(notification);
 
