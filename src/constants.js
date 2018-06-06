@@ -42,4 +42,6 @@ export const enablePriority = true;
 
 export const isLogsExpanded = false;
 
-export const focusBus = false;
+export const focusBus = true;
+
+export const showAllIntersections = true;

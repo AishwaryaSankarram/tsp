@@ -6,7 +6,7 @@ import Popover from "material-ui/Popover";
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import '../css/signal-panel.css';
 import { toast } from 'react-toastify';
-
+import { showAllIntersections } from '../constants.js';
 
 
 export class SignalPanel extends Component {
@@ -19,7 +19,7 @@ export class SignalPanel extends Component {
       signals: {},
       activeSignal: {},
       intToSignalMap: {},
-      showAllSignals: false,
+      showAllSignals: showAllIntersections,
       isPopoverOpen: false,
       anchorElement: null,
       selIntersection: null,
