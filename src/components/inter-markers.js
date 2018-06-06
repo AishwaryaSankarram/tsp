@@ -95,6 +95,12 @@ export class InterMarkers extends Component {
     this.setState({signalToIntMap: signalToIntMap});
   }
 
+  resetData() {
+    this.setState({signalToIntMap: {}});
+    this.isecIdToLabelMap = {};
+
+  }
+
   updateIntersections(mapData) {
     let data = JSON.parse(mapData);
 

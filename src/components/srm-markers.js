@@ -41,7 +41,6 @@ export class SRMMarkers extends Component {
   }
 
   displaySRM(data){
-    // console.info("SRM Info received in event", "srm", data);
 
     this.processSRM(JSON.parse(data));
   }

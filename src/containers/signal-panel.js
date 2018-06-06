@@ -43,6 +43,23 @@ export class SignalPanel extends Component {
     // self.processSPAT({});
   }
 
+  resetData() {
+    Object.values(this.intervalTimer).forEach((timer)=> {
+      clearInterval(timer);
+    });
+    this.intervalTimer = {};
+    this.setState({
+      signals: {},
+      activeSignal: {},
+      intToSignalMap: {},
+      showAllSignals: showAllIntersections,
+      isPopoverOpen: false,
+      anchorElement: null,
+      selIntersection: null,
+      laneData: null
+    });
+  }
+
   displaySPATFlash(data) {
     if(!this.intIDGroupID || this.intIDGroupID[0] !== data.isec_id || this.intIDGroupID[1] !== data.signal_group_id) {
 
@@ -104,7 +121,7 @@ export class SignalPanel extends Component {
     this.props.showNotifications(notification);
 
     let signals = self.state.signals;
-    
+
     //Popout the older signal when count > 4
     if(Object.keys(signals).length === 4 && !signals[data.isec_id]) {
       let values = Object.values(signals);
@@ -132,9 +149,9 @@ export class SignalPanel extends Component {
     if (parseInt(data.timer, 10) > 0 && parseInt(data.timer, 10) < 10)
       data.timer = "0" + data.timer;
 
-    //Set initial State  
+    //Set initial State
     self.setState({ signals: signals, activeSignal: activeSignal, isPopoverOpen: false, selIntersection: null });
-    
+
     //CountDown timer begins
     let currentState = data;
     if (parseInt(currentState.timer, 10) >= 0){
@@ -188,7 +205,7 @@ export class SignalPanel extends Component {
     this.props.onSignalPanelMount(null);
   }
 
-   //Some MAP data flows in --- Show a disabled signal now in addition if the isec ID is new; 
+   //Some MAP data flows in --- Show a disabled signal now in addition if the isec ID is new;
   intersectionToSignalMap(obj, newMap) { //MAP comes bef SPAT
     let signals = this.state.signals;
     let currentSignal = this.state.signals[newMap.isec_id];

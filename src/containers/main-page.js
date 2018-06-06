@@ -24,6 +24,7 @@ export class MainPage extends Component{
 		this.clearData = this.clearData.bind(this);
 		this.addLogs = this.addLogs.bind(this);
 		this.requestToToast = {};
+		this.resetData = this.resetData.bind(this);
 	}
 
 	clearData() {
@@ -34,6 +35,16 @@ export class MainPage extends Component{
 		this.srm.clearData();
 		this.ssm.clearData();
 		this.intermarker.clearData();
+	}
+
+	resetData() {
+		this.state.vehicle.clearData();
+		this.state.logs.clearLogs();
+		this.vehicles.clearData();
+		this.srm.clearData();
+		this.ssm.clearData();
+		this.intermarker.resetData();
+		this.state.signalPanel.resetData();
 	}
 
 
@@ -87,6 +98,8 @@ export class MainPage extends Component{
 
 	componentDidMount() {
 		this.props.handleMount(this);
+		let self = this;
+		window.socket.on('restart', self.resetData);
 	}
 
 	componentWillUnmount() {
@@ -158,7 +171,7 @@ export class MainPage extends Component{
 			<div className="main-page">
 				<div className={this.state.isLogsExpanded ? "hide" : this.state.enableNotifications ? "left-panel" : "full-left"}>
 					<div  className="top-panel">
-						<SignalPanel 
+						<SignalPanel
 						 onSignalPanelMount={this.handleSignalPanelMount.bind(this)} addLogs={this.addLogs}
 						  showNotifications={this.addNotifications.bind(this)}sendToIntMarker={this.sendToIntMarker.bind(this)}
 							clearAllInterSignals={this.disableAllInterSignals.bind(this)}/>

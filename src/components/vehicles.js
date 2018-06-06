@@ -78,7 +78,7 @@ export class Vehicles extends React.Component {
     alwaysFocus(latLng){
         let self = this;
         let map = self.props.mapObj;
-        map.panTo(latLng);   
+        map.panTo(latLng);
     }
 
 
