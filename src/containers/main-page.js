@@ -37,16 +37,6 @@ export class MainPage extends Component{
 		this.intermarker.clearData();
 	}
 
-	resetData() {
-		this.state.vehicle.clearData();
-		this.state.logs.clearLogs();
-		this.vehicles.clearData();
-		this.srm.clearData();
-		this.ssm.clearData();
-		this.intermarker.resetData();
-		this.state.signalPanel.resetData();
-	}
-
 
 	srmsent(toastID, requestID) {
 		// console.log("SRM SENT ID =>", toastID);
@@ -60,23 +50,31 @@ export class MainPage extends Component{
 			 render: string,
 			 autoClose: 10000
 		 })
-
 	 }
 
-	ssmsent(requestID, status) {
-			let string = "Signal Request " + status + "!"
-			if(status === "granted") {
-				toast.success(string, {
-	         position: toast.POSITION.TOP_LEFT,
-	         autoClose: 10000
-	       });
-			} else {
-				toast.error(string, {
-	         position: toast.POSITION.TOP_LEFT,
-	         autoClose: 10000
-	       });
-			}
+	 resetData() {
+		this.state.vehicle.clearData();
+		this.state.logs.clearLogs();
+		this.vehicles.clearData();
+		this.srm.clearData();
+		this.ssm.clearData();
+		this.intermarker.resetData();
+		this.state.signalPanel.resetData();
+    }
+	 	
+	 
 
+	ssmsent(toastID, requestID) {
+		this.requestToToast[requestID] = toastID;
+
+	}
+
+	updatessm(requestID, content, status){
+		 let toastID = this.requestToToast[requestID.toString()];
+		 toast.update(toastID, {
+			 render: content,
+			 autoClose: 10000
+		 })		
 	}
 
 
@@ -171,7 +169,7 @@ export class MainPage extends Component{
 			<div className="main-page">
 				<div className={this.state.isLogsExpanded ? "hide" : this.state.enableNotifications ? "left-panel" : "full-left"}>
 					<div  className="top-panel">
-						<SignalPanel
+						<SignalPanel 
 						 onSignalPanelMount={this.handleSignalPanelMount.bind(this)} addLogs={this.addLogs}
 						  showNotifications={this.addNotifications.bind(this)}sendToIntMarker={this.sendToIntMarker.bind(this)}
 							clearAllInterSignals={this.disableAllInterSignals.bind(this)}/>
@@ -182,6 +180,7 @@ export class MainPage extends Component{
 						srmsent={this.srmsent.bind(this)}
 						updatesrm={this.updatesrm.bind(this)}
 						ssmsent={this.ssmsent.bind(this)}
+						updatessm={this.updatessm.bind(this)}
 					 	fetchSSM={this.fetchSSMandUpdateLogs.bind(this)}
 						fetchSRM={this.fetchSRMandUpdateLogs.bind(this)} addLogs={this.addLogs} onBusMount={ref => (this.vehicles = ref)}
 						onSrmMount={ref => (this.srm = ref)} onSsmMount={ref => (this.ssm = ref)}

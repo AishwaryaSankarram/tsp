@@ -39,6 +39,6 @@ export const MapComponent = compose(
         <Vehicles mapObj={props.mapObj} vehicle={props.vehicle} onMount={props.onBusMount} focusBus={props.focusBus}/>
         <InterMarkers mapObj={props.mapObj} onMount={props.onInterMarkerMount} signalpanel={props.signalpanel} addLogs={props.addLogs} showNotifications={props.showNotifications}/>
         <SRMMarkers srmsent={props.srmsent} updatesrm={props.updatesrm} mapObj={props.mapObj} fetchSSM={props.fetchSSM} onMount={props.onSrmMount} addLogs={props.addLogs} showNotifications={props.showNotifications}/>
-        <SSMMarkers mapObj={props.mapObj} ssmsent={props.ssmsent} fetchSRM={props.fetchSRM} onMount={props.onSsmMount} addLogs={props.addLogs} showNotifications={props.showNotifications}/>
+        <SSMMarkers mapObj={props.mapObj} ssmsent={props.ssmsent} fetchSRM={props.fetchSRM} onMount={props.onSsmMount} addLogs={props.addLogs} showNotifications={props.showNotifications} updatessm={props.updatessm}/>
     </GoogleMap>
 ));
