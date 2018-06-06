@@ -6,9 +6,9 @@ export class MapContainer extends Component{
 	render(){
 		// console.log("Rendering MapContainer-----", this.props)
 		return (
-			<div className="map-container">
+			<div className="map-container clearfix">
 			<MapComponent loadingElement={<div style={{ height: `100%` }} />}
-  			   containerElement={<div style={{ height: `60vh`}} />}
+  			   containerElement={<div style={{ height: `100%`}} />}
   			   mapElement={<div style={{ height: `100%` }} />}
   			   vehicle={this.props.vehicle}
 			   signalpanel={this.props.signalpanel}

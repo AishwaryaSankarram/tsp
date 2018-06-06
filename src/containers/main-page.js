@@ -158,13 +158,13 @@ export class MainPage extends Component{
 			<div className="main-page">
 				<div className={this.state.isLogsExpanded ? "hide" : this.state.enableNotifications ? "left-panel" : "full-left"}>
 					<div  className="top-panel">
-						<SignalPanel
+						<SignalPanel 
 						 onSignalPanelMount={this.handleSignalPanelMount.bind(this)} addLogs={this.addLogs}
 						  showNotifications={this.addNotifications.bind(this)}sendToIntMarker={this.sendToIntMarker.bind(this)}
 							clearAllInterSignals={this.disableAllInterSignals.bind(this)}/>
 						<VehicleContainer onVehicleMount={this.handleVehicleMount.bind(this)} />
 					</div>
-					<div className="bottom-panel">
+					<div className="bottom-panel clearfix">
 						<MapContainer signalpanel={this.state.signalPanel}
 						srmsent={this.srmsent.bind(this)}
 						updatesrm={this.updatesrm.bind(this)}

@@ -1,33 +1,49 @@
-body {
+html, body {
   margin: 0;
   padding: 0;
   font-family: sans-serif;
+  height: 100%;
   background: #f3f3f3;
 }
 div.gm-style-iw  + div {
   display:none;
 }
+
+#root, .App{
+  height: 100%;
+}
+
 .main-page{
   width: 100%;
-  height: calc(100% - 61px);
+  height: calc(100% - 70px);
 }
 .left-panel{
   width: 75%;
+  height: 100%;
   float: left;
 }
+
 .right-panel{
   width: 25%;
   float: right;
+  height: 100%;
+}
+
+.side-panel{
+  height: calc(100% - 40px);
 }
 
 .top-panel {
   height: 200px;
+  display: block;
 }
 
 .bottom-panel {
-  height: 70%;
+  height: calc(100% - 280px);
+  display: block;
 }
 
 .full-right, .full-left{
   width: 100%;
+  height: 100%;
 }

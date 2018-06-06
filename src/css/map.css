@@ -1,9 +1,14 @@
 .map-container {
-	width: 95.5%;
+	width: 97.7%;
+	height: 100%;
 	float: left;
 	background: #ffffff;
 	padding: 15px;
 	margin: 15px;
 	border-radius: 6px;
 	margin-bottom: 0px;
+}
+
+.left-panel .map-container{
+	width: 97.3%;
 }
