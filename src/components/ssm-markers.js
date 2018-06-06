@@ -72,7 +72,7 @@ export class SSMMarkers extends Component {
        this.props.ssmsent(toastID, key);
     } else {
       let count = ssmInfo[key].count + 1;
-      let toast = "Signal Request " + status + "! (" + count +  " )";
+      let toast = "Signal Request " + status + "! (" + count +  ")";
       this.props.updatessm(key, toast);
       ssmInfo[key] = data;
       ssmInfo[key].count = count;
