@@ -15,10 +15,10 @@ export class Header extends Component {
                 <figure className="logo">
                   <div className="row" id="banner">
                     <div className="column">
-                      <img src={logo} alt="Carma Networks" title="Carma Networks" />
+                      <img src={LearLogo} alt="Lear Corporation" title="Lear Corporation" />
                     </div>
                     <div className="column">
-                      <img src={LearLogo} alt="Lear Corporation" title="Lear" />
+                      <img src={logo} alt="Carma Networks" title="Carma Networks" />
                     </div>
                 </div>
                 </figure>
