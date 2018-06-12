@@ -143,7 +143,9 @@ export class SignalPanel extends Component {
     if(this.state.intToSignalMap[data.isec_id]) { //Set Label from MAP
       let label= this.state.intToSignalMap[data.isec_id].label;
       signals[data.isec_id].label = label;
-      activeSignal.label = this.state.intToSignalMap[activeSignal.isec_id].label;
+      if(activeSignal.isec_id) {
+        activeSignal.label = this.state.intToSignalMap[activeSignal.isec_id].label;
+      }
     }
     //Prepend zero to single digit timers
     if (parseInt(data.timer, 10) > 0 && parseInt(data.timer, 10) < 10)
