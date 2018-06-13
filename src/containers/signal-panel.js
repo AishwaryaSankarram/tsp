@@ -31,7 +31,7 @@ export class SignalPanel extends Component {
     this.openPopover = this.openPopover.bind(this);
     this.displaySPATFlash = this.displaySPATFlash.bind(this);
     this.signalToastID = null;
-    this.intIDGroupID = null
+    this.intIDGroupID = {}
   }
 
   componentDidMount() {
@@ -61,9 +61,10 @@ export class SignalPanel extends Component {
   }
 
   displaySPATFlash(data) {
-    if(!this.intIDGroupID || this.intIDGroupID[0] !== data.isec_id || this.intIDGroupID[1] !== data.signal_group_id) {
+    let intIdGroupIdKey = data.isec_id.toString() + '_' + data.signal_group_id.toString();
+    if(!this.intIDGroupID[intIdGroupIdKey] || (!toast.isActive(this.intIDGroupID[intIdGroupIdKey]))) {
 
-      let string = "Signal timer for " + data.color.toUpperCase() + " is set to " + data.timer + " SECONDS."
+      let string = data.color.toUpperCase() + " timer for signal is set to " + data.timer + " SECONDS."
       if(data.color === "green") {
         this.signalToastID = toast.success(string, {
            position: toast.POSITION.TOP_LEFT,
@@ -83,10 +84,10 @@ export class SignalPanel extends Component {
           });
        }
 
-       this.intIDGroupID = [data.isec_id, data.signal_group_id];
+       this.intIDGroupID[intIdGroupIdKey] = this.signalToastID;
 
     } else {
-      let string = "Signal timer for " + data.color.toUpperCase() + " is set to " + data.timer + " SECONDS."
+      let string = data.color.toUpperCase() + " timer for signal is set to " + data.timer + " SECONDS."
       let toastType;
       if (data.color ==="green") {
         toastType = toast.TYPE.SUCCESS;
@@ -95,7 +96,7 @@ export class SignalPanel extends Component {
       } else if (data.color === "red") {
         toastType = toast.TYPE.ERROR;
       }
-      toast.update(this.signalToastID, {
+      toast.update(this.intIDGroupID[intIdGroupIdKey], {
         render: string,
         type: toastType,
         autoClose: Math.min((data.timer + 1) * 1000, 15000)
