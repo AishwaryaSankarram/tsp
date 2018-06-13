@@ -60,7 +60,7 @@ class App extends Component {
         <Header srmenable={this.srmEnable} ssmenable={this.ssmEnable} clearData={this.clearData} toggleNotifications={this.toggleLogView.bind(this)} toggleBus={this.toggleBus.bind(this)}>
         </Header>
         <MainPage handleMount={this.mainPageMount}/>
-        <ToastContainer style={{fontSize: "16px", marginTop:"20%", marginLeft: "5%"}} />
+        <ToastContainer style={{fontSize: "16px", marginTop:"25%", marginLeft: "5%"}} />
       </div>
     );
   }

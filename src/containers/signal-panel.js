@@ -153,7 +153,7 @@ export class SignalPanel extends Component {
       data.timer = "0" + data.timer;
 
     //Set initial State
-    self.setState({ signals: signals, activeSignal: activeSignal, isPopoverOpen: false, selIntersection: null });
+    self.setState({ signals: signals, activeSignal: activeSignal });
 
     //CountDown timer begins
     let currentState = data;
@@ -172,7 +172,7 @@ export class SignalPanel extends Component {
             currentState.color="";
             self.props.clearAllInterSignals(currentState.isec_id);
             signals[currentState.isec_id] = currentState;
-            let toChange = { signals: signals, isPopoverOpen: false };
+            let toChange = { signals: signals };
             self.setState(toChange);
             clearInterval(self.intervalTimer[currentState.isec_id]);
           }
@@ -188,14 +188,16 @@ export class SignalPanel extends Component {
   }
 
   openPopover(event, id) {
-    if(this.state.isPopoverOpen){
-      this.setState({ isPopoverOpen: false, selIntersection: null });
-    } else {
-      this.setState({
-        isPopoverOpen: true,
-        anchorElement: event.currentTarget,
-        selIntersection: id
-      });
+    if(this.state.intToSignalMap[id]) {
+      if(this.state.isPopoverOpen){
+        this.setState({ isPopoverOpen: false, selIntersection: null });
+      } else {
+        this.setState({
+          isPopoverOpen: true,
+          anchorElement: event.currentTarget,
+          selIntersection: id
+        });
+      }
     }
 
   }
