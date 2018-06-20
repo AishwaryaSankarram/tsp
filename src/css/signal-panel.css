@@ -32,16 +32,6 @@
   margin-top: 5px;
 }
 
-.signal {
-  float: left;
-  /* width: 78%; */
-  /* border:1px solid #ccc; */
-  margin: 4px;
-  margin-top: -64px;
-  padding: 4px 6px;
-  padding-left: 35%;
-  /* position: relative; */
-}
 
 .multi-signal {
   float: left;
@@ -52,6 +42,11 @@
   /*padding: 4px 6px;*/
   padding-left: 20px;
   position: relative;
+}
+
+.signal svg {
+  width: 100%;
+  margin-top: -50px;
 }
 
 .signal button {

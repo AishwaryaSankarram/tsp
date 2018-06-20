@@ -34,7 +34,7 @@ export class SignalImage extends Component {
       let showActiveSignal = this.props.activeSignal && this.props.connectDirs;
       let floodColor = showActiveSignal ? "#ff0000" : "#c6c2c2"
     return (
-     <svg id="signalSVG" xmlns="http://www.w3.org/2000/svg" width="70%" height="236px" viewBox="-10 10 550 700" version="1.1" >
+     <svg id="signalSVG" xmlns="http://www.w3.org/2000/svg" width="70%" height="230px" viewBox="-10 10 550 700" version="1.1" >
      <defs>
         <filter id={"shadow" + this.props.label} width="1.5" height="1.5" x="0" y="0">
             <feDropShadow dx="10" dy="10" stdDeviation="10" floodColor={floodColor} floodOpacity="1" />

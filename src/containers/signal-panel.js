@@ -242,11 +242,11 @@ export class SignalPanel extends Component {
 
 
   render() {
-      let signals=<div></div>;
+      let signals;
       if(Object.keys(this.state.signals).length === 0) {
-        signals = <span className="signal" key={"signal-li_" + 0} >
+        signals = <div className="signal" key={"signal-li_" + 0} >
           <Signal key={0} connectDirs={["straight"]} data={this.state.activeSignal}/>
-            </span>;
+            </div>;
 
       } else if(Object.keys(this.state.signals).length === 1 || !this.state.showAllSignals) {
         signals = <span className="signal" key={"signal-li_" + 0} >
