@@ -8,7 +8,6 @@ import {SettingsPopover} from './settings-popover';
 import { enableSRM, enableSSM, enableNotifications, enablePriority,  focusBus} from '../constants.js';
 
 export class ActionButtons extends Component {
-  not
  constructor(props){
  	super(props);
  	this.state = {
